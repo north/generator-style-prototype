@@ -36,13 +36,13 @@ AppGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
   var welcome =
-  '\n             ,.-----__'.red +
-  '\n          ,:::://///,:::-.'.red +
-  '\n        /:\'\'/////// ``:::`;/|/'.red + '     .------------------.'.magenta +
-  '\n       /\'   ||||||     :://\'`\\'.red + '     | '.magenta + 'I\'m an Armadillo'.yellow.bold + ' |'.magenta +
-  '\n      .\' ,   ||||||     `/(  '.red + 'e'.white + ' \\'.red + '   \'------------------\'' .magenta +
-  '\n-===~__-\'\\__X_`````\\_____/~`-._ `.'.red + '  '.magenta +
-  '\n            ~~        ~~       `~-\''.red + '\n';
+  '\n             ,.-----__'.orange +
+  '\n          ,:::://///,:::-.'.orange +
+  '\n        /:\'\'/////// ``:::`;/|/'.orange + '     .------------------.'.magenta +
+  '\n       /\'   ||||||     :://\'`\\'.orange + '     | '.magenta + 'I\'m an Armadillo'.yellow.bold + ' |'.magenta +
+  '\n      .\' ,   ||||||     `/(  '.orange + 'e'.white + ' \\'.orange + '   \'------------------\'' .magenta +
+  '\n-===~__-\'\\__X_`````\\_____/~`-._ `.'.orange + '  '.magenta +
+  '\n            ~~        ~~       `~-\''.orange + '\n';
 
   console.log(welcome);
   console.log('Out of the box I include Sass+Compass, Generator for Handlebars templating and Markdown powered pages, Image Optimization, JavaScript Hinting and Minification, and CSS Linting. I\'m also designed to make ');
