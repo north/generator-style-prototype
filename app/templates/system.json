@@ -1,0 +1,22 @@
+{
+  "generator": {
+    "pagesDir": "pages",
+    "templatesDir": "templates",
+    "partialsDir": "pages/partials",
+    "helpers": "helpers"
+  },
+  "assets": {
+    "imagesDir": "images",
+    "cssDir": "css",
+    "sassDir": "sass",
+    "jsDir": "js",
+    "fontsDir": "fonts",
+    "componentsDir": "components"
+  },
+  "server": {
+    "root": ".www"
+  },
+  "export": {
+    "distPath": ".dist"
+  }
+}

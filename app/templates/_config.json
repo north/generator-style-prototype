@@ -1,0 +1,24 @@
+{
+  "project": "<%= projectName %>",
+  "server": {
+    "port": 8000
+  },
+  "export": {
+    "path": "export",
+    "assetPrefix": "<%= projectSlug %>"
+  },
+  "compass": {
+    "debugInfo": false,
+    "extensions": [
+      "toolkit",
+      "sassy-buttons",
+      "modular-scale",
+      "compass-normalize"
+    ]
+  },
+  "git": {
+    "defaultCommit": "Production build and commit"<% if (ghDeploy) {%>,
+    "deployUpstream": "origin",
+    "deployBranch": "gh-pages"<% } %>
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "<%= (projectSlug) %>",
+  "version": "0.0.0",
+  "dependencies": {
+    "formalize": "git://github.com/nathansmith/formalize",<% if (requireJS) { %>
+    "requirejs": "~2.1.4",<% } %>
+    "modernizr": "~2.6.2",
+    "jquery": "~2.0.0"
+  },
+  "devDependencies": {}
+}
