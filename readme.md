@@ -5,7 +5,7 @@ Yeoman generator for scaffolding out a static site
 
 ## Getting Started
 
-- Make sure you have [yo](https://github.com/yeoman/yo) installed: `npm install -g yo`
+- Make sure you have [yo](https://github.com/yeoman/yo) installed: `npm install -g yo grunt-cli bower`
 - Install the generator: `npm install -g generator-armadillo`
 - Run: `yo armadillo` to create your project
 	- Project Name: Your Project's Name.
