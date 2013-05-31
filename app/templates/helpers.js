@@ -11,7 +11,7 @@ module.exports = {
   'component-url': function(src) {
     return this.options.assets + '/' + this.options.userConfig.assets.componentsDir + '/' + src;
   },
-  'ext-style': function(href, component) {
+  'style-ext': function(href, component) {
     var path = this.options.assets;
 
     if (component.data === undefined) {
@@ -23,7 +23,7 @@ module.exports = {
 
     return '<link rel="stylesheet" href="' + path + href + '">';
   },
-  'ext-script': function(src, component) {
+  'script-ext': function(src, component) {
     var path = this.options.assets;
 
     if (component.data === undefined) {
