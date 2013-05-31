@@ -42,13 +42,13 @@ AppGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
   var welcome =
-  '\n             ,.-----__'.orange +
-  '\n          ,:::://///,:::-.'.orange +
-  '\n        /:\'\'/////// ``:::`;/|/'.orange + '     .------------------.'.magenta +
-  '\n       /\'   ||||||     :://\'`\\'.orange + '     | '.magenta + 'I\'m an Armadillo'.yellow.bold + ' |'.magenta +
-  '\n      .\' ,   ||||||     `/(  '.orange + 'e'.white + ' \\'.orange + '   \'------------------\'' .magenta +
-  '\n-===~__-\'\\__X_`````\\_____/~`-._ `.'.orange + '  '.magenta +
-  '\n            ~~        ~~       `~-\''.orange + '\n';
+  '\n             ,.-----__'.red +
+  '\n          ,:::://///,:::-.'.red +
+  '\n        /:\'\'/////// ``:::`;/|/'.red + '     .------------------.'.magenta +
+  '\n       /\'   ||||||     :://\'`\\'.red + '     | '.magenta + 'I\'m an Armadillo'.yellow.bold + ' |'.magenta +
+  '\n      .\' ,   ||||||     `/(  '.red + 'e'.white + ' \\'.red + '   \'------------------\'' .magenta +
+  '\n-===~__-\'\\__X_`````\\_____/~`-._ `.'.red + '  '.magenta +
+  '\n            ~~        ~~       `~-\''.red + '\n';
 
   console.log(welcome);
   console.log("\nOut of the box I include Sass+Compass, Generator for Handlebars templating and Markdown powered pages, Image Optimization, JavaScript Hinting and Minification, and CSS Linting. I also make publishing sites to GitHub Pages very easy. If you have any questions, ask my handler at https://github.com/Snugug/generator-armadillo.\n");
