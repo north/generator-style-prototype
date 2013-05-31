@@ -27,8 +27,8 @@ Armadillo comes with helper functions for use in your HTML and Markdown pages to
 * `{{script-url 'foo.js'}}`: Absolute path to a JavaScript file in your JavaScript directory. The file should be relative to that directory.
 * `{{style-url 'foo.css'}}`: Absolute path to a CSS file in your CSS directory. The file should be relative to that directory, or it's relative path from your Sass directory (as the CSS will be compiled from your Sass)
 * `{{component-url 'foo/foo.js'}}`: Absolute path to a file from a component in your Component directory. The file should be relative to that directory
-* `{{{ext-style 'foo.css'}}}`: Writes a `<link>` tag to that CSS file. Can write as `{{{ext-style 'foo/foo.css' true}}}` to specify it's from a component. Paths should be relative to either the CSS directory or the Component directory.
-* `{{{ext-script 'foo.js'}}}`: Writes a `<script>` tag to that JS file. Can write as `{{{ext-script 'foo/foo.js' true}}}` to specify it's from a component. Paths should be relative to either the JS directory or the Component directory.
+* `{{{style-ext 'foo.css'}}}`: Writes a `<link>` tag to that CSS file. Can write as `{{{ext-style 'foo/foo.css' true}}}` to specify it's from a component. Paths should be relative to either the CSS directory or the Component directory.
+* `{{{script-ext 'foo.js'}}}`: Writes a `<script>` tag to that JS file. Can write as `{{{ext-script 'foo/foo.js' true}}}` to specify it's from a component. Paths should be relative to either the JS directory or the Component directory.
 * `{{page-title}}`: Writes out the page title, in the form of `Page Title | Project Name` for pages with a specified Page Title or `Project Name` if it doesn't. Used for setting the `<title>` tag in the `<head>`.
 
 ## Basic Configuration
