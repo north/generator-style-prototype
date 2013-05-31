@@ -79,7 +79,7 @@ There is a `.system.json` file that has advanced system-level settings that, if 
 * **server**
 	* *root*: Your web root directory
 * **export**
-	* **distPath*: Your build path directory
+	* *distPath*: Your build path directory
 
 ## License
 
