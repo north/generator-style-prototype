@@ -81,6 +81,11 @@ There is a `.system.json` file that has advanced system-level settings that, if 
 * **export**
 	* *distPath*: Your build path directory
 
+## Configuring JSHint and CSS Lint
+
+Armadillo will help you make your code better by running your JavaScript through [JSHint](http://jshint.com/) and your CSS through [CSS Lint](http://csslint.net/). You can configure JSHint by editing `.jshintrc` and CSS Lint by editing `.csslintrc`.
+	
+
 ## License
 
 [BSD license](http://opensource.org/licenses/bsd-license.php)
