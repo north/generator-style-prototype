@@ -1,6 +1,6 @@
 # Armadillo Generator
 
-Yeoman generator for scaffolding out a static site
+Yeoman generator for scaffolding out a static site. Designed to make it easy to write great code and easily publish static sites to GitHub Pages.
 
 
 ## Getting Started
