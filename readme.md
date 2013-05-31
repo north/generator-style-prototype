@@ -1,5 +1,15 @@
 # Armadillo Generator
 
+```
+             ,.-----__
+          ,:::://///,:::-.
+        /:''/////// ``:::`;/|/      .------------------.
+       /'   ||||||     :://'`\      | I'm an Armadillo |
+      .' ,   ||||||     `/(  e \    |------------------'
+-===~__-'\__X_`````\_____/~`-._ `.  /
+            ~~        ~~       `~-'
+```
+
 Yeoman generator for scaffolding out a static site. Designed to make it easy to write great code and easily publish static sites to GitHub Pages.
 
 
