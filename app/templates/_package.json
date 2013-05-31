@@ -20,7 +20,8 @@
     "grunt-git": "0.0.1",
     "grunt-exec": "~0.4.0",
     "deepmerge": "~0.2.5",
-    "matchdep": "~0.1.2"
+    "matchdep": "~0.1.2",
+    "grunt-contrib-csslint": "~0.1.2"
   },
   "engines": {
     "node": ">=0.8.0"

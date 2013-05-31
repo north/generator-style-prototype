@@ -96,7 +96,8 @@ module.exports = function (grunt) {
         }
       },
       css: {
-        files: [root + '/' + cssDir + '/{,**/}*.css']
+        files: [root + '/' + cssDir + '/{,**/}*.css'],
+        tasks: ['csslint']
       }
     },
 
@@ -178,6 +179,16 @@ module.exports = function (grunt) {
       all: [
         jsDir + '/{,**/}*.js',
         '!' + jsDir + '/{,**/}*.min.js'
+      ]
+    },
+
+    // CSS Lint
+    csslint: {
+      options: {
+        csslintrc: '.csslintrc'
+      },
+      all: [
+        root + '/' + cssDir + '/{,**/}*.css'
       ]
     },
 
@@ -322,7 +333,8 @@ module.exports = function (grunt) {
       'uglify:dev',
       'compass:dev',
       'generator:dev',
-      'jshint'
+      'jshint',
+      'csslint'
     ], filepath);
   });
 
@@ -379,7 +391,8 @@ module.exports = function (grunt) {
     'uglify:dev',
     'compass:dev',
     'generator:dev',
-    'jshint'
+    'jshint',
+    'csslint'
   ]);
 
   grunt.registerTask('server', 'Starts a development server', function() {

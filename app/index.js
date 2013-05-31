@@ -23,9 +23,15 @@ var AppGenerator = module.exports = function Appgenerator(args, options, config)
   // this.mainJsFile = '';
   // this.mainCoffeeFile = 'console.log "\'Allo from CoffeeScript!"';
 
-  // this.on('end', function () {
-  //   this.installDependencies({ skipInstall: options['skip-install'] });
-  // });
+  this.on('end', function () {
+    this.installDependencies({ skipInstall: options['skip-install'] });
+  });
+
+  // var sys = require('sys');
+  // var exec = require('child_process').exec;
+  // function puts(error, stdout, stderr) {sys.puts(stdout)}
+
+  // exec('bundle install', puts);
 
   // this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
@@ -45,7 +51,7 @@ AppGenerator.prototype.askFor = function askFor() {
   '\n            ~~        ~~       `~-\''.orange + '\n';
 
   console.log(welcome);
-  console.log('Out of the box I include Sass+Compass, Generator for Handlebars templating and Markdown powered pages, Image Optimization, JavaScript Hinting and Minification, and CSS Linting. I\'m also designed to make ');
+  console.log("\nOut of the box I include Sass+Compass, Generator for Handlebars templating and Markdown powered pages, Image Optimization, JavaScript Hinting and Minification, and CSS Linting. I also make publishing sites to GitHub Pages very easy. If you have any questions, ask my handler at https://github.com/Snugug/generator-armadillo.\n");
 
   var prompts = [
   {
@@ -135,6 +141,10 @@ AppGenerator.prototype.bower = function bower() {
 
 AppGenerator.prototype.jshint = function jshint() {
   this.copy('jshintrc', '.jshintrc');
+};
+
+AppGenerator.prototype.csslint = function csslint() {
+  this.copy('csslintrc', '.csslintrc');
 };
 
 AppGenerator.prototype.editorConfig = function editorConfig() {
