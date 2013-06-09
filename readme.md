@@ -18,8 +18,12 @@ Yeoman generator for scaffolding out a static site. Designed to make it easy to 
 - Make sure you have [yo](https://github.com/yeoman/yo) installed: `npm install -g yo grunt-cli bower`
 - Install the generator: `npm install -g generator-armadillo`
 - Run: `yo armadillo` to create your project
+	- Runtime Options:
+		- `--new-dir`: Create project in new directory, named after your project name
+		- `--git`: Initialize your project with Git
 	- Project Name: Your Project's Name.
 	- RequireJS: Includes [Require.js](http://requirejs.org/) (defaults `true`)
+	- Git Origin Remote: If you've initialized your project with `--git`, you can choose to add a git remote called `'origin'`. (defaults `false`)
 	- GitHub Pages: Whether or not you'll be publishing to GitHub Pages (defaults `true`)
 
 ## Using Armadillo
