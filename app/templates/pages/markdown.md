@@ -1,20 +1,18 @@
 {
-
+	"title": "Markdown"
 }
 ---
 
-<header>
-  <h1>Welcome to Armadillo</h1>
-</header>
+# Welcome to Armadillo
 
-<main>
-  <pre>
+```
              ,.-----__
           ,:::://///,:::-.
         /:''/////// ``:::`;/|/      .------------------.
        /'   ||||||     :://'`\      | I'm an Armadillo |
       .' ,   ||||||     `/(  e \    |------------------'
 -===~__-'\__X_`````\_____/~`-._ `.  /
-            ~~        ~~       `~-'</pre>
-  <p>We can also do <a href="markdown.html">Markdown</a> powered pages.</p>
-</main>
+            ~~        ~~       `~-'
+```
+
+We can also do [Normal (Handlebars)](index.html) powered pages.
