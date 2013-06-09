@@ -146,6 +146,7 @@ module.exports = function (grunt) {
       options: {
         sassDir: sassDir,
         require: extensions,
+        relativeAssets: true,
         importPath: componentsDir,
         debugInfo: debugInfo,
         bundleExec: true
