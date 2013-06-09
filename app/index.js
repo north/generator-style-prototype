@@ -107,7 +107,7 @@ AppGenerator.prototype.askFor = function askFor() {
   if (this.options['git']) {
     prompts.push({
       name: 'ghRepo',
-      message: 'Add Origin Git Repo? [ex: git@github.com:Snugug/generator-armadillo] (false)',
+      message: 'Add Origin Git Remote? [ex: git@github.com:Snugug/generator-armadillo] (false)',
       default: '',
       warning: 'You did not include a GitHub Repo.',
       before: function(value) {
