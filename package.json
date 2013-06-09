@@ -1,22 +1,21 @@
 {
-  "name": "generator-armadillo",
-  "version": "0.1.6",
-  "description": "Yeoman generator for static websites",
+  "name": "generator-style-prototype",
+  "version": "0.1.0",
+  "description": "Yeoman generator for style prototypes",
   "keywords": [
     "yeoman-generator",
     "web",
     "app",
     "front-end",
-    "h5bp",
-    "modernizr"
+    "design-in-browser"
   ],
-  "homepage": "https://github.com/snugug/generator-armadillo",
-  "bugs": "https://github.com/snugug/generator-armadillo/issues",
+  "homepage": "https://github.com/Team-Sass/generator-style-prototype",
+  "bugs": "https://github.com/Team-Sass/generator-style-prototype/issues",
   "author": "Sam Richard",
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/snugug/generator-armadillo.git"
+    "url": "git://github.com/Team-Sass/generator-style-prototype.git"
   },
   "scripts": {
     "test": "mocha --reporter spec"
