@@ -8,23 +8,58 @@ var yeoman = require('yeoman-generator');
 var AppGenerator = module.exports = function Appgenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
-  // // setup the test-framework property, Gruntfile template will need this
-  // this.testFramework = options['test-framework'] || 'mocha';
-
-  // // for hooks to resolve on mocha by default
-  // if (!options['test-framework']) {
-  //   options['test-framework'] = 'mocha';
-  // }
-
-  // // resolved to mocha by default (could be switched to jasmine for instance)
-  // this.hookFor('test-framework', { as: 'app' });
-
-  // this.indexFile = this.readFileAsString(path.join(this.sourceRoot(), 'index.html'));
-  // this.mainJsFile = '';
-  // this.mainCoffeeFile = 'console.log "\'Allo from CoffeeScript!"';
 
   this.on('end', function () {
-    this.installDependencies({ skipInstall: options['skip-install'] });
+    if (options['git']) {
+      // Git Init
+      var repo = this.ghRepo;
+      var projectDir = this.projectDir;
+      spawn('git', ['init'], {cwd: this.projectDir}).on('close', function() {
+        // If we have a GitHub Repo, we're going to add the remote origin as well
+        if (repo) {
+          spawn('git', ['remote', 'add', 'origin', repo], {cwd: projectDir}).on('close', function() {
+            console.log("I've added the remote origin, pointing to " + projectDir);
+          });
+        }
+        else {
+          console.log("I've initialized Git for you.");
+        }
+      });
+    }
+
+    if (!options['skip-install']) {
+      // Spawn commands
+      // Each will output their buffer unless the --slient flag is passed
+      // Also available, this.spawnCommand
+
+      // Bundle Install
+      spawn('bundle', ['install'], {cwd: this.projectDir}).stdout.on('data', function(data) {
+        if (!options['silent']) {
+          console.log(data.toString());
+        }
+      });
+
+      // Bower Install
+      spawn('bower', ['install'], {cwd: this.projectDir}).stdout.on('data', function(data) {
+        if (!options['silent']) {
+          console.log(data.toString());
+        }
+      });
+
+      // NPM Install
+      spawn('npm', ['install'], {cwd: this.projectDir}).stdout.on('data', function(data) {
+        if (!options['silent']) {
+          console.log(data.toString());
+        }
+      });
+
+      // Log the install
+      console.log("\nI'm all done! If your installs did not finish properly, run ".white + "bundle install & bower install & npm install".yellow + " to finish installation.");
+    }
+    else {
+      var bye = "\n I'm all done! Now run ".white + "bundle install & bower install & npm install".yellow + " to finish installation.";
+      console.log(bye);
+    }
   });
 
   // var sys = require('sys');
@@ -53,53 +88,45 @@ AppGenerator.prototype.askFor = function askFor() {
   console.log(welcome);
   console.log("\nOut of the box I include Sass+Compass, Generator for Handlebars templating and Markdown powered pages, Image Optimization, JavaScript Hinting and Minification, and CSS Linting. I also make publishing sites to GitHub Pages very easy. If you have any questions, ask my handler at https://github.com/Snugug/generator-armadillo.\n");
 
-  var prompts = [
-  {
-    name: 'projectName',
-    message: 'The name of your project. (Required)',
-    default: '',
-    warning: 'You did not name your project',
-    required: true
-  },
-  // {
-  //   name: 'ghRepo',
-  //   message: 'The name of your GitHub Repo.',
-  //   default: '',
-  //   warning: 'You did not include a GitHub Repo.',
-  //   before: function(value) {
-  //     if (value === '') {
-  //       return false;
-  //     }
-  //     else {
-  //       return value;
-  //     }
-  //   }
-  // },
-  // {
-  //   name: 'devHost',
-  //   message: 'The hostname for your local development server.',
-  //   default: 'localhost',
-  //   warning: 'You did not include a hostname.'
-  // },
-  // {
-  //   name: 'devPort',
-  //   message: 'The port for your local development server.',
-  //   default: 8000,
-  //   warning: 'You did not include a valid port.'
-  // },
-  {
-    name: 'requireJS',
-    message: 'Would you like to include RequireJS?',
-    default: true,
-    warning: 'Yes: RequireJS will be placed into the JavaScript vendor directory.'
-  },
-  {
+    var prompts = [
+      {
+        name: 'projectName',
+        message: 'The name of your project. (Required)',
+        default: '',
+        warning: 'You did not name your project',
+        required: true
+      },
+      {
+        name: 'requireJS',
+        message: 'Would you like to include RequireJS?',
+        default: true,
+        warning: 'Yes: RequireJS will be placed into the JavaScript vendor directory.'
+      }
+    ];
+
+  if (this.options['git']) {
+    prompts.push({
+      name: 'ghRepo',
+      message: 'Add Origin Git Repo? [ex: git@github.com:Snugug/generator-armadillo] (false)',
+      default: '',
+      warning: 'You did not include a GitHub Repo.',
+      before: function(value) {
+        if (value === '') {
+          return false;
+        }
+        else {
+          return value;
+        }
+      }
+    });
+  }
+
+  prompts.push({
     name: 'ghDeploy',
     message: 'Are you going to deploy to GitHub?',
     default: true,
     warning: 'You did not specify if you\'re going to deploy to GitHub'
-  }
-  ];
+  });
 
   this.prompt(prompts, function (err, props) {
     if (err) {
@@ -109,12 +136,17 @@ AppGenerator.prototype.askFor = function askFor() {
     // manually deal with the response, get back and store the results.
     // we change a bit this way of doing to automatically do this in the self.prompt() method.
     this.projectName = props.projectName;
-    this.projectSlug = this.projectName.toLowerCase().replace(' ', '-');
-    // this.ghRepo = props.ghRepo;
+    this.projectSlug = this.projectName.toLowerCase().replace(/\s+/g, '-');
+    this.ghRepo = props.ghRepo;
     // this.devHost = props.devHost;
     // this.devPort = props.devPort;
     this.requireJS = props.requireJS;
     this.ghDeploy = props.ghDeploy;
+
+    this.projectDir = './';
+    if (this.options['new-dir']) {
+      this.projectDir = this.projectSlug + '/';
+    }
 
 
     cb();
@@ -122,33 +154,33 @@ AppGenerator.prototype.askFor = function askFor() {
 };
 
 AppGenerator.prototype.gruntfile = function gruntfile() {
-  this.template('_gruntfile.js', 'Gruntfile.js');
+  this.template('_gruntfile.js', this.projectDir + 'Gruntfile.js');
 };
 
 AppGenerator.prototype.packageJSON = function packageJSON() {
-  this.template('_package.json', 'package.json');
+  this.template('_package.json', this.projectDir + 'package.json');
 };
 
 AppGenerator.prototype.git = function git() {
-  this.copy('gitignore', '.gitignore');
-  this.copy('gitattributes', '.gitattributes');
+  this.copy('gitignore', this.projectDir + '.gitignore');
+  this.copy('gitattributes', this.projectDir + '.gitattributes');
 };
 
 AppGenerator.prototype.bower = function bower() {
-  this.copy('bowerrc', '.bowerrc');
-  this.template('_bower.json', 'bower.json');
+  this.copy('bowerrc', this.projectDir + '.bowerrc');
+  this.template('_bower.json', this.projectDir + 'bower.json');
 };
 
 AppGenerator.prototype.jshint = function jshint() {
-  this.copy('jshintrc', '.jshintrc');
+  this.copy('jshintrc', this.projectDir + '.jshintrc');
 };
 
 AppGenerator.prototype.csslint = function csslint() {
-  this.copy('csslintrc', '.csslintrc');
+  this.copy('csslintrc', this.projectDir + '.csslintrc');
 };
 
 AppGenerator.prototype.editorConfig = function editorConfig() {
-  this.copy('editorconfig', '.editorconfig');
+  this.copy('editorconfig', this.projectDir + '.editorconfig');
 };
 
 // AppGenerator.prototype.h5bp = function h5bp() {
@@ -159,15 +191,15 @@ AppGenerator.prototype.editorConfig = function editorConfig() {
 // };
 
 AppGenerator.prototype.app = function app() {
-  this.copy('helpers.js');
-  this.copy('Gemfile');
-  this.copy('system.json', '.system.json');
-  this.template('_config.json', 'config.json');
+  this.copy('helpers.js', this.projectDir + 'helpers.js');
+  this.copy('Gemfile', this.projectDir + 'Gemfile');
+  this.copy('system.json', this.projectDir + '.system.json');
+  this.template('_config.json', this.projectDir + 'config.json');
 
-  this.mkdir('images');
-  this.directory('sass');
-  this.directory('pages');
+  this.mkdir(this.projectDir + 'images');
+  this.directory('sass', this.projectDir + 'sass');
+  this.directory('pages', this.projectDir + 'pages');
 
-  this.template('index.html', 'templates/index.html');
-  this.template('main.js', 'js/main.js');
+  this.template('index.html', this.projectDir + 'templates/index.html');
+  this.template('main.js', this.projectDir + 'js/main.js');
 };
