@@ -32,16 +32,3 @@ $legacy-support-for-mozilla: false;
 // Import Design
 ////////////////////////
 @import 'partials/design/design';
-
-.logo {
-  display: inline-block;
-  @include hide-text;
-
-  height: .75em;
-  width: 3em;
-
-  background-image: image-url('static.svg');
-  background-repeat: no-repeat;
-  background-size: 90%;
-  background-position: bottom left;
-}
