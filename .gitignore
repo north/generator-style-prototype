@@ -3,3 +3,4 @@ temp/
 .www/
 components/
 sass/
+!app/templates/sass/
