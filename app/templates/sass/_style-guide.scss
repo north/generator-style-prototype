@@ -1,0 +1,22 @@
+//////////////////////////////
+// Style Guide
+//
+// This is your style guide. There are many like it, but this one is yours. All of the styling that you would like to be exported into your final Style Guide should either be written in here or imported into here from global or partials
+//////////////////////////////
+
+//////////////////////////////
+// Set up Legacy Support
+//
+// Legacy support variables are set up here so we ensure they cascade over everything in our files.
+// Set up using !default so we can change them on a per-project basis by redeclaring them at the top of our final working project's Sass file.
+//////////////////////////////
+$legacy-support-for-ie6: false !default;
+$legacy-support-for-ie7: false !default;
+$legacy-support-for-ie8: true !default;
+
+$legacy-support-for-mozilla: false !default;
+
+//////////////////////////////
+// Import Global
+//////////////////////////////
+@import "global/base";

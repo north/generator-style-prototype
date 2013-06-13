@@ -1,0 +1,104 @@
+// Style Prototypes rely upon Toolkit and Breakpoint compass extensions, to be sure to keep them available in your Gemfile.
+@import "toolkit-no-css";
+@import "breakpoint";
+
+@mixin golden($dir) {
+  @include box-sizing('border-box');
+
+  @if $dir == 'left' {
+    float: #{$dir};
+    width: 59.3046972%;
+  }
+  @else if $dir == 'right' {
+    float: #{$dir};
+    width: 35.6953028%;
+  }
+}
+
+nav ul {
+  @include box-sizing('border-box');
+  @include breakpoint($vertical-horizontal-nav) {
+    @include horizontal-list;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrapper {
+  @include box-sizing('border-box');
+
+  &#prototype-header {
+    background: $header-color;
+  }
+}
+
+.content-wrapper {
+  max-width: $max-page-width;
+  @include box-sizing('border-box');
+  @extend %clearfix-micro;
+  padding: .75em;
+}
+
+#prototype-header {
+  h1, h2, h3, h4, h5, h6, .page-info {
+    margin: 0;
+    padding: 0;
+    color: black;
+    background: none;
+    border: none;
+    vertical-align: baseline;
+    @include box-shadow(none);
+    @include text-shadow(none);
+  }
+
+  h1 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  h4 {
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  .section-name {
+    margin-top: .1em;
+  }
+
+  .page-info {
+    font-size: 1em;
+    font-weight: normal;
+    margin-top: .4em;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+#client-id {
+  width: 100%;
+  @extend %clearfix-micro;
+
+  @include breakpoint($single-to-multi-column) {
+    @include golden('left');
+  }
+}
+
+#page-id {
+  width: 100%;
+  @extend %clearfix-micro;
+
+  @include breakpoint($single-to-multi-column) {
+    text-align: right;
+    @include golden('right');
+  }
+}

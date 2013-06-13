@@ -1,0 +1,48 @@
+//////////////////////////////
+// Style Prototype
+//
+// This contains all of the styling specific to the Style Prototype that you do not want in your final Style Guide. This includes styling for the general page layout and design, the Style Tile, and the Color Guide.
+// Your Style Guide gets imported first, so all styling that you include in your Style Guide will cascade over the other pieces of your Style Prototype.
+//////////////////////////////
+@import "style-guide";
+
+//////////////////////////////
+// Style Tile
+//////////////////////////////
+.color-1 {
+  background: nth($black, 1);
+}
+
+.color-2 {
+  background: nth($primary, 1);
+}
+
+.color-3 {
+  background: nth($secondary, 1);
+}
+
+.color-4 {
+  background: nth($tertiary, 1);
+}
+
+.color-5 {
+  background: nth($quadrary, 1);
+}
+
+//////////////////////////////
+// Color Guide
+//////////////////////////////
+@import ".prototype/color-guide";
+// This mixin will generate the styling for the color guide. If you would like to write your own, remove it and please do so.
+@include generate-colour-guide($black, $primary, $secondary, $tertiary, $quadrary);
+
+//////////////////////////////
+// Style Prototype Page
+//////////////////////////////
+$max-page-width: 100%;
+$single-to-multi-column: 600px;
+$header-color: #fef9ef;
+
+$vertical-horizontal-nav: 721px;
+// This partial will write the Style Prototype page specific styling. If you would like to write your own, remove it and please do so.
+@import ".prototype/prototype";
