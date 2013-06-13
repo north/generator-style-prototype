@@ -8,8 +8,11 @@ module.exports = function (grunt) {
   // Combine with System options
   //////////////////////////////
   var deepmerge = require('deepmerge');
-  var userConfig = grunt.file.readJSON('config.json');
+  var userConfig = grunt.file.readYAML('config.yml');
   userConfig = deepmerge(userConfig, grunt.file.readJSON('.system.json'));
+  userConfig = deepmerge(userConfig, grunt.file.readJSON('.extension.json'));
+
+  grunt.userConfig = userConfig;
 
   // Asset Paths
   var imagesDir = userConfig.assets.imagesDir;
@@ -295,6 +298,59 @@ module.exports = function (grunt) {
             dest: distPath + '/' + imagesDir
           }
         ]
+      },
+      ext: {
+        files: [
+          {
+            expand: true,
+            cwd: sassDir,
+            src: userConfig.extension.sass,
+            dest: '.compass/stylesheets'
+          },
+          {
+            expand: true,
+            cwd: imagesDir,
+            src: userConfig.extension.images,
+            dest: '.compass/templates/project'
+          },
+          {
+            expand: true,
+            cwd: jsDir,
+            src: userConfig.extension.js,
+            dest: '.compass/templates/project'
+          },
+          {
+            expand: true,
+            cwd: fontsDir,
+            src: userConfig.extension.fonts,
+            dest: '.compass/templates/project'
+          },
+          {
+            expand: true,
+            cwd: '.',
+            src: [
+              'bower.json',
+              'Gemfile',
+              '.bowerrc',
+              'bower.json',
+              '.jshintrc',
+              '.csslintrc'
+            ],
+            dest: '.compass/templates/project'
+          }
+        ]
+      }
+    },
+
+    // Concat
+    concat: {
+      ext: {
+        options: {
+          process: true
+        },
+        files: {
+          '.compass/lib/<%= clientSlug %>-styleguide.rb': ['.compass/.template/<%= clientSlug %>-styleguide.rb']
+        }
       }
     },
 
@@ -303,6 +359,10 @@ module.exports = function (grunt) {
       assets: {
         grunt: true,
         tasks: ['imagemin', 'svgmin', 'uglify:dist', 'copy:dist', 'generator:dist']
+      },
+      ext: {
+        grunt: true,
+        tasks: ['copy:ext', 'concat:ext']
       }
     },
 
@@ -323,6 +383,19 @@ module.exports = function (grunt) {
         cmd: function(path) {
           return 'cp -r ' + distPath + ' ' + path;
         }
+      },
+      ext: {
+        cmd: 'cd .compass && gem build <%= clientSlug %>-styleguide.gemspec && mv <%= clientSlug %>-styleguide-' + userConfig.client.version + '.gem ../<%= clientSlug %>-styleguide-' + userConfig.client.version + '.gem && cd ..'
+      }
+    },
+
+    bump: {
+      options: {
+        files: [
+          'package.json',
+          'bower.json',
+          '.system.json'
+        ]
       }
     }
 
@@ -408,5 +481,13 @@ module.exports = function (grunt) {
 
     grunt.task.run('watch');
 
+  });
+
+  //////////////////////////////
+  // Compass Extension
+  //////////////////////////////
+  grunt.registerTask('compass-extension', 'Build your Compass Extension', function() {
+
+    grunt.task.run(['parallel:ext', 'exec:ext']);
   });
 };
