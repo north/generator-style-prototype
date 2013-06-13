@@ -1,0 +1,108 @@
+#########################
+## Client Information
+#########################
+client:
+  name: <%= clientName %>
+  homepage: <%= clientHomepage %>
+
+#########################
+## Author Information
+#########################
+author:
+  name: <%= authorName %>
+  email: <%= authorEmail %>
+
+#########################
+## Style Prototype Settings
+#########################
+
+## General Prototype Settings
+prototype:
+  # If you would like a logo to appear in the banner, include its path here
+  logo: false
+  # If you would like to include webfonts, the following two provides have native support
+  webfonts:
+    # Typekit Kit ID (uses advanced loading method)
+    typekit: false
+    # Copy in the the families from inside the brackets [] from the JavaScript tab.
+    googleFonts: false
+
+## Main Navigation Sections
+sections:
+  Style Tile: index.html
+  Elements: sections/markup/elements.html
+  Typography: sections/typography/fillerama.html
+  UI Patterns: sections/ui/patterns.html
+  Color Guide: colors.html
+
+## Style Tile Options
+styleTile:
+  # Number of possible colors
+  colors: 5
+  # Source links to inspirational images
+  images:
+    - images/moon.jpg
+    - images/ice.jpg
+    - images/iceberg.jpg
+    - images/clouds.jpg
+    - http://lorempixel.com/output/abstract-q-c-640-480-1.jpg
+  # Descriptive keywords for Style Tile
+  keywords:
+    - Default
+    - Minimal
+    - Nothing
+    - Design me!
+  # Example buttons. Key is their text, values are their classes
+  buttons:
+    - Call to Action:
+      - call-to-action
+    - Big Button:
+      - big-button
+    - Warning Button:
+      - big-button
+      - red
+
+#########################
+## Color Guide
+#########################
+colors:
+  # Variable names of the color variables being used
+  variables:
+    - black
+    - primary
+    - secondary
+    - tertiary
+    - quadrary
+  # The number of shades each color has
+  shades: 6
+
+#########################
+## Server Options
+#########################
+server:
+  port: 8000
+
+#########################
+## Export Options
+#########################
+export:
+  path: export
+  # If deploying somewhere (like GitHub Pages) where your files will not be located at the root directory, this will be the prefix that gets appended to assets run through image-url, style-url, script-url, and component-url
+  assetPrefix: <%= clientSlug %>
+
+#########################
+## Compass Options
+#########################
+compass:
+  debugInfo: false
+  extensions:
+    - style-prototypes
+
+#########################
+## Git Options
+#########################
+git:
+  # If you use grunt build --commit, this will be git commit message used
+  defaultCommit: Production build and commit<% if (ghDeploy) { %>
+  deployUpstream: origin
+  deployBranch: gh-pages<% } %>
