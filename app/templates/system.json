@@ -1,4 +1,7 @@
 {
+  "client": {
+    "version": "0.0.0"
+  },
   "generator": {
     "pagesDir": "pages",
     "templatesDir": "templates",
