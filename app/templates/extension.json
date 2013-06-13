@@ -1,0 +1,18 @@
+{
+  "extension": {
+    "sass": [
+      "_style-guide.scss",
+      "global/**/*",
+      "partials/**/*"
+    ],
+    "images": [
+      "**"
+    ],
+    "js": [
+      "**"
+    ],
+    "fonts": [
+      "**"
+    ]
+  }
+}
