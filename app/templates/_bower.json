@@ -1,9 +1,8 @@
 {
-  "name": "<%= (projectSlug) %>",
+  "name": "<%= (clientSlug) %>-styleguide",
   "version": "0.0.0",
   "dependencies": {
-    "formalize": "git://github.com/nathansmith/formalize",<% if (requireJS) { %>
-    "requirejs": "~2.1.4",<% } %>
+    "formalize": "git://github.com/nathansmith/formalize",
     "modernizr": "~2.6.2",
     "jquery": "~2.0.0"
   },
