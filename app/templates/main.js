@@ -1,1 +1,1 @@
-console.log('<%= (projectName) %>');
+console.log('<%= (clientName) %>');
