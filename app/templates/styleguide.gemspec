@@ -24,6 +24,8 @@ Gem::Specification.new do |s|
   s.email = ["<%= authorEmail %>"]
   # URL of the extension
   s.homepage = "<%= clientHomepage %>"
+  # License
+  s.license = "CC BY-NC-SA"
 
   # Gem Files
   # These are the files to be included in your Compass extension.
