@@ -4,7 +4,9 @@
   "dependencies": {
     "formalize": "git://github.com/nathansmith/formalize",
     "modernizr": "~2.6.2",
-    "jquery": "~2.0.0"
+    "jquery": "~2.0.0",
+    "prism": "latest",
+    "Element.details": "termi/Element.details"
   },
   "devDependencies": {}
 }
