@@ -5,4 +5,5 @@ components
 .sass-cache
 .compass
 export
+*.gem
 <% if (!ghDeploy) { %>.dist<% } %>
