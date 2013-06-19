@@ -11,7 +11,7 @@ require '<%= extension %>'<% }); %>
 base_directory  = File.join(File.dirname(__FILE__), '..')
 stylesheets_dir = File.join(base_directory, 'stylesheets')
 templates_dir   = File.join(base_directory, 'templates')
-Compass::Frameworks.register('mason-styleguide', :stylesheets_directory => stylesheets_dir, :templates_directory => templates_dir)
+Compass::Frameworks.register('<%= _.slugify(grunt.userConfig.client.name) %>-style-guide', :stylesheets_directory => stylesheets_dir, :templates_directory => templates_dir)
 
 # Version and date of version for your Compass extension.
 # Replace Styleguide with the name of your style guide

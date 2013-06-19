@@ -1,5 +1,5 @@
 # Replace extension with the name of your extension's .rb file
-require './lib/<%= clientSlug %>-styleguide.rb'
+require './lib/<%= clientSlug %>-style-guide.rb'
 
 Gem::Specification.new do |s|
   # Release Specific Information
@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
 
   # Gem Details
   # Replace "styleguide" with the name of your extension
-  s.name = "<%= clientSlug %>-styleguide"
-  s.rubyforge_project = "<%= clientSlug %>-styleguide"
+  s.name = "<%= clientSlug %>-style-guide"
+  s.rubyforge_project = "<%= clientSlug %>-style-guide"
   # Description of your extension
   s.description = %q{<%= clientName %> Style Guide}
   # A summary of your Compass extension. Should be different than Description
@@ -38,7 +38,7 @@ Gem::Specification.new do |s|
   # s.files += ["CHANGELOG.md"]
 
   # Library Files
-  s.files += Dir.glob("lib/<%= clientSlug %>-styleguide.rb")
+  s.files += Dir.glob("lib/<%= clientSlug %>-style-guide.rb")
   s.files += Dir.glob("stylesheets/**/*.*")
   s.files += Dir.glob("templates/**/*.*")
 
