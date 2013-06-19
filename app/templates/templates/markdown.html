@@ -1,0 +1,52 @@
+<!--[if lte IE 8]>         <html class="no-js lte-ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>{{page-title}}</title>
+
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Prototype CSS -->
+    {{{style-ext 'prototype.css'}}}
+    <!-- Prism CSS -->
+    {{{style-ext 'prism/prism-okaidia.css' true}}}
+
+    <!-- Modernizr stays in the head -->
+    {{{script-ext 'modernizr/modernizr.js' true}}}
+  </head>
+
+  <body>
+    <div id="prototype-header">
+      <div class="content-wrapper">
+        {{> prototype-header}}
+      </div>
+    </div>
+
+    <div id="prototype-nav">
+      <div class="content-wrapper">
+        {{> prototype-nav}}
+      </div>
+    </div>
+
+    <main>
+      <div class="content-wrapper">
+        <article>
+          {{{body}}}
+        </article>
+      </div>
+    </main>
+
+    <!-- JavaScript goes in the footer! -->
+    <!-- Prism JavaScript -->
+    {{{script-ext 'prism/prism.js' true}}}
+    <!-- Polyfill for Details element -->
+    {{{script-ext 'Element.details/__COMPILE/Element.details.js' true}}}
+
+  {{#if options.development}}
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':{{options.lrport}}/livereload.js?snipver=1"></' + 'script>')
+    </script>
+  {{/if}}
+  </body>
+</html>
