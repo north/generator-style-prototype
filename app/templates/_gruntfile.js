@@ -84,11 +84,11 @@ module.exports = function (grunt) {
         tasks: ['jshint', 'uglify:dev']
       },
       images: {
-        files: [imagesDir + '/**'],
+        files: [imagesDir + '/**/*'],
         tasks: ['copy:dev']
       },
       fonts: {
-        files: [fontsDir + '/**'],
+        files: [fontsDir + '/**/*'],
         tasks: ['copy:dev']
       },
       sass: {
@@ -101,6 +101,13 @@ module.exports = function (grunt) {
       css: {
         files: [root + '/' + cssDir + '/{,**/}*.css'],
         tasks: ['csslint']
+      },
+      config: {
+        files: [
+          'config.yml',
+          '.system.yml'
+        ],
+        tasks: ['generator:dev']
       }
     },
 
@@ -114,7 +121,7 @@ module.exports = function (grunt) {
           ext: '.html'
         }],
         options: {
-          partialsGlob: partialsDir + '/*.html',
+          partialsGlob: [partialsDir + '/{,**/}*.html', partialsDir + '/{,**/}*.md'],
           templates: templatesDir,
           handlebarsHelpers: helpers,
           userConfig: userConfig,
@@ -324,19 +331,6 @@ module.exports = function (grunt) {
             cwd: fontsDir,
             src: userConfig.extension.fonts,
             dest: '.compass/templates/project'
-          },
-          {
-            expand: true,
-            cwd: '.',
-            src: [
-              'bower.json',
-              'Gemfile',
-              '.bowerrc',
-              'bower.json',
-              '.jshintrc',
-              '.csslintrc'
-            ],
-            dest: '.compass/templates/project'
           }
         ]
       }
@@ -349,7 +343,7 @@ module.exports = function (grunt) {
           process: true
         },
         files: {
-          '.compass/lib/<%= clientSlug %>-styleguide.rb': ['.compass/.template/<%= clientSlug %>-styleguide.rb']
+          '.compass/lib/<%= clientSlug %>-style-guide.rb': ['.compass/.template/<%= clientSlug %>-style-guide.rb']
         }
       }
     },
@@ -375,6 +369,12 @@ module.exports = function (grunt) {
         cmd: function(commit) {
           return 'git add ' + distPath + ' && git commit -m "' + commit + '" ' + distPath;
         }
+      },
+      tagMake: {
+        cmd: 'git tag ' + userConfig.client.version
+      },
+      tagPush: {
+        cmd: 'git push --tags ' + userConfig.git.deployUpstream
       },<% if (ghDeploy) { %>
       deploy: {
         cmd: 'git subtree push --prefix .dist ' + gh_upstream + ' ' + gh_deploy
@@ -385,7 +385,7 @@ module.exports = function (grunt) {
         }
       },
       ext: {
-        cmd: 'cd .compass && gem build <%= clientSlug %>-styleguide.gemspec && mv <%= clientSlug %>-styleguide-' + userConfig.client.version + '.gem ../<%= clientSlug %>-styleguide-' + userConfig.client.version + '.gem && cd ..'
+        cmd: 'cd .compass && gem build <%= clientSlug %>-style-guide.gemspec && mv <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem ../<%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem && cd ..'
       }
     },
 
@@ -395,7 +395,12 @@ module.exports = function (grunt) {
           'package.json',
           'bower.json',
           '.system.json'
-        ]
+        ],
+        commit: userConfig.bump.commit,
+        commitFiles: userConfig.bump.files,
+        createTag: userConfig.bump.tag,
+        push: userConfig.bump.push,
+        pushTo: userConfig.git.deployUpstream
       }
     }
 
@@ -440,6 +445,19 @@ module.exports = function (grunt) {
     <% } %>
   });
 
+  //////////////////////////////
+  // Tag Task
+  //////////////////////////////
+  grunt.registerTask('tag', 'Tags your release', function() {
+    var push = grunt.option('push');
+
+    grunt.task.run('exec:tagMake');
+
+    if (push) {
+      grunt.task.run('exec:tagPush');
+    }
+  });
+
   <% if (ghDeploy) { %>
   //////////////////////////////
   // Deploy Task
@@ -449,7 +467,7 @@ module.exports = function (grunt) {
   ]);<% } %>
 
   //////////////////////////////
-  // Export Tasks
+  // Export Task
   //////////////////////////////
   grunt.registerTask('export', 'Exports your build', function() {
     var path = grunt.option('to') || exportPath;
@@ -458,7 +476,7 @@ module.exports = function (grunt) {
   });
 
   //////////////////////////////
-  // Server Tasks
+  // Server Task
   //////////////////////////////
   grunt.registerTask('server-init', [
     'copy:dev',
@@ -487,6 +505,16 @@ module.exports = function (grunt) {
   // Compass Extension
   //////////////////////////////
   grunt.registerTask('compass-extension', 'Build your Compass Extension', function() {
+    grunt.file.copy('bower.json', '.compass/templates/project/bower.json');
+    grunt.file.copy('.editorconfig', '.compass/templates/project/editorconfig.txt');
+    grunt.file.copy('.bowerrc', '.compass/templates/project/bowerrc.txt');
+    grunt.file.copy('.jshintrc', '.compass/templates/project/jshintrc.txt');
+    grunt.file.copy('.csslintrc', '.compass/templates/project/csslintrc.txt');
+
+    // Add Styleguide to Gemfile
+    var gemfile = grunt.file.read('Gemfile');
+    gemfile += "\ngem '<%= clientSlug %>-style-guide', '~>" + grunt.userConfig.client.version + "'";
+    grunt.file.write('.compass/templates/project/Gemfile.txt', gemfile);
 
     grunt.task.run(['parallel:ext', 'exec:ext']);
   });
