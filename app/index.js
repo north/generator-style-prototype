@@ -35,9 +35,16 @@ var AppGenerator = module.exports = function Appgenerator(args, options, config)
       // Also available, this.spawnCommand
 
       // Bundle Install
+      var projectDir = this.projectDir;
       spawn('bundle', ['install'], {cwd: this.projectDir}).stdout.on('data', function(data) {
         if (!options['silent']) {
           console.log(data.toString());
+        }
+      }).on('close', function() {
+        if (options['git'] && options['commit']) {
+          spawn('git', ['add', '.'], {cwd: projectDir}).on('close', function() {
+            spawn('git', ['commit', '-m', '"Initial Commit"'], {cwd: projectDir});
+          });
         }
       });
 
@@ -185,9 +192,9 @@ AppGenerator.prototype.askFor = function askFor() {
     // this.requireJS = props.requireJS;
     this.ghDeploy = props.ghDeploy;
 
-    this.projectDir = './';
-    if (this.options['new-dir']) {
-      this.projectDir = this.clientSlug + '/';
+    this.projectDir = this.clientSlug + '/';
+    if (this.options['init']) {
+      this.projectDir = './';
     }
 
 
@@ -238,12 +245,12 @@ AppGenerator.prototype.app = function app() {
   this.copy('system.json', this.projectDir + '.system.json');
   this.template('_config.yml', this.projectDir + 'config.yml');
 
-  this.mkdir(this.projectDir + 'images');
+  this.directory('images', this.projectDir + 'images');
   this.directory('sass', this.projectDir + 'sass');
-  this.mkdir(this.projectDir + 'sass/partials');
+  this.template('_style-guide.scss', this.projectDir + 'sass/' + this.clientSlug + '-style-guide')
   this.directory('pages', this.projectDir + 'pages');
+  this.directory('templates', this.projectDir + 'templates');
 
-  this.template('index.html', this.projectDir + 'templates/index.html');
   this.template('main.js', this.projectDir + 'js/main.js');
 };
 
@@ -252,6 +259,7 @@ AppGenerator.prototype.compass = function compass() {
   this.today = today.getFullYear() + '-' + ('0' + (today.getMonth()+1)).slice(-2) + '-' + ('0' + (today.getDate())).slice(-2);
 
   this.copy('extension.json', this.projectDir + '.extension.json');
-  this.template('styleguide.gemspec', this.projectDir + '.compass/' + this.clientSlug + '-styleguide.gemspec');
-  this.copy('styleguide.rb', this.projectDir + '.compass/.template/' + this.clientSlug + '-styleguide.rb');
+  this.template('styleguide.gemspec', this.projectDir + '.compass/' + this.clientSlug + '-style-guide.gemspec');
+  this.copy('styleguide.rb', this.projectDir + '.compass/.template/' + this.clientSlug + '-style-guide.rb');
+  this.template('manifest.rb', this.projectDir + '.compass/templates/project/manifest.rb');
 };
