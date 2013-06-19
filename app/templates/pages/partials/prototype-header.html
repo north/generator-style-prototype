@@ -1,0 +1,18 @@
+<header>
+  <div id="client-id">
+    {{#if options.grunt.userConfig.prototype.logo}}
+      <div class="client-logo">
+        <img src="{{image-url 'options.grunt.userConfig.prototype.logo'}}" alt="{{options.grunt.userConfig.client.name}} Logo">
+      </div>
+    {{else}}
+      <h1 class="client-name">{{options.grunt.userConfig.client.name}}</h1>
+    {{/if}}
+  </div>
+  <aside id="page-id">
+    <h2 class="section-name">{{page.title}}</h2>
+    <div class="page-info">
+      <p>{{options.grunt.userConfig.client.name}} Style Prototype</p>
+      <p>Version {{options.grunt.userConfig.client.version}}</p>
+    </div>
+  </aside>
+</header>
