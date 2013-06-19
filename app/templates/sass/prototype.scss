@@ -7,25 +7,36 @@
 @import "style-guide";
 
 //////////////////////////////
+// Prototype Setup Variables
+//////////////////////////////
+$max-page-width: 100%;
+$single-to-multi-column: 637px;
+$header-color: #fef9ef;
+
+$vertical-horizontal-nav: 721px;
+
+//////////////////////////////
 // Style Tile
 //////////////////////////////
-.color-1 {
+@import ".prototype/style-tile";
+
+.color-0 {
   background: nth($black, 1);
 }
 
-.color-2 {
+.color-1 {
   background: nth($primary, 1);
 }
 
-.color-3 {
+.color-2 {
   background: nth($secondary, 1);
 }
 
-.color-4 {
+.color-3 {
   background: nth($tertiary, 1);
 }
 
-.color-5 {
+.color-4 {
   background: nth($quadrary, 1);
 }
 
@@ -39,10 +50,5 @@
 //////////////////////////////
 // Style Prototype Page
 //////////////////////////////
-$max-page-width: 100%;
-$single-to-multi-column: 600px;
-$header-color: #fef9ef;
-
-$vertical-horizontal-nav: 721px;
 // This partial will write the Style Prototype page specific styling. If you would like to write your own, remove it and please do so.
 @import ".prototype/prototype";

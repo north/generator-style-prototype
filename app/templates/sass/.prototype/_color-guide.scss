@@ -22,8 +22,9 @@
 
       li {
         list-style: none;
-        height: 3em;
+        height: 3.75em;
         position: relative;
+        @include clearfix;
 
         @include grid-span(1, 1, $length, 0, $output-style: 'float');
 

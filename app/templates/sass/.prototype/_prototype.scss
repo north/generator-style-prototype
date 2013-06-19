@@ -2,17 +2,8 @@
 @import "toolkit-no-css";
 @import "breakpoint";
 
-@mixin golden($dir) {
-  @include box-sizing('border-box');
-
-  @if $dir == 'left' {
-    float: #{$dir};
-    width: 59.3046972%;
-  }
-  @else if $dir == 'right' {
-    float: #{$dir};
-    width: 35.6953028%;
-  }
+main {
+  display: block;
 }
 
 nav ul {
@@ -27,22 +18,18 @@ body {
   padding: 0;
 }
 
-.page-wrapper {
-  @include box-sizing('border-box');
-
-  &#prototype-header {
-    background: $header-color;
-  }
-}
-
 .content-wrapper {
   max-width: $max-page-width;
   @include box-sizing('border-box');
-  @extend %clearfix-micro;
-  padding: .75em;
+  @include clearfix(true);
+  padding: .5em .75em;
 }
 
 #prototype-header {
+  @include clearfix(true);
+
+  background: $header-color;
+
   h1, h2, h3, h4, h5, h6, .page-info {
     margin: 0;
     padding: 0;
@@ -86,7 +73,7 @@ body {
 
 #client-id {
   width: 100%;
-  @extend %clearfix-micro;
+  @include clearfix(true);
 
   @include breakpoint($single-to-multi-column) {
     @include golden('left');
@@ -95,10 +82,27 @@ body {
 
 #page-id {
   width: 100%;
-  @extend %clearfix-micro;
+  @include clearfix(true);
 
   @include breakpoint($single-to-multi-column) {
     text-align: right;
     @include golden('right');
+  }
+}
+
+[component-list] {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.text-preroll {
+  background: #333;
+
+  .cyan {
+    color: cyan;
+  }
+  .magenta {
+    color: magenta;
   }
 }
