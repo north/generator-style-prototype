@@ -29,22 +29,24 @@ prototype:
 
 ## Main Navigation Sections
 sections:
-  Style Tile: index.html
-  Elements: sections/markup/elements.html
-  Typography: sections/typography/fillerama.html
-  UI Patterns: sections/ui/patterns.html
-  Color Guide: colors.html
+  Home: ''
+  Style Tile: style-tile
+  Elements: elements
+  Typography: typography
+  Components: components
+  Colors: colors
 
 ## Style Tile Options
 styleTile:
   # Number of possible colors
   colors: 5
   # Source links to inspirational images
+  # Either relative paths from your images directory, or absolute paths to external images
   images:
-    - images/moon.jpg
-    - images/ice.jpg
-    - images/iceberg.jpg
-    - images/clouds.jpg
+    - patterns/moon.jpg
+    - patterns/ice.jpg
+    - patterns/iceberg.jpg
+    - patterns/clouds.jpg
     - http://lorempixel.com/output/abstract-q-c-640-480-1.jpg
   # Descriptive keywords for Style Tile
   keywords:
@@ -52,7 +54,15 @@ styleTile:
     - Minimal
     - Nothing
     - Design me!
-  # Example buttons. Key is their text, values are their classes
+
+#########################
+## Component Guide
+#########################
+components:
+  messages:
+    - status
+    - warning
+    - error
   buttons:
     - Call to Action:
       - call-to-action
@@ -88,7 +98,7 @@ server:
 export:
   path: export
   # If deploying somewhere (like GitHub Pages) where your files will not be located at the root directory, this will be the prefix that gets appended to assets run through image-url, style-url, script-url, and component-url
-  assetPrefix: <%= clientSlug %>
+  assetPrefix: page
 
 #########################
 ## Compass Options
@@ -99,10 +109,24 @@ compass:
     - style-prototypes
 
 #########################
+## Versioning
+#########################
+bump:
+  # Commit your files to Git after your bump
+  commit: false
+  # What files to commit. -a for all files
+  files:
+    - -a
+  # Create a Git tag after your bump
+  tag: false
+  # Push changes to Git upstream after your bump
+  push: false
+
+#########################
 ## Git Options
 #########################
 git:
   # If you use grunt build --commit, this will be git commit message used
-  defaultCommit: Production build and commit<% if (ghDeploy) { %>
-  deployUpstream: origin
+  defaultCommit: Production build and commit
+  deployUpstream: origin<% if (ghDeploy) { %>
   deployBranch: gh-pages<% } %>
