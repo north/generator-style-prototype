@@ -165,12 +165,12 @@ AppGenerator.prototype.askFor = function askFor() {
     });
   }
 
-  prompts.push({
-    name: 'ghDeploy',
-    message: 'Are you going to deploy to GitHub?',
-    default: true,
-    warning: 'You did not specify if you\'re going to deploy to GitHub'
-  });
+  // prompts.push({
+  //   name: 'ghDeploy',
+  //   message: 'Are you going to deploy to GitHub?',
+  //   default: true,
+  //   warning: 'You did not specify if you\'re going to deploy to GitHub'
+  // });
 
   this.prompt(prompts, function (err, props) {
 
@@ -190,7 +190,8 @@ AppGenerator.prototype.askFor = function askFor() {
     // this.devHost = props.devHost;
     // this.devPort = props.devPort;
     // this.requireJS = props.requireJS;
-    this.ghDeploy = props.ghDeploy;
+    this.ghDeploy = true;
+    // this.ghDeploy = props.ghDeploy;
 
     this.projectDir = this.clientSlug + '/';
     if (this.options['init']) {
@@ -247,8 +248,11 @@ AppGenerator.prototype.app = function app() {
 
   this.directory('images', this.projectDir + 'images');
   this.directory('sass', this.projectDir + 'sass');
-  this.template('_style-guide.scss', this.projectDir + 'sass/' + this.clientSlug + '-style-guide')
+  this.mkdir(this.projectDir + 'sass/partials');
+  this.template('_style-guide.scss', this.projectDir + 'sass/_' + this.clientSlug + '-style-guide.scss');
+  this.template('_prototype.scss', this.projectDir + 'sass/' + this.clientSlug + 'prototype.scss');
   this.directory('pages', this.projectDir + 'pages');
+  this.directory('partials', this.projectDir + 'partials');
   this.directory('templates', this.projectDir + 'templates');
 
   this.template('main.js', this.projectDir + 'js/main.js');
@@ -258,7 +262,7 @@ AppGenerator.prototype.compass = function compass() {
   var today = new Date();
   this.today = today.getFullYear() + '-' + ('0' + (today.getMonth()+1)).slice(-2) + '-' + ('0' + (today.getDate())).slice(-2);
 
-  this.copy('extension.json', this.projectDir + '.extension.json');
+  this.template('_extension.json', this.projectDir + '.extension.json');
   this.template('styleguide.gemspec', this.projectDir + '.compass/' + this.clientSlug + '-style-guide.gemspec');
   this.copy('styleguide.rb', this.projectDir + '.compass/.template/' + this.clientSlug + '-style-guide.rb');
   this.template('manifest.rb', this.projectDir + '.compass/templates/project/manifest.rb');
