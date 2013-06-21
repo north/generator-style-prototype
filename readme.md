@@ -29,25 +29,23 @@ Come with me on this journey.
 
 ## Table of Contents
 
-1. [Requirements and Installation](#requirements-and-installation)
-2. [Starting Your Server](#starting-your-server)
-3. [One Codebase, Multiple Clients](#once-codebase-multiple-clients)
-4. [Setting Up Your Style Prototypes](#setting-up-your-style-prototypes)
-	* [client.jade](#clientjade)
-	* [webfonts.jade](#webfontsjade)
-	* [sections.jade](#sectionsjade)
-	* [assets.jade](#assetsjade)
-	* [component.json](#componentjson)
-	* [images/](#images)
-	* [scripts/](#scripts)
-	* [sections/](#sections)
-	* [widgets/](#widgets)
-	* [colors/](#colors)
-	* [tile/](#tile)
-	* [app/](#app)
-5. [Your Style Guide](#your-style-guide)
-6. [Your Compass Extension](#your-compass-extension)
-7. [License](#license)
+1. [Requirements](#requirements)
+2. [Creating a Style Prototype](#creating-a-style-prototype)
+3. [Anatomy of a Style Prototype](#anatomy-of-a-style-prototype)
+	* [App Files and Folders](#app-files-and-folders)
+	* [Design Files and Folders](#design-files-and-folders)
+	* [Development Files and Folders](#development-files-and-folders)
+4. [Running Style Prototypes](#running-style-prototypes)
+	* [Development Server](#development-server)
+	* [Exporting Final Site](#exporting-final-site)
+	* [Changing Version Number](#changing-version-number)
+	* [Creating a Compass Extension](#creating-a-compass-extension)
+5. [Working with Style Prototypes](#working-with-style-prototypes)
+	* [Handlebars](#handlebars)
+	* [Sass+Compass](#sass-compass)
+6. [Your Style Guide](#your-style-guide)
+7. [Your Compass Extension](#your-compass-extension)
+8. [License](#license)
 
 ## Requirements
 
@@ -181,7 +179,7 @@ If you would like to deploy your final site to [GitHub pages](http://pages.githu
 grunt deploy
 ```
 
-### Change Version Number
+### Changing Version Number
 
 To properly change the version number of your Style Prototype, you should run one of the following commands:
 
@@ -196,7 +194,7 @@ Versioning is done in the style of [SemVer](http://semver.org/). In your `config
 One of the most useful features of Style Prototypes is being able to easily generate a Compass Extension from your developed Style Guide. This is made extremely easy with Grunt, simply run the following command:
 
 ```
-grunt compass-extension
+grunt extension
 ```
 
 This will build your Compass extension out of your Sass, Images, and JavaScript directory and include your `Gemfile`, `bower.json`, `.editorconfig`, `.jshintrc`, and `.csslintrc` files as well. If you include `--install`, it will install the Compass extension for you too.
@@ -232,7 +230,7 @@ All pages that you create can contain at the top a JSON declaration to provide s
 ---
 ```
 
-### Sass
+### Sass+Compass
 
 The bread and butter of your Style Prototype is your Style Guide. There are going to be two Sass files in your Sass directory, one called `prototype.scss` and a style guide partial named after your client. Do not rename these files unless you are an advanced user. These are the files and folders you'll find in your Sass folder:
 
@@ -243,6 +241,17 @@ The bread and butter of your Style Prototype is your Style Guide. There are goin
 * `global/_variables.scss`: A partial to hold your variables
 * `global/_functions.scss`: A partial for holding custom functions
 * `global/partials/`: A folder for holding partials 
+
+The following Compass extensions are available to you out-of-the-box:
+
+* [Breakpoint](https://github.com/team-sass/breakpoint) - Media Query Handling
+* [Singularity](https://github.com/Team-Sass/Singularity) - Fluid grid framework
+* [Color Schemer](https://github.com/Team-Sass/color-schemer) - Robust color toolset
+* [Sassy Strings](https://github.com/Snugug/Sassy-Strings) - Advanced string functions
+* [Toolkit](https://github.com/Team-Sass/toolkit) - Modern Web Development tools
+* [Sassy Buttons](http://jaredhardy.com/sassy-buttons/) - Fancy CSS3 Buttons
+* [Modular Scale](https://github.com/Team-Sass/modular-scale) - Ratio based calculations
+* [Compass Normalize](https://github.com/ksmandersen/compass-normalize) - CSS Normalize
 
 When creating Style Guide, it is a best practice to create partials in the partial folder for discrete functionality, built as both a [mixin](https://github.com/Snugug/training-glossary/wiki/Sass#mixins) and as an [extendable selector](https://github.com/Snugug/training-glossary/wiki/Sass#selector-inheritance), and a selector extending said extendable selector. This way, when going to use the Style Guide, you have both the mixin and the selector to choose from. Take, for example, the following:
 
