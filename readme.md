@@ -54,7 +54,7 @@ Style Prototypes are available as a [Yeoman](http://yeoman.io/) Generator that u
 * [Node.js](http://nodejs.org/)
 * [Ruby](http://www.ruby-lang.org/) (at least version 1.8.7, pre-installed on Apple computers)
 * [RubyGems](http://rubygems.org/pages/download) (pre-installed on Apple computers)
-* [Git](http://git-scm.com/) (recommended version control, not required)
+* [Git](http://git-scm.com/)
 
 After you have installed the underlying dependencies, you need to install the generator dependencies. From your Command Line, type in the following:
 
