@@ -19,9 +19,9 @@
 
 **Design In Browser, Build In Browser, Sign Off In Browser**
 
-Designing in browser is a long wished for goal but always has seemed just slightly out of reach. From the technical knowledge needed to set everything up to actually do the coding to getting sign off from clients, it seems like a daunting task to begin to do it. Style Prototypes aims to make the whole process much easier and much more approachable for everyone from Designers who don't know what a Git is to full on Unicorns. Style Prototypes grew from the wonderful Style Guide built by [Mason Wendell](http://twitter.com/codingdesigner) for his kick ass [Survival Kit](http://github.com/canarymason/survival-kit) and now constitutes a whole system for building [Style Tiles](http://styletil.es/), Style Guides, and Color Guides straight in browser. By leveraging the power of Sass, Compass, Jade, Yeoman, Grunt, and Bower, we are able have at our fingertips the tools necessary to sit back and just design. If you're a designer new to all of this, I've written up a [Designer's QuickStart Guide](https://github.com/Snugug/Style-Sites/blob/master/Designer's%20QuickStart%20Guide.md#designers-quickstart-guide) to get you started! Read it and enjoy it!
+Designing in browser is a long wished for goal but always has seemed just slightly out of reach. From the technical knowledge needed to set everything up to actually do the coding to getting sign off from clients, it seems like a daunting task to begin to do it. Style Prototypes aims to make the whole process much easier and much more approachable for everyone from Designers who don't know what a Git is to full on Unicorns. Style Prototypes grew from the wonderful Style Guide built by [Mason Wendell](http://twitter.com/codingdesigner) for his kick ass [Survival Kit](http://github.com/canarymason/survival-kit) and now constitutes a whole system for building [Style Tiles](http://styletil.es/), Style Guides, Component Guides, and Color Guides straight in browser. By leveraging the power of Sass, Compass, Yeoman, Grunt, and Bower, we are able have at our fingertips the tools necessary to sit back and just design. If you're a designer new to all of this, I've written up a [Designer's QuickStart Guide](https://github.com/Team-Sass/Style-Prototypes/blob/master/Designer's%20QuickStart%20Guide.md#designers-quickstart-guide) to get you started! Read it and enjoy it!
 
-Style Prototypes are a unique tool because, not only are they responsive by default meaning your client will be able to sign off on styles they've been able to see natively on all browsers and devices, they encourage Style Guide driven Style Tile generation. This means that after you've built out your Style Tile, you'll be on your way to having finished your Style Guide, which you need to for [Style Guide Driven Design](https://speakerdeck.com/jina/style-guide-driven-ui-design-with-sass) (and coincidentally takes lots of design decisions off of the shoulders of Front End Developers). You'll also never need to have someone guess at what colors they can use with a fully built out Color Guide with both hex and Sass values.
+Style Prototypes are a unique tool because, not only are they responsive by default (meaning your client will be able to sign off on styles they've been able to see natively on all browsers and devices), they encourage Style and Color Guide driven Style Tile and Component Guide generation. This means that after you've built out your Style Tile, you'll be on your way to having finished your Style Guide, which you need to for [Style Guide Driven Design](https://speakerdeck.com/jina/style-guide-driven-ui-design-with-sass) (and coincidentally takes lots of design decisions off of the shoulders of Front End Developers). You'll also never need to have someone guess at what colors they can use with a fully built out Color Guide with both hex and Sass values.
 
 Speaking of Sass values, the whole shebang is designed to be turned into a Compass Extension to easily distribute and reuse your finished Style Guide throughout your team in a way that doesn't require an additional website and inspectors flying all over the place. Truly drop in and use functionality. Yah, it's that awesome.
 
@@ -49,151 +49,249 @@ Come with me on this journey.
 6. [Your Compass Extension](#your-compass-extension)
 7. [License](#license)
 
-## Requirements and Installation
+## Requirements
 
-To get started using Style Prototypes, the first thing you need to download a copy of this repository. I encourage you to fork this repository and clone it locally to work with. After you've downloaded a copy of this repository, you need to make sure you have some basic requirements installed. Style Prototypes, a their core, are [Yeoman](http://yeoman.io/) powered webapps; so **make sure you've followed the Yeoman installation instructions** before continuing if you don't have it installed already. In addition, there are a handful of Node Modules, Bower Components and Compass Extensions that are required for everything to run properly. You have two ways of installing all of the requirements. If you are on a Mac, the easiest way is to launch the "Install Requirements" application. You will be prompted to type in your user password (you won't see anything when you type in your password, just trust it's there) and press enter. That'll install everything you need. If you're not on a Mac, or would like to do it the old fashioned way, open the `_server` folder in your terminal and type the following line and everything should install for you:
+Style Prototypes are available as a [Yeoman](http://yeoman.io/) Generator that utilizes [Sass](https://github.com/Snugug/training-glossary/wiki/Sass#head)+[Compass](https://github.com/Snugug/training-glossary/wiki/Compass#head). This makes it drop-dead easy to create a new Style Prototype. So, in order to use them, you first need to make sure you have the underlying dependencies installed.
 
-If you don't have [Bundler](http://gembundler.com) installed
+* [Node.js](http://nodejs.org/)
+* [Ruby](http://www.ruby-lang.org/) (at least version 1.8.7, pre-installed on Apple computers)
+* [RubyGems](http://rubygems.org/pages/download) (pre-installed on Apple computers)
+* [Git](http://git-scm.com/) (recommended version control, not required)
+
+After you have installed the underlying dependencies, you need to install the generator dependencies. From your Command Line, type in the following:
+
 ```bash
-(sudo) gem install bundler && npm install && bower install && bundle install
+gem install bundler && npm install -g yo grunt-cli bower generator-style-prototype
 ```
 
-If you do have [Bundler](http://gembundler.com) installed
+You may need to run these as an administrator. To do so, type `sudo` in front of both `gem` and `npm`. This command will install the Ruby gem [Bundler](http://gembundler.com/) for handling gem dependencies, Yeoman, [Grunt](http://gruntjs.com/), [Bower](http://bower.io/), and the Style Prototype generator.
+
+#### Please Note
+While a Unix based system (Mac, Linux, etc…, basically not Windows) isn't required *per se* to run Style Prototypes, some of the advanced functionality available uses Unix commands.
+
+## Creating a Style Prototype
+
+Once you have all of the dependencies installed, it's time to create a new Style Prototype. From the command line, type in the following:
+
 ```bash
-npm install && bower install && bundle install
+yo style-prototype
 ```
 
-## Starting Your Server
+This will start a wizard for you to set up your Style Prototype. There are four optional flags you can pass into this command:
 
-After you've got everything installed, you are going to need to start the server to see the website from the terminal. Again, if you are on a Mac, the easiest way is to open the "Launch Style Prototypes" application. This will launch the Terminal, start your server, and minimize the window so you can continue working. If you're not on a Mac, or want to do it the old fashioned way, simply `cd` to your project's `_server` folder, something like `cd /path/to/Style-Prototypes/_server` and then run the following:
+* `--git`: Initializes the newly created Style Prototype with Git
+* `--commit`: Automatically commits all files created by the installer under the commit `"Initial Commit"` when paired with the Git flag
+* `--init`: Will install Style Prototypes to the current directory instead of creating a new directory
+* `--skip-install`: Will skip the automatic installation of your Bundler, Bower, and Node dependencies. If you choose to skip the automatic installation, you can install the dependencies manually by running `bower install && bundle install && npm install` after completing the setup wizard
 
-```bash
+After you have started the wizard, you will be presented with a series of prompts to set up your Style Prototype:
+
+* **Client Name**: The name of your client. Can use spaces
+* **Client URL**: The URL of the final site. This is required for generating a Compass Extension
+* **Author Name**: The author of the Style Prototype, either an individual's name or your agency's name.
+* **Author Email**: An email that the author can be reached at.
+* **Git Remote**: The Git `origin` remote you'd like to set. If not included, no remotes will be set. Only visible if the Git flag is included
+
+Once you've filled out the wizard, Yeoman will work its magic and generate your Style Prototype for you!
+
+## Anatomy of a Style Prototype
+
+Upon install, a bunch of files and folders will be created for you. If you haven't run the dependency installation, please do so now. The files and folders are generally, divided into three categories: App, Design, and Development.
+
+### App Files and Folders
+
+Files and folders listed below are all part of the underlying system that make up Style Prototypes and generally should only ever be edited by advanced users. 
+
+* **Gemfile/Gemfile.lock**: Ruby gems dependencies as dictated by [Bundler](http://gembundler.com/). Only edit the Gemfile, and be sure to keep `style-prototypes` available in the Gemfile, as it provides access to the following Compass extensions, some of which are needed for Style Prototypes to function properly:
+	* [Breakpoint](https://github.com/team-sass/breakpoint) - Media Query Handling
+	* [Singularity](https://github.com/Team-Sass/Singularity) - Fluid grid framework
+	* [Color Schemer](https://github.com/Team-Sass/color-schemer) - Robust color toolset
+	* [Sassy Strings](https://github.com/Snugug/Sassy-Strings) - Advanced string functions
+	* [Toolkit](https://github.com/Team-Sass/toolkit) - Modern Web Development tools
+	* [Sassy Buttons](http://jaredhardy.com/sassy-buttons/) - Fancy CSS3 Buttons
+	* [Modular Scale](https://github.com/Team-Sass/modular-scale) - Ratio based calculations
+	* [Compass Normalize](https://github.com/ksmandersen/compass-normalize) - CSS Normalize
+* **bower.json**: The Bower configuration for components to be pulled in. *Do not change the version number in this file*
+* **components/**: The folder where downloaded Bower components get placed
+* **package.json**: The Node configuration for node modules to be pulled in. *Do not change the version number in this file*
+* **node_modules/**: The folder where downloaded node modules get placed
+* **.www/**: The webroot while you are developing. This should generally never be touched.
+* **.dist/**: The distribution folder if you choose to build out a static version of your site. This should generally never be touched.
+* **.system.json**: Advanced configuration settings. *Do not change the version number in this file*
+* **helpers.js**: [Handlebars](http://handlebarsjs.com/) helper functions
+* **Gruntfile.js**: Configuration file for Grunt. This is the brain of Style Prototypes.
+
+### Design Files and Folders
+
+Files and folders listed below make up the bread and butter of what you will be working with when using Style Prototypes. Everything listed below you should feel free to edit.
+
+* **templates/**: The wrapper templates that the content of each page get put into
+* **pages/**: The individual pages of your Style Prototype
+* **partials/**: Pieces of reusable content to be used inside of pages
+* **sass/**: Your style guide styling, as well as styling for the Style Prototype as a whole
+* **images/**: The directory to hold images
+* **js/**: The directory to hold custom JavaScript
+* **config.yml**: Configuration file for your Style Prototype.
+
+### Development Files and Folder
+
+Files and folders listed below make up development-related files that should only be edited by users who understand their contents as they will affect how your output behaves.
+
+* **.editorconfig**: Configuration file for editors to maintain coding standards
+* **.jshintrc**: Configuration file for [JSHint](http://jshint.com/)
+* **.csslintrc**: Configuration file for [CSS Lint](http://csslint.net/)
+* **sass/.prototype/**: The folder that contains styling specific to the needs of the Style Prototype. Generally this shouldn't need to be touched.
+* **.compass/**: The folder where your Compass extension will be built in. Generally should not need to be touched, but can be manually built/tweaked if preferred.
+
+## Running Style Prototypes
+
+Style Prototypes runs atop of Grunt, making doing things like running a development server and compiling your files easy.
+
+### Development Server
+
+You can run a development server to build on by running the following command:
+
+```
 grunt server
 ```
 
-## Once Codebase, Multiple Clients
+If you include `--launch`, it will also launch your site for you after the server is running. Your development server will be available at `localhost:8000` by default. Running the server will also listen for changes in Sass, HTML, Images, JavaScript, and Configuration and will do all necessary recompiling and reloading of the page for you. It also runs your CSS and JavaScript through CSS Lint and JSHint for you automatically.
 
-The best way to work with Style Prototypes is to have a branch or separate download for each of your clients. I prefer the branching method as it allows me to version the style changes and keep an easy log of everything that's changed. There are two ways you can do this; if you're uncomfortable or new to Git, I'd suggest downloading, installing, and using the official [GitHub for Mac](http://mac.github.com) client to handle your Git repositories and branches. Otherwise, use the command line! There's lots of [documentation on branching with Git](http://learn.github.com/p/branching.html), so read up if you're unfamiliar with the concept or are new to Git.
+### Exporting Final Site
 
-## Setting Up Your Style Prototypes
+Once you have your Style Prototype built, you can run the following command:
 
-Things inside folders that start with an underscore (so `_server` and `_compass`) contain advanced, backbone type stuff so you generally won't touch anything inside of them for 90% of the work you do. If you absolutely need to change the way one of the core pages or stylesheets works, you'd edit it in `_server`. When you're ready to turn everything into a Compass extension, you'll work in `_compass`, but that's about it.
+```
+grunt build
+```
 
-Once you have everything in place and you have your server running, setting up your Style Prototype is very easy. Inside the `setup` directory, you will find the following files and folders:
+This will build a static version of your assets for you. If you include `--commit` it will also automatically commit these files to your Git repository for you.
 
-* client.jade
-* webfonts.jade
-* sections.jade
-* assets.jade
-* component.json
-* images/
-* scripts/
-* sections/
-* widgets/
-* colors/
-* tile/
-* app/
+If you are planning on deploying your site to an external server, you can then run the following command:
 
-### client.jade
+```
+grunt export
+```
 
-This is where all of the basic information about you and your client goes. Fairly simple, replace "Client Name" in `var clientName` with your client's name, if you have a logo, put it in the `images/` folder and make sure the path is correct (otherwise, set it to `false`), and put a version and a language in! Also, be sure to replace "Author Name" in `var author` with your name!
+This will export your static assets to a folder (by default `export`). If you include the `--to=/path/to/export`, it will export to the folder of your choosing.
 
-### webfonts.jade
+If you would like to deploy your final site to [GitHub pages](http://pages.github.com/), you can run the following command:
 
-One of the most awesome things about designing in browser is being able to use real web fonts! Web fonts rock! There are two easy ways of using web fonts with Style Prototypes, the first is with [Typekit](https://typekit.com). Simply grab your Typekit Kid ID (at the bottom of the "Embed Code" popup) and replace the `false` in `var typekitID` with your kit ID, wrapped in "double quotes". Be sure to include `localhost` in the domains in your Kit Settings. If you'd like to use [Google Fonts](https://www.google.com/webfonts), simply pick out your fonts, and when you're ready to use, click on the Javascript tab in Step 3, and copy what's inside the [brackets] on line 3. For instance, if you had the following Goole Fonts code from the Javascript tab in Step 3:
+```
+grunt deploy
+```
 
-`<script type="text/javascript">
-  WebFontConfig = {
-    google: { families: [ 'Offside::latin' ] }
-  };
-  (function() {
-    var wf = document.createElement('script');
-    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-    wf.type = 'text/javascript';
-    wf.async = 'true';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(wf, s);
-  })(); </script>
-  `
-  
-You would replace `false` in `var googleFonts` with `"'Offside::latin'"`. Again, be sure to wrap the fonts in "double quotes". You can use both Typekit and Google Fonts at the same time
+### Change Version Number
 
-### sections.jade
+To properly change the version number of your Style Prototype, you should run one of the following commands:
 
-This section allows you to choose what sections of you'd like in your Style Prototype. You can rename, redirect, or create new sections with ease. Creating a new section is easy, simply place the Jade file into the `sections` folder; there are plenty of examples there as to how to create a page and how to use reusable widgets. Once you've created your custom Jade files, add them to the `var sections` variable.
+* `grunt bump:major`: Backwards incompatible changes are made to your Style Prototype
+* `grunt bump:minor`: Add new functionality to your Style Prototype, but the new functionality is backwards compatible
+* `grunt bump:patch`: Backwards compatible bug fixes
 
-### assets.jade
+Versioning is done in the style of [SemVer](http://semver.org/). In your `config.yml` file, under the Versioning heading, there are options for controlling if you'd like to automatically commit and tag your repository when you bump your project
 
-All of your Asset needs! This file will allow you to quickly and easily add custom JavaScript and CSS files to all pages of your Style Prototype. There is one CSS variable and two JavaScript variables. The CSS variable will append the CSS URLs provided into the HEAD of the document for all pages. The two JavaScript variables, `var scriptsHead` and `var scriptsFooter` will place JavaScript in the HEAD of the document, or right before the closing BODY tag, respectively. The examples provided are from Bower installed components.
+### Creating a Compass Extension
 
-### component.json
+One of the most useful features of Style Prototypes is being able to easily generate a Compass Extension from your developed Style Guide. This is made extremely easy with Grunt, simply run the following command:
 
-This is your Bower Component.json file. Adding dependencies here will allow Bower to know what item you need when you run `bower install`. This will be included in your Compass extension.
+```
+grunt compass-extension
+```
 
-### images/
+This will build your Compass extension out of your Sass, Images, and JavaScript directory and include your `Gemfile`, `bower.json`, `.editorconfig`, `.jshintrc`, and `.csslintrc` files as well. If you include `--install`, it will install the Compass extension for you too.
 
-A folder containing images for use in your Style Prototype. These images will be included in your Compass Extension
+## Working with Style Prototypes
 
-### scripts/
+When working with Style Prototypes, there are two main preprocessing languages you're working with, Sass and [Handlebars](http://handlebarsjs.com/). Sass is used for CSS and Handlebars is used for HTML. In addition, there are a handful of Grunt commands to allow you to work with and build your Style Prototypes.
 
-A folder containing JavaScript for use in your Style Prototype. You can include both JavaScript and CoffeeScript. These files will be included in your Compass Extension.
+### Handlebars
 
-### sections/
+Handlebars is a JavaScript based HTML preprocessor. Anything you can do in Handlebars normally you can do in Style Prototypes. You can create custom helpers inside of `helpers.js` and, in addition to the standard helpers that come with Handlebars, the following are also available:
 
-A folder containing sections for your Style Prototypes. Out of the box, three sections will be included: markup, typography, and ui. Inside each of these is a Jade file for creating the associated page. The general pattern for creating a new page is fairly easy to follow from the examples, and you can create as many new pages as you'd like. Be sure to add any new pages to the `sections.jade` file when finished. When you create a new page, you may need to restart your server. If you started your server using the provided application, close the Terminal app and relaunch the application; otherwise, press `ctrl+c` in the terminal window running the server, and restarting the server.
+* `{{image-url 'foo.png'}}`: Absolute path to an image in your Images directory. The file included should be relative to that directory.
+* `{{script-url 'foo.js'}}`: Absolute path to a JavaScript file in your JavaScript directory. The file should be relative to that directory.
+* `{{style-url 'foo.css'}}`: Absolute path to a CSS file in your CSS directory. The file should be relative to that directory, or it's relative path from your Sass directory (as the CSS will be compiled from your Sass)
+* `{{component-url 'foo/foo.js'}}`: Absolute path to a file from a component in your Component directory. The file should be relative to that directory
+* `{{{style-ext 'foo.css'}}}`: Writes a `<link>` tag to that CSS file. Can write as `{{{ext-style 'foo/foo.css' true}}}` to specify it's from a component. Paths should be relative to either the CSS directory or the Component directory.
+* `{{{script-ext 'foo.js'}}}`: Writes a `<script>` tag to that JS file. Can write as `{{{ext-script 'foo/foo.js' true}}}` to specify it's from a component. Paths should be relative to either the JS directory or the Component directory.
+* `{{page-title}}`: Writes out the page title, in the form of `Page Title | Project Name` for pages with a specified Page Title or `Project Name` if it doesn't. Used for setting the `<title>` tag in the `<head>`.
+* `{{classify ['foo', 'bar', 'baz']}}`: Will convert an array into a space separated list for use as a class
+* `{{#markdown}}…{{/markdown}}`: Markdown filter as a block. Allows you to write Markdown within your non-markdown pages.
+* `{{#for 0 1 1}}…{{/for}}`: For loop as a block; inputs are from, to, and increment.
 
-### widgets/
+In addition to handlebars pages, you can write [Markdown](https://help.github.com/articles/github-flavored-markdown) files and they will be converted into pages as well.
 
-Sometimes you may want to reuse a bit of code over and over again, and let's be honest, many pieces of functionality on our sites are a collection of things that exist elsewhere. Widgets are a great way to create a reusable chunk of HTML that can be used on multiple different pages without needing to rewrite the HTML each time. It's also a great way for you to see how your generic styling for a certain set of elements works when paired up together in a unified, usable piece. This is the place to build those pieces before actually going and using them.
+All pages that you create can contain at the top a JSON declaration to provide scoped variables to work with under the `page` variable (including Markdown files). These JSON declarations look like the following:
 
-### colors/
+```json
+{
+  "title": "Hello World",
+  "examples": false
+}
+---
+```
 
-This folder holds setup files for your Color Guide. Inside the `colors/` folder are colors Sass and Jade files. The Sass file contains a mixin call to generate the CSS for your color guide. All of the colors you've defined inside of your Style Guide's Colors partial (`style-guide/global/_colors.scss`) are available for you to use here. The Jade file contains two variables, the first being the variable names of the colors you are using, in the same order you're using them in the Sass file, and the second is the total number of shades of the color that are available. The Color Guide assumes that each color will have the same number of shades. Toolkit's `tint-stack` or `shade-stack` functions both generate a total of 6 colors.
+### Sass
 
-### tile/
+The bread and butter of your Style Prototype is your Style Guide. There are going to be two Sass files in your Sass directory, one called `prototype.scss` and a style guide partial named after your client. Do not rename these files unless you are an advanced user. These are the files and folders you'll find in your Sass folder:
 
-This folder holds setup files for your Style Tile. Inside the `tile/` folder are style tile Sass and Jade files. The Sass file should contain styling specific to the Style Tile that you do not want to include in your final Style Guide (such as setting the colors under the Possible Colors section). The Jade file sets up each of the sections of the Style Tile: how many colors to include, what the inspirational images and patterns are, what keywords is the tile meant to embody, and what you'd like to call buttons as well as what classes you'd like applied to them.
+* `prototype.scss`: The file that will actually get added to the browser. Only Sass related directly to the styling of the Style Prototype should go in here. Any styling you want as part of your final Style Guide should not go in here.
+* `client-name-style-guide.scss`: The partial for your client's style guide.
+* `global/_base.scss`: Your base partial. Used for importing relevant Compass extensions as well as other partials inside the Global folder
+* `global/_colors.scss`: A partial to hold your colors
+* `global/_variables.scss`: A partial to hold your variables
+* `global/_functions.scss`: A partial for holding custom functions
+* `global/partials/`: A folder for holding partials 
 
-### app/
+When creating Style Guide, it is a best practice to create partials in the partial folder for discrete functionality, built as both a [mixin](https://github.com/Snugug/training-glossary/wiki/Sass#mixins) and as an [extendable selector](https://github.com/Snugug/training-glossary/wiki/Sass#selector-inheritance), and a selector extending said extendable selector. This way, when going to use the Style Guide, you have both the mixin and the selector to choose from. Take, for example, the following:
 
-This folder holds styling for your Style Prototype as a whole (the Style Prototype application, if you will). Inside the `app/` folder are two Sass files, `variables.scss` and `app.scss`. `variables.scss` is a file storing some basic setup variables for the Style Prototype as a whole. `app.scss` is a file for applying styles to your Style Prototype as a whole that you do not want included in your final Style Guide. This file should be edited sparingly and only to change how the Style Prototype itself looks, for instance floating groups around on various pages, but otherwise should not be really touched. Most of your styling you're going to want to do in your Style Guide.
+```scss
+// _fluid_media.scss
+
+// Mixin to write properties to scale native media in proportion
+@mixin fluid-native-media {
+  max-width: 100%;
+  height: auto;
+}
+
+// Extendable selector to use mixin
+%fluid-media-native {
+  @include fluid-native-media;
+}
+
+// Actual selectors to extend the extendable selector
+img {
+  @extend %fluid-media-native;
+}
+
+video {
+  @extend %fluid-media-native;
+}
+```
+
+This partial would then be imported into `_client-name-style-guide.scss`. We do it this way because, when we go to use this in our final project, we can choose whether to use the extendable class or the mixin, depending on needs.
 
 ## Your Style Guide
 
-Your Style Guide is the driving force behind your Style Prototype! Use the Elements, Typography, and UI Patterns pages to help you build out your Style Guide, using as least specific selectors as possible. Included is a `global` folder containing the basic base items for sharing across the Color Guide and Style Tile, as well as other files you'd use your Style Guide with.
+Your Style Guide is the driving force behind your Style Prototype! Use the Elements, Typography, and Components pages to help you build out your Style Guide, using as least specific selectors as possible. Included is a `global` folder containing the basic base items for sharing across the Color Guide and Style Tile, as well as other files you'd use your Style Guide with.
 
 Inside your `global/_colors.scss` file are a handful of sample colors being generated by [Color Schemer](https://github.com/Team-Sass/color-schemer) and utilizing [Toolkit's Colour Stack](https://github.com/Team-Sass/toolkit#colour-stacks) functions to show how powerful those two tools are when used together to create color for your site. Inside of `global/_base.scss` you'll see active imports for Toolkit, Sassy Buttons, and Color Schemer, with commented out imports for Breakpoint, Singularity, and Modular Scale. There are also two CSS Resets, the hard [Eric Meyer style reset](http://meyerweb.com/eric/tools/css/reset/) (commented out, `compass/reset`), and the [CSS Normalize style reset](http://necolas.github.com/normalize.css/) (in use).
 
-Remember! Any and all CSS that you put into files and folders in the `style-guide` folder *will be available in the generated Compass Extension!* Because of this, it's highly suggested that your styles be as concise as possible and not specific to the classes available in your Style Prototype unless you plan on using those attributes in your final project.
-
 ## Your Compass Extension
 
-Once you're done with your Style Prototype, it's fairly easy to turn it into a Compass Extension to be used on any project you wish! Simply go into the `_compass` folder and do the following:
+Generating your Compass Extension is easy! Simply follow the steps in [Creating a Compass Extension](#creating-a-compass-extension), and you'll have your Compass Extension built!
 
-1. Rename `lib/client-styleguide.rb` to the name of your client, and change the two instances of Client Styleguide inside the file, one `client-styleguide` on line 16 and one `Client_Styleguide` on line 24 to the same. If you create new versions of your style guide, be sure to update Version and Date accordingly before building a new gem.
-2. Rename `client-styleguide.gemspec` the same name you used for `lib/client-styleguide.rb`
-3. Open `client-styleguide.gemspec`
-4. Make sure that `require '/lib/client-styleguide.rb` is changed to your renamed `client-styleguide.rb`
-5. Make sure that `Client_Styleguide` is changed to what you used in `client-styleguide` for `s.version` and `s.date`
-6. Change the value of `s.name` and `s.rubyforge_project` to match the name of the file
-7. Edit `s.description`, `s.summary`, `s.authors`, `s.email`, and `s.homepage` respectively.
+Now comes the hard part, figuring out how to distribute your Style Guide. If you're OK with it being out in the open, make sure you've got a [RubyGems](http://rubygems.org/) account, then type `gem push client-name-style-guide-1.0.0.gem` (substituting name and version as appropriate). If you distribute this way, then installing and updating the style guide is the exact same as any other Compass Extension. A simple `gem install client-name-style-guide` will do. If you don't want it out in the open, you can email or self-serve the gem yourself, the only difference becomes `gem update` will no longer update the gem if you push an update. Users will then need to download the gem and, from the directory they've downloaded it to, run `gem install client-name-style-guide-1.0.0.gem` to install the extension.
 
-Once you're done with the edits, save, and in your command line, run `gem build client-styleguide.gemspec` (using the name of your renamed gemspec) and you've got a working Compass extension! This will create a gem called `client-styleguide-1.0.gem` (the 1.0 is the version number from `lib/client-styleguide.rb`, and the `client-styleguide` will actually be the name you renamed everything).
+In either case, it's easy to use. Simply add `require 'client-name-style-guide'` in your `config.rb` file and add `@import "client-name-style-guide";` to your Sass file, and you're set (no trailing semicolon if you're using SASS syntax instead of SCSS syntax). It's important to note that you shouldn't use two style guides generated from this system in the same project, as their `@import` will conflict I believe. You can bring your images and JavaScript in as well. From the command line, run `compass install client-name-style-guide`. If you're creating a new project, you can do the whole thing in one go! Simply type `compass create <my_project> -r client-name-style-guide` to just require the style guide and do the `@import` yourself, or `compass create <my_project> -r client-name-style-guide --using client-name-style-guide` to create a new project with everything.
 
-Now comes the hard part, figuring out how to distribute your Style Guide. If you're OK with it being out in the open, make sure you've got a [RubyGems](http://rubygems.org/) account, then type `gem push client-styleguide-1.0.gem` (substituting name and version as appropriate). If you distribute this way, then installing and updating the style guide is the exact same as any other Compass Extension. A simple `gem install client-styleguide` will do. If you don't want it out in the open, you can email or self-serve the gem yourself, the only difference becomes `gem update` will no longer update the gem if you push an update. Users will then need to download the gem and, from the directory they've downloaded it to, run `gem install client-styleguide-1.0.gem` to install the extension.
-
-In either case, it's easy to use. Simply add `require 'client-styleguide'` in your `config.rb` file and add `@import "style-guide";` to your Sass file, and you're set (no trailing semicolon if you're using SASS syntax instead of SCSS syntax). It's important to note that you shouldn't use two style guides generated from this system in the same project, as their `@import` will conflict I believe. You can bring your images and JavaScript in as well. From the command line, run `compass install client-styleguide`. If you're creating a new project, you can do the whole thing in one go! Simply type `compass create <my_project> -r client-styleguide` to just require the style guide and do the `@import` yourself, or `compass create <my_project> -r client-styleguide --using client-styleguide` to create a new project with everything.
-
-If you're using Bower components, you won't get them when using Compass's install/create commands, but it's easy to install them once you're finished. From your project's root folder, just run `bower install` and you should be all set!
+If you're using Bower components, you won't get them when using Compass's install/create commands, but it's easy to install them once you're finished. From your project's root folder, just run `bower install` and you should be all set! Also remember to run `bundle install` to install your Bundler dependencies!
 
 ***That's It! Have Fun!***
 
 ## License
-© Sam Richard and Mason Wendell
+© Sam Richard
 
 Original code licensed under [GLPv3](http://www.gnu.org/licenses/gpl-3.0.html)
 Open Source projects used within this project retain their original licenses.
-
-Launch icon by [Everaldo Coelho](http://www.everaldo.com/#3cf/twitter)
-Gear icon by [Keyamoon](http://keyamoon.com/)
