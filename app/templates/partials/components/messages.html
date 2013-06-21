@@ -1,0 +1,20 @@
+<div class="messages group">
+  <ul component-list>
+  {{#each options.grunt.userConfig.components.messages}}
+    <li>
+      <div class="messages {{this}}">
+        <h2 class="element-invisisble">{{this}} message</h2>
+        <p>This is a <em>{{this}}</em> message.</p>
+      </div>
+      {{#if ../page.examples}}
+      <details>
+        <summary>HTML Source</summary>
+        <pre class="example"><code class="language-markup">&lt;div class="messages {{this}}"&gt;
+  &lt;h2 class="element-invisisble"&gt;{{this}} message&lt;/h2&gt;
+  &lt;p>This is a &lt;em&gt;{{this}}&lt;/em&gt; message.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</details>
+      {{/if}}
+    </li>
+  {{/each}}
+</div>
