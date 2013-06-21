@@ -4,7 +4,7 @@
 // This contains all of the styling specific to the Style Prototype that you do not want in your final Style Guide. This includes styling for the general page layout and design, the Style Tile, and the Color Guide.
 // Your Style Guide gets imported first, so all styling that you include in your Style Guide will cascade over the other pieces of your Style Prototype.
 //////////////////////////////
-@import "style-guide";
+@import "<%= clientSlug %>-style-guide";
 
 //////////////////////////////
 // Prototype Setup Variables
