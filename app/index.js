@@ -250,7 +250,7 @@ AppGenerator.prototype.app = function app() {
   this.directory('sass', this.projectDir + 'sass');
   this.mkdir(this.projectDir + 'sass/partials');
   this.template('_style-guide.scss', this.projectDir + 'sass/_' + this.clientSlug + '-style-guide.scss');
-  this.template('_prototype.scss', this.projectDir + 'sass/' + this.clientSlug + 'prototype.scss');
+  this.template('_prototype.scss', this.projectDir + 'sass/prototype.scss');
   this.directory('pages', this.projectDir + 'pages');
   this.directory('partials', this.projectDir + 'partials');
   this.directory('templates', this.projectDir + 'templates');
