@@ -72,6 +72,7 @@ module.exports = function (grunt) {
         files: [
           pagesDir + '/{,**/}*.html',
           pagesDir + '/{,**/}*.md',
+          partialsDir + '/{,**/}*.html',
           templatesDir + '/{,**/}*.html'
         ],
         tasks: ['generator:dev']
@@ -386,6 +387,9 @@ module.exports = function (grunt) {
       },
       ext: {
         cmd: 'cd .compass && gem build <%= clientSlug %>-style-guide.gemspec && mv <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem ../<%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem && cd ..'
+      },
+      install: {
+        cmd: 'gem install <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem && rm <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem'
       }
     },
 
@@ -517,5 +521,11 @@ module.exports = function (grunt) {
     grunt.file.write('.compass/templates/project/Gemfile.txt', gemfile);
 
     grunt.task.run(['parallel:ext', 'exec:ext']);
+
+    var install = grunt.option('install');
+
+    if (install) {
+      grunt.task.run(['exec:extInstall']);
+    }
   });
 };
