@@ -42,7 +42,7 @@ Come with me on this journey.
 	* [Creating a Compass Extension](#creating-a-compass-extension)
 5. [Working with Style Prototypes](#working-with-style-prototypes)
 	* [Handlebars](#handlebars)
-	* [Sass+Compass](#sass-compass)
+	* [Sass+Compass](#sasscompass)
 6. [Your Style Guide](#your-style-guide)
 7. [Your Compass Extension](#your-compass-extension)
 8. [License](#license)
@@ -131,7 +131,7 @@ Files and folders listed below make up the bread and butter of what you will be 
 * **js/**: The directory to hold custom JavaScript
 * **config.yml**: Configuration file for your Style Prototype.
 
-### Development Files and Folder
+### Development Files and Folders
 
 Files and folders listed below make up development-related files that should only be edited by users who understand their contents as they will affect how your output behaves.
 
