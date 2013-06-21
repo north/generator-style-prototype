@@ -508,7 +508,7 @@ module.exports = function (grunt) {
   //////////////////////////////
   // Compass Extension
   //////////////////////////////
-  grunt.registerTask('compass-extension', 'Build your Compass Extension', function() {
+  grunt.registerTask('extension', 'Build your Compass Extension', function() {
     grunt.file.copy('bower.json', '.compass/templates/project/bower.json');
     grunt.file.copy('.editorconfig', '.compass/templates/project/editorconfig.txt');
     grunt.file.copy('.bowerrc', '.compass/templates/project/bowerrc.txt');
@@ -525,7 +525,7 @@ module.exports = function (grunt) {
     var install = grunt.option('install');
 
     if (install) {
-      grunt.task.run(['exec:extInstall']);
+      grunt.task.run(['exec:install']);
     }
   });
 };
