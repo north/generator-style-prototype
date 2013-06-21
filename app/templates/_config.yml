@@ -105,6 +105,7 @@ export:
 #########################
 compass:
   debugInfo: false
+  # If you would like to add more Compass extensions, be sure to include the extensions in your Gemfile and re-run `bundle install`
   extensions:
     - style-prototypes
 
