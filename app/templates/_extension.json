@@ -1,7 +1,7 @@
 {
   "extension": {
     "sass": [
-      "_style-guide.scss",
+      "_<%= clientSlug %>-style-guide.scss",
       "global/**/*",
       "partials/**/*"
     ],
