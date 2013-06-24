@@ -179,6 +179,8 @@ If you would like to deploy your final site to [GitHub pages](http://pages.githu
 grunt deploy
 ```
 
+You _must_ have built your site using `grunt build` before you run `grunt deploy`.
+
 ### Changing Version Number
 
 To properly change the version number of your Style Prototype, you should run one of the following commands:
