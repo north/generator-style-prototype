@@ -173,13 +173,11 @@ grunt export
 
 This will export your static assets to a folder (by default `export`). If you include the `--to=/path/to/export`, it will export to the folder of your choosing.
 
-If you would like to deploy your final site to [GitHub pages](http://pages.github.com/), you can run the following command:
+If you would like to deploy your final site to [GitHub pages](http://pages.github.com/), you can run the following command after having built your site using `grunt build`:
 
 ```
 grunt deploy
 ```
-
-You _must_ have built your site using `grunt build` before you run `grunt deploy`.
 
 ### Changing Version Number
 
