@@ -1,6 +1,8 @@
 node_modules
 components
 !.dist/components
+!pages/components
+!partials/components
 .www
 .sass-cache
 .compass
