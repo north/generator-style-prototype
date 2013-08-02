@@ -70,17 +70,17 @@ module.exports = function (grunt) {
       },
       html: {
         files: [
-          pagesDir + '/{,**/}*.html',
-          pagesDir + '/{,**/}*.md',
-          partialsDir + '/{,**/}*.html',
-          templatesDir + '/{,**/}*.html'
+	  pagesDir + '/**/*.html',
+	  pagesDir + '/**/*.md',
+	  partialsDir + '/**/*.html',
+	  templatesDir + '/**/*.html'
         ],
         tasks: ['generator:dev']
       },
       js: {
         files: [
-          jsDir + '/{,**/}*.js',
-          '!' + jsDir + '/{,**/}*.min.js'
+	  jsDir + '/**/*.js',
+	  '!' + jsDir + '/**/*.min.js'
         ],
         tasks: ['jshint', 'uglify:dev']
       },
@@ -93,14 +93,14 @@ module.exports = function (grunt) {
         tasks: ['copy:dev']
       },
       sass: {
-        files: [sassDir + '/{,**/}*.scss'],
+	files: [sassDir + '/**/*.scss'],
         tasks: ['compass:dev'],
         options: {
           livereload: false
         }
       },
       css: {
-        files: [root + '/' + cssDir + '/{,**/}*.css'],
+	files: [root + '/' + cssDir + '/**/*.css'],
         tasks: ['csslint']
       },
       config: {
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
           ext: '.html'
         }],
         options: {
-          partialsGlob: [partialsDir + '/{,**/}*.html', partialsDir + '/{,**/}*.md'],
+	  partialsGlob: [partialsDir + '/**/*.html', partialsDir + '/**/*.md'],
           templates: templatesDir,
           handlebarsHelpers: helpers,
           userConfig: userConfig,
@@ -140,7 +140,7 @@ module.exports = function (grunt) {
           ext: '.html'
         }],
         options: {
-          partialsGlob: partialsDir + '/*.html',
+	  partialsGlob: [partialsDir + '/**/*.html', partialsDir + '/**/*.md'],
           templates: templatesDir,
           handlebarsHelpers: helpers,
           userConfig: userConfig,
