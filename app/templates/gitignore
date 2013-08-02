@@ -1,11 +1,10 @@
 node_modules
-components
-!.dist/components
-!pages/components
-!partials/components
+/components
 .www
 .sass-cache
-.compass
+.compass/lib
+.compass/stylesheets
+.compass/templates
 export
 *.gem
 <% if (!ghDeploy) { %>.dist<% } %>
