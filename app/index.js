@@ -104,7 +104,7 @@ AppGenerator.prototype.askFor = function askFor() {
   '\n              \\__\\/     \\__\\/   \\_\\/     \\_____\\/ \\_____\\/'.cyan;
 
   console.log(welcome);
-  console.log("\nOut of the box I include Sass+Compass, Generator for Handlebars templating and Markdown powered pages, Image Optimization, JavaScript Hinting and Minification, and CSS Linting. I also make publishing sites to GitHub Pages very easy. If you have any questions, ask my handler at https://github.com/Snugug/generator-armadillo.\n");
+  console.log("\nOut of the box I include Sass+Compass, Generator for Handlebars templating and Markdown powered pages, Image Optimization, JavaScript Hinting and Minification, and CSS Linting. I also make publishing sites to GitHub Pages very easy. If you have any questions, ask my handler at https://github.com/Team-Sass/generator-style-prototype.\n");
 
     var prompts = [
       {
