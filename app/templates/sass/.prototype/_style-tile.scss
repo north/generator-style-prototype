@@ -2,7 +2,12 @@
 @import "breakpoint";
 
 @mixin golden($dir) {
-  @include box-sizing('border-box');
+  @if breakpoint-has-context() {
+    @include box-sizing('border-box', false);
+  }
+  @else {
+    @include box-sizing('border-box');
+  }
 
   @if $dir == 'left' {
     float: #{$dir};
