@@ -1,5 +1,8 @@
 @import "singularitygs";
 
+$color-guide-medium: 500px !default;
+$color-guide-large: 805px !default;
+
 @mixin generate-colour-guide($colours...) {
   $singleton: false;
   $length: 0;
@@ -26,11 +29,34 @@
         position: relative;
         @include clearfix;
 
-        @include grid-span(1, 1, $length, 0, $output-style: 'float');
+	// Small Color Guide
+	display: block;
+	width: 100%;
 
-        &:nth-child(#{$length}n) {
-          @include grid-span(1, ($length), $length, 0, $output-style: 'float');
-          margin-right: 0;
+	// Medium Color Guide
+	@include breakpoint($color-guide-medium $color-guide-large) {
+	  @include layout($length / 2, 0) {
+	    @include float-span(1);
+
+	    &:nth-child(#{$length / 2}n) {
+	      @include float-span(1, 'last');
+	    }
+	  }
+
+	  &:nth-child(#{$length}n) {
+	    margin-bottom: 1em;
+	  }
+	}
+
+	// Large Color Guide
+	@include breakpoint($color-guide-large) {
+	  @include layout($length, 0) {
+	    @include float-span(1);
+
+	    &:nth-child(#{$length}n) {
+	      @include float-span(1, 'last');
+	    }
+	  }
         }
 
         &:before, &:after,
