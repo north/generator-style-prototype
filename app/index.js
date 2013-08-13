@@ -35,18 +35,18 @@ var AppGenerator = module.exports = function Appgenerator(args, options, config)
       // Also available, this.spawnCommand
 
       // Bundle Install
-      var projectDir = this.projectDir;
-      spawn('bundle', ['install'], {cwd: this.projectDir}).stdout.on('data', function(data) {
-        if (!options['silent']) {
-          console.log(data.toString());
-        }
-      }).on('close', function() {
-        if (options['git'] && options['commit']) {
-          spawn('git', ['add', '.'], {cwd: projectDir}).on('close', function() {
-            spawn('git', ['commit', '-m', '"Initial Commit"'], {cwd: projectDir});
-          });
-        }
-      });
+      // var projectDir = this.projectDir;
+      // spawn('bundle', ['install'], {cwd: this.projectDir}).stdout.on('data', function(data) {
+      //   if (!options['silent']) {
+      //     console.log(data.toString());
+      //   }
+      // }).on('close', function() {
+      //   if (options['git'] && options['commit']) {
+      //     spawn('git', ['add', '.'], {cwd: projectDir}).on('close', function() {
+      //       spawn('git', ['commit', '-m', '"Initial Commit"'], {cwd: projectDir});
+      //     });
+      //   }
+      // });
 
       // Bower Install
       spawn('bower', ['install'], {cwd: this.projectDir}).stdout.on('data', function(data) {
