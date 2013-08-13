@@ -1,5 +1,6 @@
 'use strict';
 var os = require('os');
+var _ = require('underscore');
 
 module.exports = function (grunt) {
 
@@ -14,6 +15,11 @@ module.exports = function (grunt) {
   userConfig = deepmerge(userConfig, grunt.file.readJSON('.extension.json'));
 
   grunt.userConfig = userConfig;
+
+  // Slugs and Stuff
+  grunt.userConfig.clientSlug = _s.slugify(userConfig.client.name);
+  grunt.userConfig.clientCamelCase = _s.camelize(grunt.userConfig.clientSlug);
+  grunt.userConfig.clientCamelCase = grunt.userConfig.clientCamelCase.charAt(0).toUpperCase() + grunt.userConfig.clientCamelCase.slice(1);
 
   // Asset Paths
   var imagesDir = userConfig.assets.imagesDir;
@@ -46,7 +52,10 @@ module.exports = function (grunt) {
 
   // Compass Configuration
   var debugInfo = userConfig.compass.debugInfo;
-  var extensions = userConfig.compass.extensions;
+  var extensions = [];
+  _.forEach(userConfig.compass.dependencies, function(v, e) {
+    extensions.push(e);
+  });
 
   // Export Configuration
   var distPath = userConfig.export.distPath;
@@ -351,12 +360,20 @@ module.exports = function (grunt) {
 
     // Concat
     concat: {
-      ext: {
+      rb: {
+	options: {
+	  process: true
+	},
+	files: {
+	  '.compass/lib/<%= clientSlug %>-style-guide.rb': ['.compass/.template/style-guide.rb']
+	}
+      },
+      gemspec: {
         options: {
           process: true
         },
         files: {
-          '.compass/lib/<%= clientSlug %>-style-guide.rb': ['.compass/.template/<%= clientSlug %>-style-guide.rb']
+	  '.compass/<%= clientSlug %>-style-guide.gemspec': ['.compass/.template/style-guide.gemspec']
         }
       }
     },
@@ -373,7 +390,7 @@ module.exports = function (grunt) {
 	options: {
 	  grunt: true
 	},
-        tasks: ['copy:ext', 'concat:ext']
+	tasks: ['copy:ext', 'concat:rb', 'concat:gemspec']
       },
       remote: {
 	options: {
@@ -420,13 +437,23 @@ module.exports = function (grunt) {
         }
       },
       ext: {
-        cmd: 'cd .compass && gem build <%= clientSlug %>-style-guide.gemspec && mv <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem ../<%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem && cd ..'
+	cmd: 'cd .compass && bundle exec gem build <%= clientSlug %>-style-guide.gemspec && mv <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem ../<%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem && cd ..'
       },
       install: {
         cmd: 'gem install <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem && rm <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem'
       },
       weinre: {
 	cmd: 'weinre --httpPort ' + wnport + ' --boundHost -all-'
+      },
+      bundle: {
+	cmd: function(path) {
+	  if (path === '.') {
+	    return 'bundle install';
+	  }
+	  else {
+	    return 'cd ' + path + '/ && bundle install && cd ..';
+	  }
+	}
       },
     },
 
@@ -532,6 +559,8 @@ module.exports = function (grunt) {
 
     var launch = grunt.option('launch');
 
+    grunt.task.run(['bundler']);
+
     grunt.task.run(['server-init', 'connect']);
 
     if (hostname == '*') {
@@ -560,9 +589,25 @@ module.exports = function (grunt) {
   });
 
   //////////////////////////////
+  // Update Bundler
+  //////////////////////////////
+  grunt.registerTask('bundler', 'Manages Development Dependencies', function(path) {
+    var path = path || '.';
+    var gemfileContent = "# Pull gems from RubyGems\nsource 'https://rubygems.org'\n";
+    _.forEach(grunt.userConfig.compass.dependencies, function(v, e) {
+      gemfileContent += "gem '" + e + "', '" + v + "'\n";
+    });
+    grunt.file.write(path + '/Gemfile', gemfileContent);
+
+    grunt.task.run(['exec:bundle:' + path]);
+  });
+
+  //////////////////////////////
   // Compass Extension
   //////////////////////////////
   grunt.registerTask('extension', 'Build your Compass Extension', function() {
+    grunt.task.run(['bundler:.compass']);
+
     grunt.file.copy('bower.json', '.compass/templates/project/bower.json');
     grunt.file.copy('.editorconfig', '.compass/templates/project/editorconfig.txt');
     grunt.file.copy('.bowerrc', '.compass/templates/project/bowerrc.txt');
