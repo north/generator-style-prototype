@@ -1,6 +1,7 @@
 'use strict';
 var os = require('os');
 var _ = require('underscore');
+var _s = require('underscore.string');
 
 module.exports = function (grunt) {
 
