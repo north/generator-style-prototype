@@ -1,8 +1,7 @@
 # All gems that are required for this extension to work should go here.
 # These are the requires you would normally put in your config.rb file
 # By default, you should always included Compass. Do not include your
-#  extension.
-require 'compass'<% _.forEach(grunt.userConfig.compass.extensions, function(extension) { %>
+#  extension.<% _.forEach(grunt.userConfig.compass.dependencies, function(version, extension) { %>
 require '<%= extension %>'<% }); %>
 
 # This tells Compass what your Compass extension is called, and where to find
