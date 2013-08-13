@@ -1,4 +1,5 @@
 'use strict';
+var os = require('os');
 
 module.exports = function (grunt) {
 
@@ -32,8 +33,16 @@ module.exports = function (grunt) {
 
   // Server Configuration
   var port = userConfig.server.port;
-  var lrport = userConfig.server.port + 1;
+  var lrport = port + 1;
+  var wnport = port + 2;
   var root = userConfig.server.root;
+  var hostname = 'localhost';
+  var remoteDebug = false;
+  if (userConfig.server.remoteAccess) {
+    hostname = '*';
+    remoteDebug = true;
+  }
+  var remoteHost = os.hostname() + '.local';
 
   // Compass Configuration
   var debugInfo = userConfig.compass.debugInfo;
@@ -58,7 +67,8 @@ module.exports = function (grunt) {
       server: {
         options: {
           port: port,
-          base: root
+	  base: root,
+	  hostname: hostname
         }
       }
     },
@@ -129,6 +139,8 @@ module.exports = function (grunt) {
           environment: 'dev',
           development: true,
           lrport: lrport,
+	  wnport: wnport,
+	  remoteDebug: remoteDebug,
           assets: ''
         }
       },
@@ -352,19 +364,41 @@ module.exports = function (grunt) {
     // Parallel Task
     parallel: {
       assets: {
-        grunt: true,
+	options: {
+	  grunt: true
+	},
         tasks: ['imagemin', 'svgmin', 'uglify:dist', 'copy:dist', 'generator:dist']
       },
       ext: {
-        grunt: true,
+	options: {
+	  grunt: true
+	},
         tasks: ['copy:ext', 'concat:ext']
+      },
+      remote: {
+	options: {
+	  grunt: true,
+	  stream: true
+	},
+	tasks: ['watch', 'exec:weinre']
+      },
+      remoteLaunch: {
+	options: {
+	  grunt: true,
+	  stream: true
+	},
+	tasks: ['watch', 'exec:weinre', 'exec:launch:' + remoteHost, 'exec:launch:' + remoteHost + ':' + wnport + ':client']
       }
     },
 
     // Exec Task
     exec: {
       launch: {
-        cmd: 'open http://localhost:' + port + '&& echo "Launched localhost:"' + port
+	cmd: function(host, prt, suffix) {
+	  prt = prt || port;
+	  suffix = suffix || '';
+	  return 'open http://' + host + ':' + prt + '/' + suffix;
+	}
       },
       commit: {
         cmd: function(commit) {
@@ -390,7 +424,10 @@ module.exports = function (grunt) {
       },
       install: {
         cmd: 'gem install <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem && rm <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem'
-      }
+      },
+      weinre: {
+	cmd: 'weinre --httpPort ' + wnport + ' --boundHost -all-'
+      },
     },
 
     bump: {
@@ -497,12 +534,29 @@ module.exports = function (grunt) {
 
     grunt.task.run(['server-init', 'connect']);
 
-    if (launch) {
-      grunt.task.run('exec:launch');
+    if (hostname == '*') {
+      grunt.task.run(['hostname']);
+      if (launch) {
+	grunt.task.run(['parallel:remoteLaunch']);
+      }
+      else {
+	grunt.task.run(['parallel:remote']);
+      }
     }
+    else {
+      if (launch) {
+	grunt.task.run('exec:launch:localhost');
+      }
+      grunt.task.run('watch');
+    }
+  });
 
-    grunt.task.run('watch');
-
+  //////////////////////////////
+  // Hostname
+  //////////////////////////////
+  grunt.registerTask('hostname', 'Find Hostname', function() {
+    console.log('Server available on local network at http://' + remoteHost + ':' + port);
+    console.log('Remote inspector available on local network at http://' + remoteHost + ':' + wnport + '/client');
   });
 
   //////////////////////////////
