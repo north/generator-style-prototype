@@ -242,7 +242,7 @@ AppGenerator.prototype.editorConfig = function editorConfig() {
 
 AppGenerator.prototype.app = function app() {
   this.copy('helpers.js', this.projectDir + 'helpers.js');
-  this.copy('Gemfile', this.projectDir + 'Gemfile');
+  // this.copy('Gemfile', this.projectDir + 'Gemfile');
   this.copy('system.json', this.projectDir + '.system.json');
   this.template('_config.yml', this.projectDir + 'config.yml');
 
@@ -263,7 +263,7 @@ AppGenerator.prototype.compass = function compass() {
   this.today = today.getFullYear() + '-' + ('0' + (today.getMonth()+1)).slice(-2) + '-' + ('0' + (today.getDate())).slice(-2);
 
   this.template('_extension.json', this.projectDir + '.extension.json');
-  this.template('styleguide.gemspec', this.projectDir + '.compass/' + this.clientSlug + '-style-guide.gemspec');
-  this.copy('styleguide.rb', this.projectDir + '.compass/.template/' + this.clientSlug + '-style-guide.rb');
+  this.copy('styleguide.gemspec', this.projectDir + '.compass/.template/style-guide.gemspec');
+  this.copy('styleguide.rb', this.projectDir + '.compass/.template/style-guide.rb');
   this.template('manifest.rb', this.projectDir + '.compass/templates/project/manifest.rb');
 };
