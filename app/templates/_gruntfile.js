@@ -112,6 +112,10 @@ module.exports = function (grunt) {
         files: [fontsDir + '/**/*'],
         tasks: ['copy:dev']
       },
+      components: {
+	files: [componentsDir + '/**/*'],
+	tasks: ['copy:dev']
+      },
       sass: {
 	files: [sassDir + '/**/*.scss'],
         tasks: ['compass:dev'],
