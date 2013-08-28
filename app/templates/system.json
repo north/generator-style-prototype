@@ -14,7 +14,7 @@
     "sassDir": "sass",
     "jsDir": "js",
     "fontsDir": "fonts",
-    "componentsDir": "components"
+    "componentsDir": "bower_components"
   },
   "server": {
     "root": ".www"

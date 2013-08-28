@@ -1,5 +1,5 @@
 node_modules
-/components
+/bower_components
 .www
 .sass-cache
 .compass/lib
