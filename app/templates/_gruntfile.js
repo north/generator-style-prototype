@@ -330,6 +330,12 @@ module.exports = function (grunt) {
               '!**/*.svg'
             ],
             dest: distPath + '/' + imagesDir
+          },
+          {
+            expand: true,
+            cwd: componentsDir,
+            src: ['**'],
+            dest: distPath + '/' + componentsDir
           }
         ]
       },
