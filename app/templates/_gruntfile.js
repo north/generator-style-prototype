@@ -77,8 +77,8 @@ module.exports = function (grunt) {
       server: {
         options: {
           port: port,
-	  base: root,
-	  hostname: hostname
+          base: root,
+          hostname: hostname
         }
       }
     },
@@ -90,17 +90,25 @@ module.exports = function (grunt) {
       },
       html: {
         files: [
-	  pagesDir + '/**/*.html',
-	  pagesDir + '/**/*.md',
-	  partialsDir + '/**/*.html',
-	  templatesDir + '/**/*.html'
+          pagesDir + '/**/*.html',
+          pagesDir + '/**/*.md',
+          partialsDir + '/**/*.html',
+          templatesDir + '/**/*.html',
+          '!' + templatesDir + '/components/**/*.html'
         ],
         tasks: ['generator:dev']
       },
+      generatedComponents: {
+        files: [
+          templatesDir + '/components/**/*.html',
+          'config.yml'
+        ],
+        tasks: ['create-components']
+      },
       js: {
         files: [
-	  jsDir + '/**/*.js',
-	  '!' + jsDir + '/**/*.min.js'
+          jsDir + '/**/*.js',
+          '!' + jsDir + '/**/*.min.js'
         ],
         tasks: ['jshint', 'uglify:dev']
       },
@@ -113,18 +121,18 @@ module.exports = function (grunt) {
         tasks: ['copy:dev']
       },
       components: {
-	files: [componentsDir + '/**/*'],
-	tasks: ['copy:dev']
+        files: [componentsDir + '/**/*'],
+        tasks: ['copy:dev']
       },
       sass: {
-	files: [sassDir + '/**/*.scss'],
+        files: [sassDir + '/**/*.scss'],
         tasks: ['compass:dev'],
         options: {
           livereload: false
         }
       },
       css: {
-	files: [root + '/' + cssDir + '/**/*.css'],
+        files: [root + '/' + cssDir + '/**/*.css'],
         tasks: ['csslint']
       },
       config: {
@@ -146,15 +154,15 @@ module.exports = function (grunt) {
           ext: '.html'
         }],
         options: {
-	  partialsGlob: [partialsDir + '/**/*.html', partialsDir + '/**/*.md'],
+          partialsGlob: [partialsDir + '/**/*.html', partialsDir + '/**/*.md'],
           templates: templatesDir,
           handlebarsHelpers: helpers,
           userConfig: userConfig,
           environment: 'dev',
           development: true,
           lrport: lrport,
-	  wnport: wnport,
-	  remoteDebug: remoteDebug,
+          wnport: wnport,
+          remoteDebug: remoteDebug,
           assets: ''
         }
       },
@@ -166,14 +174,13 @@ module.exports = function (grunt) {
           ext: '.html'
         }],
         options: {
-	  partialsGlob: [partialsDir + '/**/*.html', partialsDir + '/**/*.md'],
+          partialsGlob: [partialsDir + '/**/*.html', partialsDir + '/**/*.md'],
           templates: templatesDir,
           handlebarsHelpers: helpers,
           userConfig: userConfig,
           environment: 'prod',
           development: false,
           assets: '/' + assetPrefix
-
         }
       }
     },
@@ -372,19 +379,19 @@ module.exports = function (grunt) {
     // Concat
     concat: {
       rb: {
-	options: {
-	  process: true
-	},
-	files: {
-	  '.compass/lib/<%= clientSlug %>-style-guide.rb': ['.compass/.template/style-guide.rb']
-	}
+        options: {
+          process: true
+        },
+        files: {
+          '.compass/lib/<%= clientSlug %>-style-guide.rb': ['.compass/.template/style-guide.rb']
+        }
       },
       gemspec: {
         options: {
           process: true
         },
         files: {
-	  '.compass/<%= clientSlug %>-style-guide.gemspec': ['.compass/.template/style-guide.gemspec']
+          '.compass/<%= clientSlug %>-style-guide.gemspec': ['.compass/.template/style-guide.gemspec']
         }
       }
     },
@@ -392,41 +399,41 @@ module.exports = function (grunt) {
     // Parallel Task
     parallel: {
       assets: {
-	options: {
-	  grunt: true
-	},
+        options: {
+          grunt: true
+        },
         tasks: ['imagemin', 'svgmin', 'uglify:dist', 'copy:dist', 'generator:dist']
       },
       ext: {
-	options: {
-	  grunt: true
-	},
-	tasks: ['copy:ext', 'concat:rb', 'concat:gemspec']
+        options: {
+          grunt: true
+        },
+        tasks: ['copy:ext', 'concat:rb', 'concat:gemspec']
       },
       remote: {
-	options: {
-	  grunt: true,
-	  stream: true
-	},
-	tasks: ['watch', 'exec:weinre']
+        options: {
+          grunt: true,
+          stream: true
+        },
+        tasks: ['watch', 'exec:weinre']
       },
       remoteLaunch: {
-	options: {
-	  grunt: true,
-	  stream: true
-	},
-	tasks: ['watch', 'exec:weinre', 'exec:launch:' + remoteHost, 'exec:launch:' + remoteHost + ':' + wnport + ':client']
+        options: {
+          grunt: true,
+          stream: true
+        },
+        tasks: ['watch', 'exec:weinre', 'exec:launch:' + remoteHost, 'exec:launch:' + remoteHost + ':' + wnport + ':client']
       }
     },
 
     // Exec Task
     exec: {
       launch: {
-	cmd: function(host, prt, suffix) {
-	  prt = prt || port;
-	  suffix = suffix || '';
-	  return 'open http://' + host + ':' + prt + '/' + suffix;
-	}
+        cmd: function(host, prt, suffix) {
+          prt = prt || port;
+          suffix = suffix || '';
+          return 'open http://' + host + ':' + prt + '/' + suffix;
+        }
       },
       commit: {
         cmd: function(commit) {
@@ -448,23 +455,23 @@ module.exports = function (grunt) {
         }
       },
       ext: {
-	cmd: 'cd .compass && bundle exec gem build <%= clientSlug %>-style-guide.gemspec && mv <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem ../<%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem && cd ..'
+        cmd: 'cd .compass && bundle exec gem build <%= clientSlug %>-style-guide.gemspec && mv <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem ../<%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem && cd ..'
       },
       install: {
         cmd: 'gem install <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem && rm <%= clientSlug %>-style-guide-' + userConfig.client.version + '.gem'
       },
       weinre: {
-	cmd: 'weinre --httpPort ' + wnport + ' --boundHost -all-'
+        cmd: 'weinre --httpPort ' + wnport + ' --boundHost -all-'
       },
       bundle: {
-	cmd: function(path) {
-	  if (path === '.') {
-	    return 'bundle install';
-	  }
-	  else {
-	    return 'cd ' + path + '/ && bundle install && cd ..';
-	  }
-	}
+        cmd: function(path) {
+          if (path === '.') {
+            return 'bundle install';
+          }
+          else {
+            return 'cd ' + path + '/ && bundle install && cd ..';
+          }
+        }
       },
     },
 
@@ -571,21 +578,23 @@ module.exports = function (grunt) {
     var launch = grunt.option('launch');
 
     grunt.task.run(['bundler']);
+    grunt.task.run(['create-components']);
+
 
     grunt.task.run(['server-init', 'connect']);
 
     if (hostname == '*') {
       grunt.task.run(['hostname']);
       if (launch) {
-	grunt.task.run(['parallel:remoteLaunch']);
+        grunt.task.run(['parallel:remoteLaunch']);
       }
       else {
-	grunt.task.run(['parallel:remote']);
+        grunt.task.run(['parallel:remote']);
       }
     }
     else {
       if (launch) {
-	grunt.task.run('exec:launch:localhost');
+        grunt.task.run('exec:launch:localhost');
       }
       grunt.task.run('watch');
     }
@@ -603,10 +612,10 @@ module.exports = function (grunt) {
   // Update Bundler
   //////////////////////////////
   grunt.registerTask('bundler', 'Manages Development Dependencies', function(path) {
-    var path = path || '.';
-    var gemfileContent = "# Pull gems from RubyGems\nsource 'https://rubygems.org'\n";
+    path = path || '.';
+    var gemfileContent = '# Pull gems from RubyGems\nsource "https://rubygems.org"\n';
     _.forEach(grunt.userConfig.compass.dependencies, function(v, e) {
-      gemfileContent += "gem '" + e + "', '" + v + "'\n";
+      gemfileContent += 'gem "' + e + '", "' + v + '"\n';
     });
     grunt.file.write(path + '/Gemfile', gemfileContent);
 
@@ -627,7 +636,7 @@ module.exports = function (grunt) {
 
     // Add Styleguide to Gemfile
     var gemfile = grunt.file.read('Gemfile');
-    gemfile += "\ngem '<%= clientSlug %>-style-guide', '~>" + grunt.userConfig.client.version + "'";
+    gemfile += '\ngem "bar-style-guide", "~>' + grunt.userConfig.client.version + '"';
     grunt.file.write('.compass/templates/project/Gemfile.txt', gemfile);
 
     grunt.task.run(['parallel:ext', 'exec:ext']);
@@ -637,5 +646,56 @@ module.exports = function (grunt) {
     if (install) {
       grunt.task.run(['exec:install']);
     }
+  });
+
+  //////////////////////////////
+  // Create Components from Templates
+  //////////////////////////////
+  grunt.registerTask('create-components', 'Build real components from component templates', function() {
+    // Loop over each item in components
+    _.forEach(grunt.userConfig.components, function(v, e) {
+      // Grab the template prefix for this component
+      var tmpl = e;
+      // Load the template from the templates directory
+      var template = grunt.file.read('templates/components/' + tmpl + '.html');
+      // Loop over each version of the component
+      _.forEach(v, function(value, name) {
+        var singleton = true;
+        // If there are no properties to this component, set the name to the value
+        if (typeof(name) === 'number') {
+          name = value;
+        }
+        // If the name is an object, pluck off its key
+        if (typeof(name) === 'object') {
+          singleton = false;
+          name = Object.keys(name)[0];
+          value = value[name];
+        }
+        // Replace {{name}} with the name of the component
+        var component = template.replace(new RegExp('{{name}}', 'g'), name);
+
+        if (!singleton) {
+          // Loop over each property of the component
+          _.forEach(value, function(p, k) {
+            // If the type of the property is an object, let's convert it
+            if (typeof(p) === 'object') {
+              p = Array.prototype.slice.call(p);
+              // If the key of the property contains class, convert to a space delimited list
+              if (k.toLowerCase().indexOf('class') >= 0) {
+                p = p.join(' ');
+              }
+              // If the key of the property doesn't contain class, convert to a comma delimited list
+              else {
+                p = p.join(', ');
+              }
+            }
+            // Replace each instance of the key in the template with the property
+            component = component.replace('{{' + k + '}}', p);
+          });
+        }
+        // Write component to disk
+        grunt.file.write('partials/components/' + tmpl + '/' + tmpl + '--' + _s.slugify(name) + '.html', component);
+      });
+    });
   });
 };
