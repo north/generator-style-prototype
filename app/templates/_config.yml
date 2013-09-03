@@ -29,8 +29,7 @@ prototype:
 
 ## Main Navigation Sections
 sections:
-  Home: ''
-  Style Tile: style-tile
+  Style Tile: ''
   Elements: elements
   Typography: typography
   Components: components
@@ -92,7 +91,7 @@ colors:
 server:
   port: 8000
   # If remoteAccess is set to true, you will be able to access your prototype from any device connected to the same network as well as be able to remotely debug them.
-  remoteAccess: true
+  remoteAccess: false
 
 #########################
 ## Export Options
