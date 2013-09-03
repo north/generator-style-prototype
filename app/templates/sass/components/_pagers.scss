@@ -1,0 +1,18 @@
+//////////////////////////////
+// SCSS Components
+// Create a partial and folder structure similar to this for each comonent
+// _component-name.scss
+// component-name (folder)
+//   _extend.scss
+//   _mixins.scss
+//////////////////////////////
+
+@import 'pagers/_mixins';
+@import 'pagers/_extend';
+
+ul.pager {
+  @extend %pager;
+  li {
+    @extend %pager-item;
+  }
+}

@@ -1,0 +1,21 @@
+//////////////////////////////
+// SCSS Components
+// Create a partial and folder structure similar to this for each comonent
+// _component-name.scss
+// component-name (folder)
+//   _extend.scss
+//   _mixins.scss
+//////////////////////////////
+
+@import 'buttons/mixins';
+@import 'buttons/extend';
+
+.big-button {
+  @extend %button;
+  &.red {
+    @extend %button-red;
+  }
+}
+.call-to-action {
+  @extend %button-cta;
+}

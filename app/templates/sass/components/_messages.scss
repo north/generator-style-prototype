@@ -1,0 +1,24 @@
+//////////////////////////////
+// SCSS Components
+// Create a partial and folder structure similar to this for each comonent
+// _component-name.scss
+// component-name (folder)
+//   _extend.scss
+//   _mixins.scss
+//////////////////////////////
+
+@import 'messages/mixins';
+@import 'messages/extend';
+
+.messages {
+  @extend %messages;
+  &.status {
+    @extend %status;
+  }
+  &.warning {
+    @extend %warning;
+  }
+  &.error {
+    @extend %error;
+  }
+}

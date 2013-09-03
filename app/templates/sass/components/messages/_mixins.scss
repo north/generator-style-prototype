@@ -1,0 +1,8 @@
+//////////////////////////////
+// mixins for the 'messages' component
+//////////////////////////////
+
+@mixin messages($color) {
+  color: $color;
+  border-color: $color;
+}

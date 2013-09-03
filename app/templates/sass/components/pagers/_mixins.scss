@@ -1,0 +1,8 @@
+//////////////////////////////
+// mixins for the 'pagers' component
+//////////////////////////////
+
+@mixin pager-item {
+  text-transform: uppercase;
+  padding: 0.2em 0.5em;
+}

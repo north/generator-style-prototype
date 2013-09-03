@@ -1,0 +1,19 @@
+//////////////////////////////
+// extends for the 'messages' component
+//////////////////////////////
+
+%messages {
+  border: {
+    style: solid;
+    width: 1px;
+  }
+}
+%status {
+  @include messages(green);
+}
+%warning {
+  @include messages(orange);
+}
+%error {
+  @include messages(red);
+}

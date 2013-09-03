@@ -1,0 +1,10 @@
+//////////////////////////////
+// extends for the 'pagers' component
+//////////////////////////////
+
+%pager {
+  @include inline-list;
+}
+%pager-item {
+  @include pager-item;
+}

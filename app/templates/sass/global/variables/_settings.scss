@@ -1,0 +1,38 @@
+////////////////////////////
+// Kit Default Variables
+////////////////////////////
+
+
+////////////////////////////
+// Modular Scale (used by 04-base)
+// values used to determine modular scale values
+// and http://modularscale.com/
+$ratio: golden_ratio() major_third();
+$base-size: 1em;
+////////////////////////////
+
+//////////////////////
+// Font size and line-height
+$base-font-size: $base-size;
+$base-line-height: $base-font-size * 1.5;
+//////////////////////
+
+//////////////////////
+// Headers
+// create a list of header sizes, H1 - H6
+// default example uses modular scale
+$header-sizes: ms(6) ms(5) ms(4) ms(3) ms(2) ms(1);
+//////////////////////
+
+//////////////////////
+// Links
+// replace normal link underlines with bottom borders
+$border-links: true;
+// animate link hovers. use a 'time' value, like '0.5s'
+$link-transitions: true;
+//////////////////////
+
+//////////////////////
+// Forms
+$kit-form-defaults: true;
+//////////////////////

@@ -1,0 +1,86 @@
+@mixin debug($color: red, $cs-background: false) {
+  outline: 1px solid $color;
+  @if $cs-background != false {
+    background-color: $cs-background;
+  }
+}
+
+@mixin hidden-accesssible($focusable: false) {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  @if $focusable {
+    &:active, &:focus {
+      clip: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      position: static;
+      width: auto;
+    }
+  }
+}
+
+@mixin clean-list {
+  @include no-bullets;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+// Links --------------------------------------------------------------
+// replace underlines on links with bottom borders
+@mixin border-links($normal, $hover: false, $active: false, $visited: false, $focus: false) {
+  & {
+    text-decoration: none;
+    border-bottom: 1px solid $normal;
+    @if $visited {
+      &:visited {
+        border-bottom-color: $visited;
+      }
+    }
+    @if $focus {
+      &:focus {
+        border-bottom-color: $focus;
+      }
+    }
+    @if $hover {
+      &:hover {
+        border-bottom-color: $hover;
+      }
+    }
+    @if $active {
+      &:active {
+        border-bottom-color: $active;
+      }
+    }
+  }
+}
+
+@mixin undo-border-links {
+  & {
+    text-decoration: none;
+    border-bottom: none;
+    &:visited {
+      border-bottom: none;
+    }
+    &:focus {
+      border-bottom: none;
+    }
+    &:hover {
+      border-bottom: none;
+    }
+    &:active {
+      border-bottom: none;
+    }
+  }
+}
+
+// fade between default and hover colors
+@mixin link-transitions($time: 0.5s, $easing: ease-out, $property: all) {
+  @include transition($property $time $easing);
+}
