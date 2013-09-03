@@ -9,6 +9,6 @@
     "Element.details": "termi/Element.details"
   },
   "devDependencies": {
-    "responsive-indicator": "~0.1.2"
+    "responsive-indicator": "~0.1.3"
   }
 }
