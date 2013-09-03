@@ -1,18 +1,13 @@
 <div class="buttons group">
   <ul component-list>
-    {{#each options.grunt.userConfig.components.buttons}}
-      {{#each this}}
+    {{#each options.grunt.userConfig.components.button}}
       <li>
-        <a class="{{classify this}}" href="#">{{@key}}</a>
-        {{#if ../../page.examples}}
-        <details>
-          <summary>HTML Source</summary>
-          <pre class="example"><code class="language-markup">&lt;a class="{{classify this}}" href="#"&gt;{{@key}}&lt;/a&gt;</code></pre>
-        </details>
+        {{{component 'button' this}}}
 
+        {{#if ../page.examples}}
+          {{{create-example-html 'button' ../this}}}
         {{/if}}
       </li>
-      {{/each}}
     {{/each}}
   </ul>
 </div>
