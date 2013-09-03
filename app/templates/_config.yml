@@ -58,18 +58,21 @@ styleTile:
 ## Component Guide
 #########################
 components:
-  messages:
+  message:
     - status
     - warning
     - error
-  buttons:
+  button:
     - Call to Action:
-      - call-to-action
+        classes:
+          - call-to-action
     - Big Button:
-      - big-button
+        classes:
+          - big-button
     - Warning Button:
-      - big-button
-      - red
+        classes:
+          - big-button
+          - red
 
 #########################
 ## Color Guide
