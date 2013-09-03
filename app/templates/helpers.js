@@ -1,3 +1,5 @@
+var fs = require('fs');
+var _s = require ('underscore.string');
 var marked = require('marked');
 marked.setOptions({
   gfm: true,
@@ -84,5 +86,39 @@ module.exports = {
     output += "' alt='Patten " + index + "'></li>";
 
     return output;
+  },
+  'create-example-html': function(type, component) {
+    var name = component;
+    if (typeof(component) === 'object') {
+      name = Object.keys(component)[0];
+    }
+    name = _s.slugify(name);
+
+    var path = 'partials/components/' + type + '/' + type + '--' + name + '.html';
+    var code = fs.readFileSync('templates/code.html').toString('utf-8');
+    code = code.replace('{{summary}}', 'HTML Source');
+    code = code.replace('{{language}}', 'markup');
+
+    var file = fs.readFileSync(path).toString('utf-8');
+    file = file.replace(new RegExp('<', 'g'), '&lt;');
+    file = file.replace(new RegExp('>', 'g'), '&gt;');
+
+    code = code.replace('{{code}}', file);
+
+    return code;
+  },
+  'component': function(type, component) {
+
+    var name = component;
+    if (typeof(component) === 'object') {
+      name = Object.keys(component)[0];
+    }
+    name = _s.slugify(name);
+
+    var path = 'partials/components/' + type + '/' + type + '--' + name + '.html';
+
+    var file = fs.readFileSync(path).toString('utf-8');
+
+    return file;
   }
 };
