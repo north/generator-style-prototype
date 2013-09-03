@@ -50,6 +50,7 @@
     {{/if}}
 
   {{#if options.development}}
+    {{{script-ext 'responsive-indicator/dist/responsive-indicator.min.js' true}}}
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':{{options.lrport}}/livereload.js?snipver=1"></' + 'script>')
     </script>
     {{#if options.remoteDebug}}

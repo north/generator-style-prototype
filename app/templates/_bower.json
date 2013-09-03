@@ -8,5 +8,7 @@
     "prism": "gh-pages",
     "Element.details": "termi/Element.details"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "responsive-indicator": "~0.1.2"
+  }
 }
