@@ -1,0 +1,6 @@
+@import "a11y/mixins";
+@import "a11y/extends";
+
+.element-invisible {
+  @extend %hidden-accesssible;
+}

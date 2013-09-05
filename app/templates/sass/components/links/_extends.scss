@@ -1,0 +1,21 @@
+//////////////////////////////
+// Add extends for the 'links' component here.
+//////////////////////////////
+
+%link-colors-extend {
+  @include set-link-colors($extend: false);
+}
+
+%link-borders-extend {
+  @include set-border-links($extend: false);
+}
+
+%link-unset-borders-extend {
+  @include unset-border-links(false);
+}
+
+%links-extend {
+  @extend %link-colors-extend;
+  @extend %link-borders-extend;
+}
+

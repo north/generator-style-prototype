@@ -1,0 +1,25 @@
+//////////////////////////////
+// Add mixins for the 'headings' component here.
+//////////////////////////////
+
+//////////////////////////////
+// Headings Component Default Variables
+$heading-base-extend: true;
+$heading-sizes: 4em 3.5em 3em 2.5em 2em 1.5em !default;
+//////////////////////////////
+
+@mixin heading-base($extend: $heading-base-extend) {
+  @if $extend {
+    @extend %heading-base-extend;
+  }
+  @else {
+    font: {
+      family: $font-headline;
+      weight: normal;
+    }
+  }
+}
+
+@mixin heading-size($size) {
+  font-size: $size;
+}

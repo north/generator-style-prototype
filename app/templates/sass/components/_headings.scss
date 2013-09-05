@@ -1,5 +1,5 @@
 //////////////////////////////
-// Messages Component
+// Headings Component
 // Create a partial and folder structure similar to this for each component
 // _component-name.scss
 // component-name (folder)
@@ -7,18 +7,24 @@
 //   _extends.scss
 //////////////////////////////
 
-@import 'messages/mixins';
-@import 'messages/extends';
+@import 'headings/mixins';
+@import 'headings/extends';
 
-.messages {
-  @extend %messages;
-  &.status {
-    @extend %status;
-  }
-  &.warning {
-    @extend %warning;
-  }
-  &.error {
-    @extend %error;
-  }
+h1 {
+  @extend %h1;
+}
+h2 {
+  @extend %h2;
+}
+h3 {
+  @extend %h3;
+}
+h4 {
+  @extend %h4;
+}
+h5 {
+  @extend %h5;
+}
+h6 {
+  @extend %h6;
 }

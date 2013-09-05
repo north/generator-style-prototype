@@ -1,8 +1,33 @@
 //////////////////////////////
-// mixins for the 'pagers' component
+// Add mixins for the 'pagers' component here.
 //////////////////////////////
 
-@mixin pager-item {
-  text-transform: uppercase;
-  padding: 0.2em 0.5em;
+//////////////////////////////
+// Pager Component Default Variables
+$pager-container-extend: true;
+$pager-item-extend: true;
+//////////////////////////////
+
+@mixin pager-container($extend: $pager-container-extend) {
+  @if $extend {
+    @extend %pager-container-extend;
+  }
+  @else {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+}
+
+@mixin pager-item($extend: $pager-item-extend) {
+  @if $extend {
+    @extend %pager-item-extend;
+  }
+  @else {
+    display: inline;
+    margin: 0;
+    padding: 0.2em 0.5em;
+    text-transform: uppercase;
+  }
 }

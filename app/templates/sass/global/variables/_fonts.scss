@@ -2,24 +2,9 @@
 
 // Default font stacks
 $font-sans: sans-serif;
-$font-serifs: Georgia, serif;
-$font-mono: "Source Code Pro", monospace;
+$font-serifs: serif;
+$font-mono: monospace;
 
 // General font variables
 $font-body: $font-serifs;
 $font-headline: $font-sans;
-
-////////////////////////////
-// CUSTOM FONTS
-// uncomment and customize with your own fonts
-// place fonts in your fonts directory
-////////////////////////////
-// @include font-face(
-//   myfont,
-//   font-files(
-//     'myfont-bold-webfont.woff',
-//     'myfont-bold-webfont.ttf',
-//     'myfont-bold-webfont.svg'),
-//   'myfont-bold-webfont.eot',
-//   'bold',
-//   'normal');

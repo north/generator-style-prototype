@@ -1,0 +1,80 @@
+//////////////////////////////
+// Add mixins for the 'links' component here.
+//////////////////////////////
+
+//////////////////////////////
+// Links Component Default Variables
+$links-extend: true;
+$link-normal-default: $cs-link-normal;
+$link-hover-default: $cs-link-hover;
+$link-active-default: $cs-link-active;
+$link-visited-default: $cs-link-visited;
+$link-focus-default: $cs-link-focus;
+$set-border-links-default: true;
+$link-border-size-default: 1px;
+$link-border-style-default: solid;
+$link-border-normal-default: $cs-link-border-normal;
+$link-border-hover-default: $cs-link-border-hover;
+$link-border-active-default: $cs-link-border-active;
+$link-border-visited-default: $cs-link-border-visited;
+$link-border-focus-default: $cs-link-border-focus;
+$link-transitions-default: true;
+$unset-border-links-default: true;
+//////////////////////////////
+
+@mixin set-link-colors($link-normal: $link-normal-default, $link-hover: $link-hover-default, $link-active: $link-active-default, $link-visited: $link-visited-default, $link-focus: $link-focus-default, $extend: $links-extend) {
+  @if $extend {
+    @extend %link-colors-extend;
+  }
+  @else {
+    @include link-colors($link-normal, $link-hover, $link-active, $link-visited, $link-focus);
+  }
+}
+
+@mixin set-border-links($link-border-normal: $link-border-normal-default, $link-border-hover: $link-border-hover-default, $link-border-active: $link-border-active-default, $link-border-visited: $link-border-visited-default, $link-border-focus: $link-border-focus-default, $link-border-size: $link-border-size-default, $link-border-style: $link-border-style-default, $extend: $set-border-links-default) {
+  @if $extend {
+    @extend %link-borders-extend;
+  }
+  @else {
+    & {
+      text-decoration: none;
+      border-bottom: $link-border-size $link-border-style $link-border-normal;
+      &:hover {
+        border-bottom-color: $link-border-hover;
+      }
+      &:active {
+        border-bottom-color: $link-border-active;
+      }
+      &:visited {
+        border-bottom-color: $link-border-visited;
+      }
+      &:focus {
+        border-bottom-color: $link-border-focus;
+      }
+    }
+  }
+}
+
+@mixin unset-border-links($extend: $unset-border-links-default) {
+  @if $extend {
+    @extend %link-unset-borders-extend;
+  }
+  @else {
+    & {
+      text-decoration: none;
+      border-bottom: none;
+      &:visited {
+        border-bottom: none;
+      }
+      &:focus {
+        border-bottom: none;
+      }
+      &:hover {
+        border-bottom: none;
+      }
+      &:active {
+        border-bottom: none;
+      }
+    }
+  }
+}

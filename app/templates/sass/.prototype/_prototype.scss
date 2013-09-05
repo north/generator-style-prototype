@@ -94,6 +94,9 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
+  details {
+    margin: 0.5em 0 1em;
+  }
 }
 
 .text-preroll {

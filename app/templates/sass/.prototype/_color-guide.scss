@@ -1,7 +1,7 @@
 @import "singularitygs";
 
 $color-guide-medium: 500px !default;
-$color-guide-large: 805px !default;
+$color-guide-large: 1050px !default;
 
 @mixin generate-colour-guide($colours...) {
   $singleton: false;

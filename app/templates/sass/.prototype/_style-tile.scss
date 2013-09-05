@@ -8,7 +8,6 @@
   @else {
     @include box-sizing('border-box');
   }
-
   @if $dir == 'left' {
     float: #{$dir};
     width: 59.3046972%;
@@ -26,7 +25,6 @@
 .text-examples {
   width: 100%;
   @include clearfix(true);
-
   @include breakpoint($sp-single-to-multi-column) {
     @include golden('left');
   }
@@ -35,7 +33,6 @@
 .graphic-examples {
   width: 100%;
   @include clearfix(true);
-
   @include breakpoint($sp-single-to-multi-column) {
     @include golden('right');
   }
@@ -61,7 +58,6 @@
       height: 50px;
       width: 50px;
     }
-    @include border-radius(50%);
     margin: {
       left: .25em;
       bottom: .25em;
@@ -69,26 +65,26 @@
   }
 }
 
+.colors li {
+  border-radius: 50%;
+}
+
 .images li {
   width: 100%;
-
+  border-radius: 2em;
+  overflow: hidden;
   @include breakpoint(452px) {
     width: 200px;
   }
-
   @include breakpoint($sp-single-to-multi-column) {
     width: 100%;
   }
-
   @include breakpoint(1223px) {
     width: 200px;
   }
   height: auto;
-
   max-width: 100%;
-
   margin-bottom: .5em;
-
   img {
     max-width: 100%;
     height: auto;
