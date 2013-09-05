@@ -15,4 +15,15 @@
       <p>Version {{options.grunt.userConfig.client.version}}</p>
     </div>
   </aside>
+  <nav id="prototype-nav" role="navigation">
+    <b id="menu-toggle">menu</b>
+    <div role="menubar">
+      {{#each options.grunt.userConfig.sections}}
+      <a href="/{{this}}" role="menuitem">{{@key}}</a>
+      {{/each}}
+    </div>
+  </nav>
+  <script type="text/javascript">
+    (function(){var e=document.getElementById("menu-toggle");var t=document.querySelector("#menu-toggle ~ div");e.addEventListener("click",function(){t.classList.toggle("open")})})()
+  </script>
 </header>
