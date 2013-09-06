@@ -1,0 +1,24 @@
+//////////////////////////////
+// Add extends for the 'messages' component here.
+//////////////////////////////
+
+%message-base-extend {
+  @include msg-base(false);
+}
+%message-colors-extend {
+  @include msg-colors($extend: false);
+}
+
+%messages {
+  @extend %message-base-extend;
+  @extend %message-colors-extend;
+}
+%status {
+  @include msg-colors(nth($tertiary-shades, 3), nth($tertiary-tints, 3));
+}
+%warning {
+  @extend %messages;
+}
+%error {
+  @include msg-colors(nth($quaternary-tints, 1));
+}

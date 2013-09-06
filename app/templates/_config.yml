@@ -81,10 +81,14 @@ colors:
   # Variable names of the color variables being used
   variables:
     - black
-    - primary
-    - secondary
-    - tertiary
-    - quadrary
+    - primary tint
+    - primary shade
+    - secondary tint
+    - secondary shade
+    - tertiary tint
+    - tertiary shade
+    - quaternary tint
+    - quaternary shade
   # The number of shades each color has
   shades: 6
 

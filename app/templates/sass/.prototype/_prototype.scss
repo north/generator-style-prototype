@@ -8,7 +8,7 @@ main {
 
 nav ul {
   @include box-sizing('border-box');
-  @include breakpoint($vertical-horizontal-nav) {
+  @include breakpoint($sp-vertical-horizontal-nav) {
     @include horizontal-list;
   }
 }
@@ -19,7 +19,7 @@ body {
 }
 
 .content-wrapper {
-  max-width: $max-page-width;
+  max-width: $sp-max-page-width;
   @include box-sizing('border-box');
   @include clearfix(true);
   padding: .5em .75em;
@@ -28,7 +28,7 @@ body {
 #prototype-header {
   @include clearfix(true);
 
-  background: $header-color;
+  background: $sp-header-color;
 
   h1, h2, h3, h4, h5, h6, .page-info {
     margin: 0;
@@ -75,7 +75,7 @@ body {
   width: 100%;
   @include clearfix(true);
 
-  @include breakpoint($single-to-multi-column) {
+  @include breakpoint($sp-single-to-multi-column) {
     @include golden('left');
   }
 }
@@ -84,7 +84,7 @@ body {
   width: 100%;
   @include clearfix(true);
 
-  @include breakpoint($single-to-multi-column) {
+  @include breakpoint($sp-single-to-multi-column) {
     text-align: right;
     @include golden('right');
   }
@@ -94,6 +94,9 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
+  details {
+    margin: 0.5em 0 1em;
+  }
 }
 
 .text-preroll {

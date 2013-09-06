@@ -1,0 +1,85 @@
+//////////////////////////////
+// Add mixins for the 'forms' component here.
+//////////////////////////////
+
+//////////////////////////////
+// Forms Component Default Variables
+$form-box-extend: true !default;
+$form-text-area-extend: true !default;
+$form-text-area-height-default: $base-line-height * 6.5 !default;
+$form-label-extend: true !default;
+$form-check-radio-extend: true !default;
+$form-legend-extend: true !default;
+$form-fieldset-extend: true !default;
+//////////////////////////////
+
+@mixin form-box($extend: $form-box-extend) {
+  @if $extend {
+    @extend %form-box-extend;
+  }
+  @else {
+    @extend %constrain-to-parent;
+    margin-top: 0;
+    margin-bottom: $base-line-height;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    height: $base-line-height / $base-font-size * 1.5em;
+    border-width: 1px;
+    border-color: $cs-border;
+    font-size: $base-font-size;
+    font-family: $font-body;
+  }
+}
+
+@mixin form-textarea($form-text-area-height: $form-text-area-height-default, $extend: $form-text-area-extend) {
+  @if $form-text-area-height != $form-text-area-height-default {
+    $extend: false;
+  }
+  @if $extend {
+    @extend %form-text-area-extend;
+  }
+  @else {
+    height: $form-text-area-height;
+  }
+}
+
+@mixin form-label($extend: $form-label-extend) {
+  @if $extend {
+    @extend %form-label-extend;
+  }
+  @else {
+    margin-right: 0.5em;
+    vertical-align: top;
+    line-height: $base-line-height / $base-font-size * 1.5em;
+    cursor: pointer;
+  }
+}
+
+@mixin form-check-radio($extend: $form-check-radio-extend) {
+  @if $extend {
+    @extend %form-check-radio-extend;
+  }
+  @else {
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+  }
+}
+
+@mixin form-legend($extend: $form-legend-extend) {
+  @if $extend {
+    @extend %form-legend-extend;
+  }
+  @else {
+    padding: 0 1em;
+    white-space: nowrap;
+  }
+}
+
+@mixin form-fieldset($extend: $form-fieldset-extend) {
+  @if $extend {
+    @extend %form-fieldset-extend;
+  }
+  @else {
+    border-style: dashed;
+  }
+}

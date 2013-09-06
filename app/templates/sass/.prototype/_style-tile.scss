@@ -8,7 +8,6 @@
   @else {
     @include box-sizing('border-box');
   }
-
   @if $dir == 'left' {
     float: #{$dir};
     width: 59.3046972%;
@@ -26,8 +25,7 @@
 .text-examples {
   width: 100%;
   @include clearfix(true);
-
-  @include breakpoint($single-to-multi-column) {
+  @include breakpoint($sp-single-to-multi-column) {
     @include golden('left');
   }
 }
@@ -35,8 +33,7 @@
 .graphic-examples {
   width: 100%;
   @include clearfix(true);
-
-  @include breakpoint($single-to-multi-column) {
+  @include breakpoint($sp-single-to-multi-column) {
     @include golden('right');
   }
 }
@@ -49,29 +46,18 @@
     margin: 0;
     padding: .5em;
   }
-
   li {
     display: inline-block;
     height: 100px;
     width: 100px;
-
-
-    @include breakpoint($single-to-multi-column) {
+    @include breakpoint($sp-single-to-multi-column) {
       height: 75px;
       width: 75px;
     }
-
     @include breakpoint(1034px) {
       height: 50px;
       width: 50px;
     }
-
-
-    border: 3px solid desaturate($header-color, 50%);
-
-    @include border-radius(5px);
-    @include box-shadow(0px 0px 2px black, 0px 0px 2px black inset);
-
     margin: {
       left: .25em;
       bottom: .25em;
@@ -79,26 +65,26 @@
   }
 }
 
+.colors li {
+  border-radius: 50%;
+}
+
 .images li {
   width: 100%;
-
+  border-radius: 2em;
+  overflow: hidden;
   @include breakpoint(452px) {
     width: 200px;
   }
-
-  @include breakpoint($single-to-multi-column) {
+  @include breakpoint($sp-single-to-multi-column) {
     width: 100%;
   }
-
   @include breakpoint(1223px) {
     width: 200px;
   }
   height: auto;
-
   max-width: 100%;
-
   margin-bottom: .5em;
-
   img {
     max-width: 100%;
     height: auto;

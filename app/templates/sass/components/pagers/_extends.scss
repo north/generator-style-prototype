@@ -1,0 +1,17 @@
+//////////////////////////////
+// Add extends for the 'pagers' component here.
+//////////////////////////////
+
+%pager-container-extend {
+  @include pager-container(false);
+}
+%pager-item-extend {
+  @include pager-item(false);
+}
+
+%pager {
+  @extend %pager-container-extend;
+}
+%pager-item {
+  @extend %pager-item-extend;
+}

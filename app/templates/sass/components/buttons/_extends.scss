@@ -1,0 +1,34 @@
+//////////////////////////////
+// Add extends for the 'buttons' component here.
+//////////////////////////////
+
+%button-base-extend {
+  @include button-base(false);
+}
+%button-size-normal-extend {
+  @include button-size-normal(false);
+}
+%button-size-large-extend {
+  @include button-size-large(false);
+}
+%button-colors-extend {
+  @include button-colors($extend: false);
+}
+%button {
+  @extend %button-base-extend;
+  @extend %button-size-normal-extend;
+  @extend %button-colors-extend;
+}
+%button-red {
+  @include button-colors(nth($quaternary-tints, 1));
+}
+%button-big {
+  @extend %button-base-extend;
+  @extend %button-size-large-extend;
+  @extend %button-colors-extend;
+}
+%button-cta {
+  @extend %button-base-extend;
+  @extend %button-size-normal-extend;
+  @include button-colors($btn-color: nth($tertiary-tints, 2), $btn-text-color: nth($secondary-tints, 1));
+}
