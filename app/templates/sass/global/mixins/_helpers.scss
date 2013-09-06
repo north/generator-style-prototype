@@ -1,7 +1,0 @@
-$debug-color: $cs-debug-color;
-@mixin debug($color: $debug-color, $cs-background: false) {
-  outline: 1px solid $color;
-  @if $cs-background != false {
-    background-color: $cs-background;
-  }
-}
