@@ -1,7 +1,7 @@
 @import "singularitygs";
 
 $color-guide-medium: 500px !default;
-$color-guide-large: 805px !default;
+$color-guide-large: 1050px !default;
 
 @mixin generate-colour-guide($colours...) {
   $singleton: false;
@@ -29,34 +29,34 @@ $color-guide-large: 805px !default;
         position: relative;
         @include clearfix;
 
-	// Small Color Guide
-	display: block;
-	width: 100%;
+  // Small Color Guide
+  display: block;
+  width: 100%;
 
-	// Medium Color Guide
-	@include breakpoint($color-guide-medium $color-guide-large) {
-	  @include layout($length / 2, 0) {
-	    @include float-span(1);
+  // Medium Color Guide
+  @include breakpoint($color-guide-medium $color-guide-large) {
+    @include layout($length / 2, 0) {
+      @include float-span(1);
 
-	    &:nth-child(#{$length / 2}n) {
-	      @include float-span(1, 'last');
-	    }
-	  }
+      &:nth-child(#{$length / 2}n) {
+        @include float-span(1, 'last');
+      }
+    }
 
-	  &:nth-child(#{$length}n) {
-	    margin-bottom: 1em;
-	  }
-	}
+    &:nth-child(#{$length}n) {
+      margin-bottom: 1em;
+    }
+  }
 
-	// Large Color Guide
-	@include breakpoint($color-guide-large) {
-	  @include layout($length, 0) {
-	    @include float-span(1);
+  // Large Color Guide
+  @include breakpoint($color-guide-large) {
+    @include layout($length, 0) {
+      @include float-span(1);
 
-	    &:nth-child(#{$length}n) {
-	      @include float-span(1, 'last');
-	    }
-	  }
+      &:nth-child(#{$length}n) {
+        @include float-span(1, 'last');
+      }
+    }
         }
 
         &:before, &:after,

@@ -8,47 +8,31 @@
 
 //////////////////////////////
 // Prototype Setup Variables
+$sp-max-page-width: 100%;
+$sp-single-to-multi-column: 637px;
+$sp-header-color: #CCC;
+$sp-vertical-horizontal-nav: 721px;
 //////////////////////////////
-$max-page-width: 100%;
-$single-to-multi-column: 637px;
-$header-color: #fef9ef;
-
-$vertical-horizontal-nav: 721px;
 
 //////////////////////////////
 // Style Tile
-//////////////////////////////
 @import ".prototype/style-tile";
-
-.color-0 {
-  background: nth($black, 1);
-}
-
-.color-1 {
-  background: nth($primary, 1);
-}
-
-.color-2 {
-  background: nth($secondary, 1);
-}
-
-.color-3 {
-  background: nth($tertiary, 1);
-}
-
-.color-4 {
-  background: nth($quadrary, 1);
-}
+.color-0 { background: nth($black-tints, 1); }
+.color-1 { background: nth($primary-tints, 1); }
+.color-2 { background: nth($secondary-tints, 1); }
+.color-3 { background: nth($tertiary-tints, 1); }
+.color-4 { background: nth($quaternary-tints, 1); }
+//////////////////////////////
 
 //////////////////////////////
 // Color Guide
-//////////////////////////////
 @import ".prototype/color-guide";
 // This mixin will generate the styling for the color guide. If you would like to write your own, remove it and please do so.
-@include generate-colour-guide($black, $primary, $secondary, $tertiary, $quadrary);
+@include generate-colour-guide($black-tints, $primary-tints, $primary-shades, $secondary-tints, $secondary-shades, $tertiary-tints, $tertiary-shades, $quaternary-tints, $quaternary-shades);
+//////////////////////////////
 
 //////////////////////////////
 // Style Prototype Page
-//////////////////////////////
 // This partial will write the Style Prototype page specific styling. If you would like to write your own, remove it and please do so.
 @import ".prototype/prototype";
+//////////////////////////////

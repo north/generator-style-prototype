@@ -1,0 +1,24 @@
+//////////////////////////////
+// Messages Component
+// Create a partial and folder structure similar to this for each component
+// _component-name.scss
+// component-name (folder)
+//   _mixins.scss
+//   _extends.scss
+//////////////////////////////
+
+@import 'messages/mixins';
+@import 'messages/extends';
+
+.messages {
+  @extend %messages;
+  &.status {
+    @extend %status;
+  }
+  &.warning {
+    @extend %warning;
+  }
+  &.error {
+    @extend %error;
+  }
+}

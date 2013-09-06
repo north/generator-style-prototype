@@ -1,0 +1,22 @@
+//////////////////////////////
+// Button Component
+// Create a partial and folder structure similar to this for each component
+// _component-name.scss
+// component-name (folder)
+//   _mixins.scss
+//   _extends.scss
+//////////////////////////////
+
+@import 'buttons/mixins';
+@import 'buttons/extends';
+
+.call-to-action {
+  @extend %button-cta;
+}
+
+.big-button {
+  @extend %button-big;
+  &.red {
+    @extend %button-red;
+  }
+}

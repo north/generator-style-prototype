@@ -1,0 +1,89 @@
+//////////////////////////////
+// Add mixins for the 'buttons' component here.
+//////////////////////////////
+
+//////////////////////////////
+// Button Component Default Variables
+$btn-base-extend: true !default;
+$btn-size-normal-extend: true !default;
+$btn-size-large-extend: true !default;
+$btn-colors-extend: true !default;
+$btn-color-default: $cs-btn-color-default !default;
+$btn-text-color-dark-default: $cs-btn-text-color-dark-default !default;
+$btn-text-color-light-default: $cs-btn-text-color-light-default !default;
+$btn-text-color-default: false !default;
+//////////////////////////////
+
+@mixin button-base($extend: $btn-base-extend) {
+  @if $extend {
+    @extend %button-base-extend;
+  }
+  @else {
+    border-radius: 0.2em;
+    border: {
+      width: 1px;
+      style: solid;
+    }
+    font:comb {
+      family: sans-serif;
+      weight: normal;
+    }
+    text: {
+      transform: uppercase;
+      decoration: none;
+    }
+  }
+}
+
+@mixin button-size-normal($extend: $btn-size-normal-extend) {
+  @if $extend {
+    @extend %button-size-normal-extend;
+  }
+  @else {
+    padding: 0.2em 0.5em;
+    font-size: 0.9em;
+    line-height: 1.25;
+  }
+}
+
+@mixin button-size-large($extend: $btn-size-large-extend) {
+  @if $extend {
+    @extend %button-size-large-extend;
+  }
+  @else {
+    padding: 0.5em 0.75em;
+    font-size: 1.1em;
+    line-height: 1.5;
+  }
+}
+
+@mixin button-colors($btn-color: $btn-color-default, $btn-text-color: $btn-text-color-default, $extend: $btn-colors-extend) {
+  @if ($btn-color != $btn-color-default) or ($btn-text-color != $btn-text-color-default) {
+    $extend: false;
+  }
+  @if $extend {
+    @extend %button-colors-extend;
+  }
+  @else {
+    @if $btn-text-color == false {
+      $btn-text-color: contrast-color($btn-color, $btn-text-color-dark-default, $btn-text-color-light-default, 60%)
+    }
+    border: {
+      color: blend-multiply($btn-color, adjust-color($btn-color, $lightness: -10%));
+    }
+    background: {
+      color: $btn-color;
+    }
+    color: $btn-text-color;
+    &:hover {
+      background: {
+        color: blend-screen($btn-color, adjust-color($btn-color, $lightness: 10%));
+      }
+    }
+    &:active {
+      background: {
+        color: blend-screen($btn-color, adjust-color($btn-color, $lightness: 20%));
+      }
+    }
+  }
+}
