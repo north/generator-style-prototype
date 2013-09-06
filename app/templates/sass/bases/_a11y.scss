@@ -2,5 +2,5 @@
 @import "a11y/extends";
 
 .element-invisible {
-  @extend %hidden-accesssible;
+  @extend %a11y-hidden-base-extend;
 }

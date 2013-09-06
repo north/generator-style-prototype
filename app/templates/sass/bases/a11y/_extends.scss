@@ -2,6 +2,10 @@
   display: none;
 }
 
-%hidden-accesssible {
-  @include hidden-accesssible;
+%a11y-hidden-base-extend {
+  @include a11y-hidden($extend: false);
+}
+
+%a11y-hidden-focusable-extend {
+  @include a11y-hidden($a11y-focusable: true, $extend: false);
 }
