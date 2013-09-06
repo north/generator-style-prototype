@@ -4,8 +4,8 @@
 
 //////////////////////////////
 // Pager Component Default Variables
-$pager-container-extend: true;
-$pager-item-extend: true;
+$pager-container-extend: true !default;
+$pager-item-extend: true !default;
 //////////////////////////////
 
 @mixin pager-container($extend: $pager-container-extend) {

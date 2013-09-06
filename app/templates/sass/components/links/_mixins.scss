@@ -4,22 +4,21 @@
 
 //////////////////////////////
 // Links Component Default Variables
-$links-extend: true;
-$link-normal-default: $cs-link-normal;
-$link-hover-default: $cs-link-hover;
-$link-active-default: $cs-link-active;
-$link-visited-default: $cs-link-visited;
-$link-focus-default: $cs-link-focus;
-$set-border-links-default: true;
-$link-border-size-default: 1px;
-$link-border-style-default: solid;
-$link-border-normal-default: $cs-link-border-normal;
-$link-border-hover-default: $cs-link-border-hover;
-$link-border-active-default: $cs-link-border-active;
-$link-border-visited-default: $cs-link-border-visited;
-$link-border-focus-default: $cs-link-border-focus;
-$link-transitions-default: true;
-$unset-border-links-default: true;
+$links-extend: true !default;
+$link-normal-default: $cs-link-normal !default;
+$link-hover-default: $cs-link-hover !default;
+$link-active-default: $cs-link-active !default;
+$link-visited-default: $cs-link-visited !default;
+$link-focus-default: $cs-link-focus !default;
+$set-border-links-default: true !default;
+$link-border-size-default: 1px !default;
+$link-border-style-default: solid !default;
+$link-border-normal-default: $cs-link-border-normal !default;
+$link-border-hover-default: $cs-link-border-hover !default;
+$link-border-active-default: $cs-link-border-active !default;
+$link-border-visited-default: $cs-link-border-visited !default;
+$link-border-focus-default: $cs-link-border-focus !default;
+$unset-border-links-extend: true;
 //////////////////////////////
 
 @mixin set-link-colors($link-normal: $link-normal-default, $link-hover: $link-hover-default, $link-active: $link-active-default, $link-visited: $link-visited-default, $link-focus: $link-focus-default, $extend: $links-extend) {
@@ -55,7 +54,7 @@ $unset-border-links-default: true;
   }
 }
 
-@mixin unset-border-links($extend: $unset-border-links-default) {
+@mixin unset-border-links($extend: $unset-border-links-extend) {
   @if $extend {
     @extend %link-unset-borders-extend;
   }

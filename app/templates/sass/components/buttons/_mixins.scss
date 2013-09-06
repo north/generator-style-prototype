@@ -4,14 +4,14 @@
 
 //////////////////////////////
 // Button Component Default Variables
-$btn-base-extend: true;
-$btn-size-normal-extend: true;
-$btn-size-large-extend: true;
-$btn-colors-extend: true;
-$btn-color-default: $cs-btn-color-default;
-$btn-text-color-dark-default: $cs-btn-text-color-dark-default;
-$btn-text-color-light-default: $cs-btn-text-color-light-default;
-$btn-text-color-default: false;
+$btn-base-extend: true !default;
+$btn-size-normal-extend: true !default;
+$btn-size-large-extend: true !default;
+$btn-colors-extend: true !default;
+$btn-color-default: $cs-btn-color-default !default;
+$btn-text-color-dark-default: $cs-btn-text-color-dark-default !default;
+$btn-text-color-light-default: $cs-btn-text-color-light-default !default;
+$btn-text-color-default: false !default;
 //////////////////////////////
 
 @mixin button-base($extend: $btn-base-extend) {

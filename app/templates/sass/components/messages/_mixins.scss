@@ -4,10 +4,10 @@
 
 //////////////////////////////
 // Messages Component Default Variables
-$msg-base-extend: true;
-$msg-colors-extend: true;
-$msg-text-color-default: $cs-msg-text-color-default;
-$msg-bkg-color-default: $cs-msg-bkg-color-default; // false
+$msg-base-extend: true !default;
+$msg-colors-extend: true !default;
+$msg-text-color-default: $cs-msg-text-color-default !default;
+$msg-bkg-color-default: $cs-msg-bkg-color-default !default; // false
 //////////////////////////////
 
 @mixin msg-base($extend: $msg-base-extend) {

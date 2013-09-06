@@ -4,13 +4,13 @@
 
 //////////////////////////////
 // Forms Component Default Variables
-$form-box-extend: true;
-$form-text-area-extend: true;
-$form-text-area-height-default: $base-line-height * 6.5;
-$form-label-extend: true;
-$form-check-radio-extend: true;
-$form-legend-extend: true;
-$form-fieldset-extend: true;
+$form-box-extend: true !default;
+$form-text-area-extend: true !default;
+$form-text-area-height-default: $base-line-height * 6.5 !default;
+$form-label-extend: true !default;
+$form-check-radio-extend: true !default;
+$form-legend-extend: true !default;
+$form-fieldset-extend: true !default;
 //////////////////////////////
 
 @mixin form-box($extend: $form-box-extend) {
