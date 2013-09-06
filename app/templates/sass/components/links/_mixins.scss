@@ -38,17 +38,17 @@ $unset-border-links-extend: true;
     & {
       text-decoration: none;
       border-bottom: $link-border-size $link-border-style $link-border-normal;
-      &:hover {
-        border-bottom-color: $link-border-hover;
-      }
-      &:active {
-        border-bottom-color: $link-border-active;
-      }
       &:visited {
         border-bottom-color: $link-border-visited;
       }
       &:focus {
         border-bottom-color: $link-border-focus;
+      }
+      &:hover {
+        border-bottom-color: $link-border-hover;
+      }
+      &:active {
+        border-bottom-color: $link-border-active;
       }
     }
   }
