@@ -33,16 +33,16 @@ $quaternary-shades:  shade-stack(cs-quadrary());
 $cs-secondary: cs-secondary();
 
 // link colors
-$cs-link-normal: $cs-primary;
-$cs-link-hover: $cs-secondary;
-$cs-link-active: $cs-secondary;
-$cs-link-visited: $cs-primary;
-$cs-link-focus: $cs-primary;
-$cs-link-border-normal: $cs-primary;
-$cs-link-border-hover: $cs-secondary;
-$cs-link-border-active: $cs-secondary;
-$cs-link-border-visited: $cs-primary;
-$cs-link-border-focus: $cs-primary;
+$cs-link-normal: nth($quaternary-shades, 2);
+$cs-link-hover: nth($quaternary-shades, 3);
+$cs-link-active: nth($quaternary-tints, 2);
+$cs-link-visited: nth($quaternary-shades, 4);
+$cs-link-focus: nth($quaternary-shades, 4);
+$cs-link-border-normal: nth($quaternary-shades, 2);
+$cs-link-border-hover: nth($quaternary-shades, 3);
+$cs-link-border-active: nth($quaternary-tints, 2);
+$cs-link-border-visited: nth($quaternary-shades, 4);
+$cs-link-border-focus: nth($quaternary-shades, 4);
 
 // Color variables expected in base
 // $cs-base: $cs-primary;
