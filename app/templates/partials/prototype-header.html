@@ -1,19 +1,21 @@
 <header>
-  <div id="client-id">
-    {{#if options.grunt.userConfig.prototype.logo}}
-      <div class="client-logo">
-        <img src="{{image-url options.grunt.userConfig.prototype.logo}}" alt="{{options.grunt.userConfig.client.name}} Logo">
-      </div>
-    {{else}}
-      <h1 class="client-name">{{options.grunt.userConfig.client.name}}</h1>
-    {{/if}}
-  </div>
-  <aside id="page-id">
-    <h2 class="section-name">{{page.title}}</h2>
-    <div class="page-info">
-      <p>Version {{options.grunt.userConfig.client.version}}</p>
+  <div class="inner-wrapper">
+    <div id="client-id">
+      {{#if options.grunt.userConfig.prototype.logo}}
+        <div class="client-logo">
+          <img src="{{image-url options.grunt.userConfig.prototype.logo}}" alt="{{options.grunt.userConfig.client.name}} Logo">
+        </div>
+      {{else}}
+        <h1 class="client-name">{{options.grunt.userConfig.client.name}}</h1>
+      {{/if}}
     </div>
-  </aside>
+    <aside id="page-id">
+      <h2 class="section-name">{{page.title}}</h2>
+      <div class="page-info">
+        <p>Version {{options.grunt.userConfig.client.version}}</p>
+      </div>
+    </aside>
+  </div>
   <nav id="prototype-nav" role="navigation">
     <b id="menu-toggle">menu</b>
     <div role="menubar">
@@ -23,6 +25,6 @@
     </div>
   </nav>
   <script type="text/javascript">
-    (function(){var e=document.getElementById("menu-toggle");var t=document.querySelector("#menu-toggle ~ div");e.addEventListener("click",function(){t.classList.toggle("open")})})()
+    (function(){var e=document.getElementById("menu-toggle");e.addEventListener("click",function(){e.classList.toggle("open")})})()
   </script>
 </header>
