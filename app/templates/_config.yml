@@ -117,7 +117,7 @@ compass:
   dependencies:
     sass: ">=3.2.0"
     compass: '>=0.12.1'
-    style-prototypes: "~>1.2.0"
+    style-prototypes: "~>1.2.1"
 
 #########################
 ## Versioning
