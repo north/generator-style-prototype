@@ -18,7 +18,8 @@ $message-bkg-color-default: $cs-message-bkg-color-default !default; // false
     padding: 0.2em 0.5em;
     border: {
       style: solid;
-      width: 1px;
+      width: 2px;
+      radius: .25em;
     }
   }
 }
@@ -32,10 +33,10 @@ $message-bkg-color-default: $cs-message-bkg-color-default !default; // false
   }
   @else {
     @if $message-bkg-color == false {
-      $message-bkg-color: adjust-color(adjust-color($message-text-color, $lightness: 30%), $saturation: -40%);
+      $message-bkg-color: shade($message-text-color, 50%);
     }
     border: {
-      color: blend-multiply($message-bkg-color, adjust-color($message-bkg-color, $lightness: -10%));;
+      color: shade($message-text-color, 75%);
     }
     background: {
       color: $message-bkg-color;
