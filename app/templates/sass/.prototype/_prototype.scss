@@ -3,6 +3,9 @@
 @import "breakpoint";
 @import "color-schemer";
 
+$experimental-support-for-webkit: true;
+$experimental-support-for-moz: true;
+
 main {
   display: block;
 }
