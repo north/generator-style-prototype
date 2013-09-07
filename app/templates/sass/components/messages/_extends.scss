@@ -14,11 +14,11 @@
   @extend %message-colors-extend;
 }
 %status {
-  @include message-colors(nth($tertiary-shades, 3), nth($tertiary-tints, 3));
+  @include message-colors(nth($quaternary-tints, 3), nth($quaternary-shades, 2));
 }
 %warning {
-  @extend %message;
+  @include message-colors(nth($secondary-shades, 3), nth($secondary-tints, 3));
 }
 %error {
-  @include message-colors(nth($quaternary-tints, 1));
+  @include message-colors(nth($tertiary-tints, 3), nth($tertiary-shades, 2));
 }
