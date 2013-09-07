@@ -1,7 +1,7 @@
 // Style Prototypes rely upon Toolkit and Breakpoint compass extensions, to be sure to keep them available in your Gemfile.
 @import "toolkit-no-css";
 @import "breakpoint";
-@import "color-schemer"
+@import "color-schemer";
 
 main {
   display: block;
@@ -53,7 +53,6 @@ $prototype-header-text-color: #161616;
   h1, h2, h3, h4, h5, h6, .page-info {
     margin: 0;
     padding: 0;
-    color: black;
     background: none;
     border: none;
     vertical-align: baseline;
