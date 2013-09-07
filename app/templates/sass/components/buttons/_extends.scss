@@ -30,5 +30,5 @@
 %button-cta {
   @extend %button-base-extend;
   @extend %button-size-normal-extend;
-  @include button-colors($btn-color: nth($tertiary-tints, 2), $btn-text-color: nth($secondary-tints, 1));
+  @include button-colors($button-color: nth($tertiary-tints, 2), $button-text-color: nth($secondary-tints, 1));
 }

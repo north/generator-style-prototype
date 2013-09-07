@@ -10,8 +10,8 @@
 @import 'messages/mixins';
 @import 'messages/extends';
 
-.messages {
-  @extend %messages;
+.message {
+  @extend %message;
   &.status {
     @extend %status;
   }

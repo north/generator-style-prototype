@@ -4,13 +4,13 @@
 
 //////////////////////////////
 // Messages Component Default Variables
-$msg-base-extend: true !default;
-$msg-colors-extend: true !default;
-$msg-text-color-default: $cs-msg-text-color-default !default;
-$msg-bkg-color-default: $cs-msg-bkg-color-default !default; // false
+$message-base-extend: true !default;
+$message-colors-extend: true !default;
+$message-text-color-default: $cs-message-text-color-default !default;
+$message-bkg-color-default: $cs-message-bkg-color-default !default; // false
 //////////////////////////////
 
-@mixin msg-base($extend: $msg-base-extend) {
+@mixin message-base($extend: $message-base-extend) {
   @if $extend {
     @extend %message-base-extend;
   }
@@ -23,23 +23,23 @@ $msg-bkg-color-default: $cs-msg-bkg-color-default !default; // false
   }
 }
 
-@mixin msg-colors($msg-text-color: $msg-text-color-default, $msg-bkg-color: $msg-bkg-color-default, $extend: $msg-colors-extend) {
-  @if ($msg-text-color != $msg-text-color-default) or ($msg-bkg-color != $msg-bkg-color-default) {
+@mixin message-colors($message-text-color: $message-text-color-default, $message-bkg-color: $message-bkg-color-default, $extend: $message-colors-extend) {
+  @if ($message-text-color != $message-text-color-default) or ($message-bkg-color != $message-bkg-color-default) {
     $extend: false;
   }
   @if $extend {
     @extend %message-colors-extend;
   }
   @else {
-    @if $msg-bkg-color == false {
-      $msg-bkg-color: adjust-color(adjust-color($msg-text-color, $lightness: 30%), $saturation: -40%);
+    @if $message-bkg-color == false {
+      $message-bkg-color: adjust-color(adjust-color($message-text-color, $lightness: 30%), $saturation: -40%);
     }
     border: {
-      color: blend-multiply($msg-bkg-color, adjust-color($msg-bkg-color, $lightness: -10%));;
+      color: blend-multiply($message-bkg-color, adjust-color($message-bkg-color, $lightness: -10%));;
     }
     background: {
-      color: $msg-bkg-color;
+      color: $message-bkg-color;
     }
-    color: $msg-text-color;
+    color: $message-text-color;
   }
 }

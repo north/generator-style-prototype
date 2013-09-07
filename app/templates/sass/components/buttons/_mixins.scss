@@ -4,17 +4,17 @@
 
 //////////////////////////////
 // Button Component Default Variables
-$btn-base-extend: true !default;
-$btn-size-normal-extend: true !default;
-$btn-size-large-extend: true !default;
-$btn-colors-extend: true !default;
-$btn-color-default: $cs-btn-color-default !default;
-$btn-text-color-dark-default: $cs-btn-text-color-dark-default !default;
-$btn-text-color-light-default: $cs-btn-text-color-light-default !default;
-$btn-text-color-default: false !default;
+$button-base-extend: true !default;
+$button-size-normal-extend: true !default;
+$button-size-large-extend: true !default;
+$button-colors-extend: true !default;
+$button-color-default: $cs-button-color-default !default;
+$button-text-color-dark-default: $cs-button-text-color-dark-default !default;
+$button-text-color-light-default: $cs-button-text-color-light-default !default;
+$button-text-color-default: false !default;
 //////////////////////////////
 
-@mixin button-base($extend: $btn-base-extend) {
+@mixin button-base($extend: $button-base-extend) {
   @if $extend {
     @extend %button-base-extend;
   }
@@ -35,7 +35,7 @@ $btn-text-color-default: false !default;
   }
 }
 
-@mixin button-size-normal($extend: $btn-size-normal-extend) {
+@mixin button-size-normal($extend: $button-size-normal-extend) {
   @if $extend {
     @extend %button-size-normal-extend;
   }
@@ -46,7 +46,7 @@ $btn-text-color-default: false !default;
   }
 }
 
-@mixin button-size-large($extend: $btn-size-large-extend) {
+@mixin button-size-large($extend: $button-size-large-extend) {
   @if $extend {
     @extend %button-size-large-extend;
   }
@@ -57,32 +57,32 @@ $btn-text-color-default: false !default;
   }
 }
 
-@mixin button-colors($btn-color: $btn-color-default, $btn-text-color: $btn-text-color-default, $extend: $btn-colors-extend) {
-  @if ($btn-color != $btn-color-default) or ($btn-text-color != $btn-text-color-default) {
+@mixin button-colors($button-color: $button-color-default, $button-text-color: $button-text-color-default, $extend: $button-colors-extend) {
+  @if ($button-color != $button-color-default) or ($button-text-color != $button-text-color-default) {
     $extend: false;
   }
   @if $extend {
     @extend %button-colors-extend;
   }
   @else {
-    @if $btn-text-color == false {
-      $btn-text-color: contrast-color($btn-color, $btn-text-color-dark-default, $btn-text-color-light-default, 60%)
+    @if $button-text-color == false {
+      $button-text-color: contrast-color($button-color, $button-text-color-dark-default, $button-text-color-light-default, 60%)
     }
     border: {
-      color: blend-multiply($btn-color, adjust-color($btn-color, $lightness: -10%));
+      color: blend-multiply($button-color, adjust-color($button-color, $lightness: -10%));
     }
     background: {
-      color: $btn-color;
+      color: $button-color;
     }
-    color: $btn-text-color;
+    color: $button-text-color;
     &:hover {
       background: {
-        color: blend-screen($btn-color, adjust-color($btn-color, $lightness: 10%));
+        color: blend-screen($button-color, adjust-color($button-color, $lightness: 10%));
       }
     }
     &:active {
       background: {
-        color: blend-screen($btn-color, adjust-color($btn-color, $lightness: 20%));
+        color: blend-screen($button-color, adjust-color($button-color, $lightness: 20%));
       }
     }
   }

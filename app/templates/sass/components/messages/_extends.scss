@@ -3,22 +3,22 @@
 //////////////////////////////
 
 %message-base-extend {
-  @include msg-base(false);
+  @include message-base(false);
 }
 %message-colors-extend {
-  @include msg-colors($extend: false);
+  @include message-colors($extend: false);
 }
 
-%messages {
+%message {
   @extend %message-base-extend;
   @extend %message-colors-extend;
 }
 %status {
-  @include msg-colors(nth($tertiary-shades, 3), nth($tertiary-tints, 3));
+  @include message-colors(nth($tertiary-shades, 3), nth($tertiary-tints, 3));
 }
 %warning {
-  @extend %messages;
+  @extend %message;
 }
 %error {
-  @include msg-colors(nth($quaternary-tints, 1));
+  @include message-colors(nth($quaternary-tints, 1));
 }
