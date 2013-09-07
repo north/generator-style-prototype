@@ -1,6 +1,7 @@
 // Style Prototypes rely upon Toolkit and Breakpoint compass extensions, to be sure to keep them available in your Gemfile.
 @import "toolkit-no-css";
 @import "breakpoint";
+@import "color-schemer"
 
 main {
   display: block;
@@ -25,10 +26,29 @@ body {
   padding: .5em .75em;
 }
 
+$prototype-header-text-color: #161616;
+@if (cs-is-dark($sp-header-color)) {
+  $prototype-header-text-color: #e9e9e9;
+};
+
 #prototype-header {
   @include clearfix(true);
 
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+
+  color: $prototype-header-text-color;
+  font-weight: 100;
+
   background: $sp-header-color;
+
+ .inner-wrapper {
+    background: $sp-header-color;
+    position: relative;
+    z-index: 2;
+    margin-top: -.75em;
+    padding-top: .75em;
+  }
 
   h1, h2, h3, h4, h5, h6, .page-info {
     margin: 0;
@@ -43,27 +63,28 @@ body {
 
   h1 {
     font-size: 2em;
-    font-weight: bold;
+    font-weight: 300;
   }
 
   h2 {
     font-size: 1.5em;
-    font-weight: bold;
+    font-weight: 300;
   }
 
   h4 {
     font-size: 1em;
-    font-weight: bold;
+    font-weight: 300;
   }
 
   .section-name {
     margin-top: .1em;
+    text-transform: lowercase;
   }
 
   .page-info {
     font-size: 1em;
-    font-weight: normal;
     margin-top: .4em;
+    text-transform: lowercase;
   }
 
   p {
@@ -90,12 +111,100 @@ body {
   }
 }
 
+#menu-toggle {
+  float: right;
+  width: 100%;
+  height: 1em;
+  line-height: 1em;
+  text-align: right;
+  font-weight: 300;
+  position: relative;
+  margin-top: -1.25em;
+  z-index: 3;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:after {
+    content: '×';
+    height: 1em;
+    width: 1em;
+    font-size: 1em;
+    line-height: 1em;
+    display: inline-block;
+
+    color: shade($prototype-header-text-color, 25%);
+
+    @include create-transform($rotate-z: 45deg, $trans-y: -.25em);
+
+    @include single-transition(transform .5s);
+  }
+  &.open:after {
+    @include rotate(0);
+  }
+
+  @include breakpoint($sp-single-to-multi-column) {
+    display: none;
+  }
+}
+
+#prototype-nav {
+  @include breakpoint($sp-single-to-multi-column) {
+    @include golden('left');
+    margin-top: .5em;
+  }
+
+  a {
+    display: block;
+
+    @include breakpoint($sp-single-to-multi-column) {
+      display: inline;
+      padding: 0 .25em;
+    }
+
+    width: 100%;
+    text-decoration: none;
+    text-transform: lowercase;
+    border: none;
+
+    color: shade($prototype-header-text-color, 25%);
+
+    &:hover {
+      text-decoration: underline
+    }
+  }
+
+  @include breakpoint('max-width' $sp-single-to-multi-column) {
+
+    div[role="menubar"] {
+      position: relative;
+      z-index: 1;
+      float: left;
+      margin-top: -100%;
+
+      @include single-transition(margin-top 1s ease-in-out);
+    }
+
+    .open ~ div[role="menubar"] {
+      margin-top: 0;
+    }
+  }
+}
+
 [component-list] {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: .25em .5em;
   details {
     margin: 0.5em 0 1em;
+  }
+
+  .style-tile & {
+    li {
+      display: inline-block;
+      margin: 1em;
+    }
   }
 }
 
