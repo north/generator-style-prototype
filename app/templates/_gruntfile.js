@@ -658,6 +658,20 @@ module.exports = function (grunt) {
       var tmpl = e;
       // Load the template from the templates directory
       var template = grunt.file.read('templates/components/' + tmpl + '.html');
+      // Create Holder Partial
+      var partial = '<div class="prototype-group--' + _s.slugify(tmpl) + '">' +
+'\n  <ul component-list>' +
+'\n    {{#each options.grunt.userConfig.components.' + tmpl + '}}' +
+'\n      <li>' +
+'\n        {{{component "' + tmpl + '" this}}}' +
+'\n\n        {{#if ../page.examples}}' +
+'\n          {{{create-example-html "' + tmpl + '" ../this}}}' +
+'\n        {{/if}}' +
+'\n      </li>' +
+'\n    {{/each}}' +
+'\n  </ul>' +
+'\n</div>';
+      grunt.file.write('partials/components/prototype-group--' + tmpl + '.html', partial);
       // Loop over each version of the component
       _.forEach(v, function(value, name) {
         var singleton = true;
@@ -676,8 +690,8 @@ module.exports = function (grunt) {
         component = component.replace(new RegExp('{{name.slug}}', 'g'), _s.slugify(name));
 
         // Replace {{type}} with the type of component
-        component = component.replace(new RegExp('{{type}}', 'g'), e);
-        component = component.replace(new RegExp('{{type.slug}}', 'g'), _s.slugify(e));
+        component = component.replace(new RegExp('{{type}}', 'g'), tmpl);
+        component = component.replace(new RegExp('{{type.slug}}', 'g'), _s.slugify(tmpl));
 
         if (!singleton) {
           // Loop over each property of the component
