@@ -72,7 +72,7 @@ components:
     - Warning Button:
         classes:
           - big-button
-          - red
+          - warning
 
 #########################
 ## Color Guide
