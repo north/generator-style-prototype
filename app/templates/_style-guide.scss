@@ -37,6 +37,7 @@ $experimental-support-for-microsoft    : false !default;
 //////////////////////////////
 // GLOBALS
 @import "global/variables/all";
+@import "global/mixins/all";
 @import "global/extends/all";
 //////////////////////////////
 
