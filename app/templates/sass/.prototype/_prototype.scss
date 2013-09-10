@@ -202,6 +202,12 @@ $prototype-header-text-color: #161616;
   details {
     margin: 0.5em 0 1em;
   }
+  li {
+    margin: {
+      top: 1em;
+      bottom: 1em;
+    }
+  }
 }
 
 .text-preroll {
