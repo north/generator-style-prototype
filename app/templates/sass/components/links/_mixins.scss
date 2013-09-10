@@ -26,7 +26,9 @@ $unset-border-links-extend: true;
     @extend %link-colors-extend;
   }
   @else {
-    @include link-colors($link-normal, $link-hover, $link-active, $link-visited, $link-focus);
+    &:not(.button) {
+      @include link-colors($link-normal, $link-hover, $link-active, $link-visited, $link-focus);
+    }
   }
 }
 
@@ -35,21 +37,19 @@ $unset-border-links-extend: true;
     @extend %link-borders-extend;
   }
   @else {
-    & {
-      text-decoration: none;
-      border-bottom: $link-border-size $link-border-style $link-border-normal;
-      &:visited {
-        border-bottom-color: $link-border-visited;
-      }
-      &:focus {
-        border-bottom-color: $link-border-focus;
-      }
-      &:hover {
-        border-bottom-color: $link-border-hover;
-      }
-      &:active {
-        border-bottom-color: $link-border-active;
-      }
+    text-decoration: none;
+    border-bottom: $link-border-size $link-border-style $link-border-normal;
+    &:visited {
+      border-bottom-color: $link-border-visited;
+    }
+    &:focus {
+      border-bottom-color: $link-border-focus;
+    }
+    &:hover {
+      border-bottom-color: $link-border-hover;
+    }
+    &:active {
+      border-bottom-color: $link-border-active;
     }
   }
 }
@@ -59,21 +59,19 @@ $unset-border-links-extend: true;
     @extend %link-unset-borders-extend;
   }
   @else {
-    & {
-      text-decoration: none;
+    text-decoration: none;
+    border-bottom: none;
+    &:visited {
       border-bottom: none;
-      &:visited {
-        border-bottom: none;
-      }
-      &:focus {
-        border-bottom: none;
-      }
-      &:hover {
-        border-bottom: none;
-      }
-      &:active {
-        border-bottom: none;
-      }
+    }
+    &:focus {
+      border-bottom: none;
+    }
+    &:hover {
+      border-bottom: none;
+    }
+    &:active {
+      border-bottom: none;
     }
   }
 }
