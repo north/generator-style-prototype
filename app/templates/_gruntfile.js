@@ -673,6 +673,11 @@ module.exports = function (grunt) {
         }
         // Replace {{name}} with the name of the component
         var component = template.replace(new RegExp('{{name}}', 'g'), name);
+        component = component.replace(new RegExp('{{name.slug}}', 'g'), _s.slugify(name));
+
+        // Replace {{type}} with the type of component
+        component = component.replace(new RegExp('{{type}}', 'g'), e);
+        component = component.replace(new RegExp('{{type.slug}}', 'g'), _s.slugify(e));
 
         if (!singleton) {
           // Loop over each property of the component
@@ -691,6 +696,7 @@ module.exports = function (grunt) {
             }
             // Replace each instance of the key in the template with the property
             component = component.replace('{{' + k + '}}', p);
+            component = component.replace('{{' + k + '.slug}}', _s.slugify(p));
           });
         }
         // Write component to disk
