@@ -1,0 +1,8 @@
+@mixin readable-text($color) {
+  @if cs-is-dark($color) {
+    color: $cs-text-light;
+  }
+  @else {
+    color: $cs-text-dark;
+  }
+}
