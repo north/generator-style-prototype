@@ -16,7 +16,7 @@
 
 .big-button {
   @extend %button-big;
-  &.red {
-    @extend %button-red;
+  &.warning {
+    @extend %button-warning;
   }
 }

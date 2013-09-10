@@ -9,23 +9,21 @@ $button-size-normal-extend: true !default;
 $button-size-large-extend: true !default;
 $button-colors-extend: true !default;
 $button-color-default: $cs-button-color-default !default;
-$button-text-color-dark-default: $cs-button-text-color-dark-default !default;
-$button-text-color-light-default: $cs-button-text-color-light-default !default;
+$button-color-adjust: 20% !default;
 $button-text-color-default: false !default;
 //////////////////////////////
+
 
 @mixin button-base($extend: $button-base-extend) {
   @if $extend {
     @extend %button-base-extend;
   }
   @else {
-    border-radius: 0.2em;
-    border: {
-      width: 1px;
-      style: solid;
-    }
-    font:comb {
-      family: sans-serif;
+    display: inline-block;
+    border-radius: 0.25em;
+    border: none;
+    font: {
+      family: $font-sans;
       weight: normal;
     }
     text: {
@@ -57,7 +55,48 @@ $button-text-color-default: false !default;
   }
 }
 
-@mixin button-colors($button-color: $button-color-default, $button-text-color: $button-text-color-default, $extend: $button-colors-extend) {
+@mixin button-background($button-color: $button-color-default, $button-text-color: $button-text-color-default, $button-adjust: $button-color-adjust) {
+
+  @if $button-text-color == false {
+    @include readable-text($button-color);
+  }
+
+  @if cs-is-dark($button-color) {
+    background-color: blend-screen($button-color, adjust-color($button-color, $lightness: $button-adjust * -1));
+  }
+  @else {
+    background-color: blend-multiply($button-color, adjust-color($button-color, $lightness: $button-adjust * -1));
+  }
+}
+
+@mixin button-hover($button-color: $button-color-default, $button-text-color: $button-text-color-default, $button-adjust: $button-color-adjust) {
+  @if cs-is-dark($button-color) {
+    &:hover {
+      background-color: blend-screen($button-color, adjust-color($button-color, $lightness: $button-adjust * -.25));
+    }
+  }
+  @else {
+    &:hover {
+      background-color: blend-multiply($button-color, adjust-color($button-color, $lightness: $button-adjust * -.25));
+    }
+  }
+}
+
+@mixin button-active($button-color: $button-color-default, $button-text-color: $button-text-color-default, $button-adjust: $button-color-adjust) {
+  @if cs-is-dark($button-color) {
+    &:active {
+        background-color: blend-screen($button-color, adjust-color($button-color, $lightness: $button-adjust * 1));
+      }
+  }
+  @else {
+    &:active {
+        background-color: blend-multiply($button-color, adjust-color($button-color, $lightness: $button-adjust * 1));
+      }
+  }
+}
+
+
+@mixin button-colors($button-color: $button-color-default, $button-text-color: $button-text-color-default, $button-adjust: $button-color-adjust,  $extend: $button-colors-extend) {
   @if ($button-color != $button-color-default) or ($button-text-color != $button-text-color-default) {
     $extend: false;
   }
@@ -65,25 +104,8 @@ $button-text-color-default: false !default;
     @extend %button-colors-extend;
   }
   @else {
-    @if $button-text-color == false {
-      $button-text-color: contrast-color($button-color, $button-text-color-dark-default, $button-text-color-light-default, 60%)
-    }
-    border: {
-      color: blend-multiply($button-color, adjust-color($button-color, $lightness: -10%));
-    }
-    background: {
-      color: $button-color;
-    }
-    color: $button-text-color;
-    &:hover {
-      background: {
-        color: blend-screen($button-color, adjust-color($button-color, $lightness: 10%));
-      }
-    }
-    &:active {
-      background: {
-        color: blend-screen($button-color, adjust-color($button-color, $lightness: 20%));
-      }
-    }
+    @include button-background($button-color, $button-text-color, $button-adjust);
+    @include button-hover($button-color, $button-text-color, $button-adjust);
+    @include button-active($button-color, $button-text-color, $button-adjust);
   }
 }
