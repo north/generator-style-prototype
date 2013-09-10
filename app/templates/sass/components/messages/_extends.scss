@@ -6,7 +6,7 @@
   @include message-base(false);
 }
 %message-colors-extend {
-  @include message-colors($extend: false);
+  @include message-colors($cs-status-status, $extend: false);
 }
 
 %message {
@@ -14,11 +14,11 @@
   @extend %message-colors-extend;
 }
 %status {
-  @include message-colors(nth($quaternary-tints, 3), nth($quaternary-shades, 2));
+  @include message-colors($cs-status-status);
 }
 %warning {
-  @include message-colors(nth($secondary-shades, 3), nth($secondary-tints, 3));
+  @include message-colors($cs-status-warning);
 }
 %error {
-  @include message-colors(nth($tertiary-tints, 3), nth($tertiary-shades, 2));
+  @include message-colors($cs-status-error);
 }

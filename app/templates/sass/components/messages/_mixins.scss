@@ -6,6 +6,7 @@
 // Messages Component Default Variables
 $message-base-extend: true !default;
 $message-colors-extend: true !default;
+$message-color-adjust: 10% !default;
 $message-text-color-default: $cs-message-text-color-default !default;
 $message-bkg-color-default: $cs-message-bkg-color-default !default; // false
 //////////////////////////////
@@ -18,29 +19,31 @@ $message-bkg-color-default: $cs-message-bkg-color-default !default; // false
     padding: 0.2em 0.5em;
     border: {
       style: solid;
-      width: 2px;
+      width: .15em;
       radius: .25em;
     }
   }
 }
 
-@mixin message-colors($message-text-color: $message-text-color-default, $message-bkg-color: $message-bkg-color-default, $extend: $message-colors-extend) {
-  @if ($message-text-color != $message-text-color-default) or ($message-bkg-color != $message-bkg-color-default) {
+@mixin message-colors($message-color: $message-bkg-color-default, $message-adjust: $message-color-adjust,  $extend: $message-colors-extend) {
+  @if ($message-color != $message-bkg-color-default) {
     $extend: false;
   }
   @if $extend {
     @extend %message-colors-extend;
   }
   @else {
-    @if $message-bkg-color == false {
-      $message-bkg-color: shade($message-text-color, 50%);
+    @include readable-text($message-color);
+
+    @if cs-is-dark($message-color) {
+      background-color: blend-screen($message-color, adjust-color($message-color, $lightness: $message-adjust * -1));
+
+      border-color: blend-screen($message-color, adjust-color($message-color, $lightness: $message-adjust * -2.5));
     }
-    border: {
-      color: shade($message-text-color, 75%);
+    @else {
+      background-color: blend-multiply($message-color, adjust-color($message-color, $lightness: $message-adjust * -1));
+
+      border-color: blend-multiply($message-color, adjust-color($message-color, $lightness: $message-adjust * -2.5));
     }
-    background: {
-      color: $message-bkg-color;
-    }
-    color: $message-text-color;
   }
 }
