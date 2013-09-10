@@ -2,7 +2,7 @@
 $black: #161616;
 $white: #fefefe;
 $gray: mix($black, $white);
-$cs-primary: #FFEBCD;
+$cs-primary: #fdb252;
 
 //////////////////////////////
 // Color Stacks
@@ -44,23 +44,40 @@ $cs-link-border-active: nth($quaternary-tints, 2);
 $cs-link-border-visited: nth($quaternary-shades, 4);
 $cs-link-border-focus: nth($quaternary-shades, 4);
 
-// Color variables expected in base
-// $cs-base: $cs-primary;
-$cs-text: $black;
+//////////////////////////////
+// Background Colors
+//////////////////////////////
 $cs-background: $white;
-$cs-border: $gray;
-$cs-selection: $white;
 $cs-selection-bkg: $black;
+
+//////////////////////////////
+// Text Colors
+//////////////////////////////
+$cs-text-dark: $black;
+$cs-text-light: $white;
+$cs-text: $cs-text-dark;
+
+$cs-selection: $cs-text-light;
+
+//////////////////////////////
+// Border Colors
+//////////////////////////////
+$cs-border: $gray;
+
+//////////////////////////////
+// Status Colors
+//////////////////////////////
+$cs-status-status: nth($quaternary-tints, 6);
+$cs-status-warning: nth($secondary-tints, 2);
+$cs-status-error: nth($tertiary-shades, 2);
 
 //////////////////////////////
 // Component defaults
 //////////////////////////////
 // Buttons
-$cs-button-color-default: nth($secondary-tints, 5);
-$cs-button-text-color-dark-default: $black;
-$cs-button-text-color-light-default: $white;
+$cs-button-color-default: $gray;
 //////////////////////////////
 // Messages
 $cs-message-text-color-default: nth($secondary-tints, 1);
-$cs-message-bkg-color-default: false;
+$cs-message-bkg-color-default: $cs-status-status;
 //////////////////////////////
