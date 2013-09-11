@@ -19,10 +19,10 @@
 @import 'link/extends';
 
 //////////////////////////////
-// @{link--all}
-//
+// @{link}
+// Styling for Link Component
 a {
   @extend %links-extend;
 }
-// {link--all}@
+// {link}@
 //////////////////////////////
