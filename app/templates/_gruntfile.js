@@ -660,7 +660,7 @@ module.exports = function (grunt) {
       // Check to see if the template exists, and if not, create it
       var tmplPath = 'templates/components/' + tmpl + '.html';
       if (!grunt.file.exists(tmplPath)) {
-        var tmplContent = '<!-- Component: {{type.cap}},  Type: {{name.cap}} -->';
+        var tmplContent = '<!-- Component: {{component.cap}},  Type: {{type.cap}} -->';
         grunt.file.write(tmplPath, tmplContent);
       }
       // Load the template from the templates directory
@@ -735,15 +735,15 @@ module.exports = function (grunt) {
           name = Object.keys(name)[0];
           value = value[name];
         }
-        // Replace {{name}} with the name of the component
-        var component = template.replace(new RegExp('{{name}}', 'g'), name);
-        component = component.replace(new RegExp('{{name.slug}}', 'g'), _s.slugify(name));
-        component = component.replace(new RegExp('{{name.cap}}', 'g'), _s.capitalize(name));
+        // Replace {{type}} with the name of the specific component
+        var component = template.replace(new RegExp('{{type}}', 'g'), name);
+        component = component.replace(new RegExp('{{type.slug}}', 'g'), _s.slugify(name));
+        component = component.replace(new RegExp('{{type.cap}}', 'g'), _s.capitalize(name));
 
-        // Replace {{type}} with the type of component
-        component = component.replace(new RegExp('{{type}}', 'g'), e);
-        component = component.replace(new RegExp('{{type.slug}}', 'g'), _s.slugify(tmpl));
-        component = component.replace(new RegExp('{{type.cap}}', 'g'), _s.capitalize(tmpl));
+        // Replace {{component}} with the name of the general component
+        component = component.replace(new RegExp('{{component}}', 'g'), e);
+        component = component.replace(new RegExp('{{component.slug}}', 'g'), _s.slugify(tmpl));
+        component = component.replace(new RegExp('{{component.cap}}', 'g'), _s.capitalize(tmpl));
 
         // Create comment for base partial if it the partial doesn't exist
         basePartial += '\n//////////////////////////////' +
