@@ -660,7 +660,7 @@ module.exports = function (grunt) {
       // Check to see if the template exists, and if not, create it
       var tmplPath = 'templates/components/' + tmpl + '.html';
       if (!grunt.file.exists(tmplPath)) {
-        var tmplContent = '<!-- ' + _s.capitalize(e) + ' Component -->';
+        var tmplContent = '<!-- Component: {{type.cap}},  Type: {{name.cap}} -->';
         grunt.file.write(tmplPath, tmplContent);
       }
       // Load the template from the templates directory
