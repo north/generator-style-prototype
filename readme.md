@@ -43,9 +43,10 @@ Come with me on this journey.
 5. [Working with Style Prototypes](#working-with-style-prototypes)
 	* [Handlebars](#handlebars)
 	* [Sass+Compass](#sasscompass)
-6. [Your Style Guide](#your-style-guide)
-7. [Your Compass Extension](#your-compass-extension)
-8. [License](#license)
+6. [Components](#components)
+7. [Your Style Guide](#your-style-guide)
+8. [Your Compass Extension](#your-compass-extension)
+9. [License](#license)
 
 ## Requirements
 
@@ -59,7 +60,7 @@ Style Prototypes are available as a [Yeoman](http://yeoman.io/) Generator that u
 After you have installed the underlying dependencies, you need to install the generator dependencies. From your Command Line, type in the following:
 
 ```bash
-gem install bundler && npm install -g yo grunt-cli bower generator-style-prototype weinre
+npm install -g yo grunt-cli bower generator-style-prototype weinre
 ```
 
 You may need to run these as an administrator. To do so, type `sudo` in front of both `gem` and `npm`. This command will install the Ruby gem [Bundler](http://gembundler.com/) for handling gem dependencies, Yeoman, [Grunt](http://gruntjs.com/), [Bower](http://bower.io/), and the Style Prototype generator.
@@ -236,11 +237,13 @@ The bread and butter of your Style Prototype is your Style Guide. There are goin
 
 * `prototype.scss`: The file that will actually get added to the browser. Only Sass related directly to the styling of the Style Prototype should go in here. Any styling you want as part of your final Style Guide should not go in here.
 * `client-name-style-guide.scss`: The partial for your client's style guide.
-* `global/_base.scss`: Your base partial. Used for importing relevant Compass extensions as well as other partials inside the Global folder
-* `global/_colors.scss`: A partial to hold your colors
-* `global/_variables.scss`: A partial to hold your variables
-* `global/_functions.scss`: A partial for holding custom functions
-* `global/partials/`: A folder for holding partials 
+* `global/variables`: A folder containing partials dedicated to variables
+* `global/functions`: A folder containing partials dedicated to globally useful functions
+* `global/mixins`: A folder containing partials dedicated to globally useful mixins
+* `global/extends`: A folder containing partials dedicated to globally useful extendables
+* `bases/`: A folder containing partials for base level styling that applies across components, such as baseline typography or accessibility styling
+* `components/`: A folder containing partials for component level styling. Components are individual, reusable pieces. Examples include links, headers, messages, and buttons
+* `layouts/`: A folder containing partials for defining specific layouts.
 
 The following Compass extensions are available to you out-of-the-box:
 
@@ -249,43 +252,62 @@ The following Compass extensions are available to you out-of-the-box:
 * [Color Schemer](https://github.com/Team-Sass/color-schemer) - Robust color toolset
 * [Sassy Strings](https://github.com/Snugug/Sassy-Strings) - Advanced string functions
 * [Toolkit](https://github.com/Team-Sass/toolkit) - Modern Web Development tools
-* [Sassy Buttons](http://jaredhardy.com/sassy-buttons/) - Fancy CSS3 Buttons
 * [Modular Scale](https://github.com/Team-Sass/modular-scale) - Ratio based calculations
 * [Compass Normalize](https://github.com/ksmandersen/compass-normalize) - CSS Normalize
 
-When creating Style Guide, it is a best practice to create partials in the partial folder for discrete functionality, built as both a [mixin](https://github.com/Snugug/training-glossary/wiki/Sass#mixins) and as an [extendable selector](https://github.com/Snugug/training-glossary/wiki/Sass#selector-inheritance), and a selector extending said extendable selector. This way, when going to use the Style Guide, you have both the mixin and the selector to choose from. Take, for example, the following:
+When creating Style Guide, it is a best practice to create partials in the `components` folder for discrete functionality, built as both a [mixin](https://github.com/Snugug/training-glossary/wiki/Sass#mixins) and as an [extendable selector](https://github.com/Snugug/training-glossary/wiki/Sass#selector-inheritance), with a selector extending said extendable selector. This way, when going to use the Style Guide, you have both the mixin and the selector to choose from. When creating a new Style Prototype, you will be presented with some common components with example styling to guide you through the process.
 
-```scss
-// _fluid_media.scss
+## Components
 
-// Mixin to write properties to scale native media in proportion
-@mixin fluid-native-media {
-  max-width: 100%;
-  height: auto;
-}
+Components are the bread and butter of your style guide. They are reusable patterns comprised of HTML and CSS that can be used in multiple places throughout your site. Style Prototypes provides an easy interface for creating new components. In your `config.yml` file, under `components`, you can define a component (they must be in slug form, no capitals, no spaces). Each component will correspond to a component template inside of `templates/components`, so a `button` component will have a `templates/components/button.html` file. When adding a new component, this file, as well as the corresponding Sass files and a group partial, will be automatically generated for you. The templates for components do not have access to handlebars, but they do have access to variable replacements. The following replacements are available:
 
-// Extendable selector to use mixin
-%fluid-media-native {
-  @include fluid-native-media;
-}
-
-// Actual selectors to extend the extendable selector
-img {
-  @extend %fluid-media-native;
-}
-
-video {
-  @extend %fluid-media-native;
-}
+```
+{{component}}: The name of the component (*i.e.* message)
+{{type}}: The type of component (*i.e.* error)
+{{property}}: Any custom property defined on the component
 ```
 
-This partial would then be imported into `_client-name-style-guide.scss`. We do it this way because, when we go to use this in our final project, we can choose whether to use the extendable class or the mixin, depending on needs.
+Each variable also has access to `.slug` for a slugified version of the name, and `.cap` for a capitalized version of the name.
+
+Each component should have a corresponding group partial under `partials/components` with a folder for containing individual component instance's HTML under `partials/components/{{component.slug}}`. Each individual component instance's HTML should be named `{{component}}--{{type}}.html`.
+
+This will allow the `component` and `create-example-html` helper function to bring in the correct HTML. In addition, each component should have a Sass file at `sass/components/_{{component.slug}}.scss` that contains it's theming, as well as a `_mixins.scss` and a `_extends.scss` file under `sass/components/{{component.slug}}`.
+
+Styling for the general component inside of the main component Sass file should be wrapped in the following comments:
+
+```scss
+//////////////////////////////
+// @{component.slug}
+// Styling for component.cap Component
+
+// {component.slug}@
+//////////////////////////////
+```
+
+Styling for an individual component instance inside of the main component Sass file should be wrapped in the following comments:
+
+```scss
+//////////////////////////////
+// @{component.slug--type.slug}
+// type.cap styling for component.cap Component
+
+// {component.slug--type.slug}@
+//////////////////////////////
+```
+
+By wrapping your code in these special blocks, the `create-example-sass` helper function will be able to bring in the correct Sass that corresponds to the component.
+
+* `{{{component "component" "type"}}}`: Pulls in the HTML of a component of instance type from `partials/components/{{component.slug}}`
+* `{{{create-example-html "component" "type"}}}`: Pulls in the HTML of a component of instance type from `partials/components/{{component.slug}}` and writes it out as a `<details>` element with code example.
+* `{{{create-example-sass "component" "type" "support"}}}`: Pulls in the Sass of a component of instance type from `sass/components/_{{component.slug}}.scss` if the Sass is correctly wrapped. This will pull in both the base component styling and the individual instance styling. The `support` argument is optional, but if set to `true` will pull in the Sass from `sass/components/{{component.slug}}/_mixins.scss` and `sass/components/{{component.slug}}/_extends.scss` instead.
+
+For an in-depth look at dynamic components, take a look at the `message` and `button` components supplied. For an in-depth look at custom components, take a look at the supplied pager `component`.
 
 ## Your Style Guide
 
 Your Style Guide is the driving force behind your Style Prototype! Use the Elements, Typography, and Components pages to help you build out your Style Guide, using as least specific selectors as possible. Included is a `global` folder containing the basic base items for sharing across the Color Guide and Style Tile, as well as other files you'd use your Style Guide with.
 
-Inside your `global/_colors.scss` file are a handful of sample colors being generated by [Color Schemer](https://github.com/Team-Sass/color-schemer) and utilizing [Toolkit's Colour Stack](https://github.com/Team-Sass/toolkit#colour-stacks) functions to show how powerful those two tools are when used together to create color for your site. Inside of `global/_base.scss` you'll see active imports for Toolkit, Sassy Buttons, and Color Schemer, with commented out imports for Breakpoint, Singularity, and Modular Scale. There are also two CSS Resets, the hard [Eric Meyer style reset](http://meyerweb.com/eric/tools/css/reset/) (commented out, `compass/reset`), and the [CSS Normalize style reset](http://necolas.github.com/normalize.css/) (in use).
+Inside of `global/variables/_colors.scss` file are a handful of sample colors being generated by [Color Schemer](https://github.com/Team-Sass/color-schemer) and utilizing [Toolkit's Colour Stack](https://github.com/Team-Sass/toolkit#colour-stacks) functions to show how powerful those two tools are when used together to create color for your site. Inside of `client-name-style-guide.scss` you'll see active imports for Toolkit, Breakpoint, Singularity, Modular Scale, and Color Schemer. [CSS Normalize](http://necolas.github.com/normalize.css/) is being brought in through a Compass extension, but you can use the hard [Eric Meyer style reset](http://meyerweb.com/eric/tools/css/reset/) if you'd like by replacing it with `compass/reset`.
 
 ## Your Compass Extension
 
