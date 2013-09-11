@@ -94,7 +94,8 @@ module.exports = function (grunt) {
           pagesDir + '/**/*.md',
           partialsDir + '/**/*.html',
           templatesDir + '/**/*.html',
-          '!' + templatesDir + '/components/**/*.html'
+          '!' + templatesDir + '/components/**/*.html',
+          helpers + '.js'
         ],
         tasks: ['generator:dev']
       },
