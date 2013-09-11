@@ -107,6 +107,78 @@ module.exports = {
 
     return code;
   },
+  'create-example-scss': function(type, component, support) {
+    var name = component;
+    if (typeof(component) === 'object') {
+      name = Object.keys(component)[0];
+    }
+    name = _s.slugify(name);
+
+    if (typeof(support) === 'object') {
+      support = false;
+    }
+
+    if (support) {
+      var mixins = 'sass/components/' + type + '/_mixins.scss';
+      var extend = 'sass/components/' + type + '/_extends.scss';
+
+      var mixinFile = '';
+      var extendFile = '';
+
+      var code = fs.readFileSync('templates/code.html').toString('utf-8');
+
+      var mixinCode = '';
+      var extendCode = '';
+
+      if (fs.existsSync(mixins)) {
+        mixinFile = fs.readFileSync(mixins).toString('utf-8') + '\n';
+
+        mixinCode = code.replace('{{summary}}', 'Sass Mixin Source');
+        mixinCode = mixinCode.replace('{{language}}', 'scss');
+        mixinCode = mixinCode.replace('{{code}}', mixinFile);
+      }
+      if (fs.existsSync(extend)) {
+        extendFile = fs.readFileSync(extend).toString('utf-8');
+
+        extendCode = code.replace('{{summary}}', 'Sass Extend Source');
+        extendCode = extendCode.replace('{{language}}', 'scss');
+        extendCode = extendCode.replace('{{code}}', extendFile);
+      }
+
+      return mixinCode + extendCode;
+    }
+    else {
+      var path = 'sass/components/_' + type + '.scss';
+
+      var code = fs.readFileSync('templates/code.html').toString('utf-8');
+      code = code.replace('{{summary}}', 'Sass Source');
+      code = code.replace('{{language}}', 'scss');
+
+      var file = fs.readFileSync(path).toString('utf-8');
+
+      var startType = '// @{' + type + '}';
+      var endType = '// {' + type + '}@';
+      var typeFindLength = startType.length;
+      var indexStartType = file.indexOf(startType) >= 0 ? file.indexOf(startType) + typeFindLength + 1 : false;
+      var indexEndType = file.indexOf(endType) >= 0 ? file.indexOf(endType) : false;
+
+      var startComp = '// @{' + type + '--' + name + '}';
+      var endComp = '// {' + type + '--' + name + '}@';
+      var compFindLength = startComp.length;
+      var indexStartComp = file.indexOf(startComp) >= 0 ? file.indexOf(startComp) + compFindLength + 1 : false;
+      var indexEndComp = file.indexOf(endComp) >= 0 ? file.indexOf(endComp) : false;
+
+      var typeSass = indexStartType && indexEndType ? file.slice(indexStartType, indexEndType) + '\n' : '';
+
+      var compSass = indexStartComp && indexEndComp ? file.slice(indexStartComp, indexEndComp) : '';
+
+      var fullSass = typeSass + compSass;
+
+      code = code.replace('{{code}}', fullSass);
+
+      return code;
+    }
+  },
   'component': function(type, component) {
 
     var name = component;
