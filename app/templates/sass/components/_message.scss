@@ -1,0 +1,59 @@
+//////////////////////////////
+// Message Component
+//
+// The partial and folder structure for this component should be as follows:
+// _message.scss
+// message (folder)
+//   _mixins.scss
+//   _extends.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component configuration: @{component--configuration}
+//  - End styling block for specific component configuration:   {component--configuration}@
+//////////////////////////////
+
+@import "message/mixins";
+@import "message/extends";
+
+//////////////////////////////
+// @{message}
+// Styling for Message Component
+.message {
+  @extend %message;
+}
+// {message}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{message--status}
+// Status styling for Message Component
+.message.status {
+  @extend %status;
+}
+// {message--status}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{message--warning}
+// Warning styling for Message Component
+.message.warning {
+  @extend %warning;
+}
+// {message--warning}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{message--error}
+// Error styling for Message Component
+.message.error {
+  @extend %error;
+}
+// {message--error}@
+//////////////////////////////
+
