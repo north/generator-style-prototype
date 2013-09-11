@@ -63,7 +63,7 @@ var AppGenerator = module.exports = function Appgenerator(args, options, config)
       });
 
       // Log the install
-      console.log("\nI'm all done! If your installs did not finish properly, run ".white + "bundle install & bower install & npm install".yellow + " to finish installation.");
+      console.log("\nI'm all done! If your installs did not finish properly, run ".white + "bower install & npm install".yellow + " to finish installation.");
     }
     else {
       var bye = "\n I'm all done! Now run ".white + "bower install & npm install".yellow + " to finish installation.";
