@@ -1,0 +1,43 @@
+//////////////////////////////
+// Pager Component
+//
+// The partial and folder structure for this component should be as follows:
+// _pager.scss
+// pager (folder)
+//   _mixins.scss
+//   _extends.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component configuration: @{component--configuration}
+//  - End styling block for specific component configuration:   {component--configuration}@
+//////////////////////////////
+
+@import 'pager/mixins';
+@import 'pager/extends';
+
+//////////////////////////////
+// @{pager--all}
+// Styling for Pager Component
+.pager {
+  @extend %pager;
+}
+.pager-first {
+  @extend %pager-item;
+}
+.pager-previous {
+  @extend %pager-item;
+}
+.pager-item {
+  @extend %pager-item;
+}
+.pager-next {
+  @extend %pager-item;
+}
+.pager-last {
+  @extend %pager-item;
+}
+// {pagers--all}@
+//////////////////////////////

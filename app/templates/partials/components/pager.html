@@ -1,4 +1,7 @@
-<div class="pagers group">
+<div class="prototype-group--pager">
+  {{#if page.examples}}
+    {{{create-example-scss "pagers" all true}}}
+  {{/if}}
   <ul class="pager">
     <li class="pager-first">
       <a href="#" title="Go to the first page"> « First</a>
@@ -23,9 +26,10 @@
     </li>
   </ul>
   {{#if page.examples}}
-  <details>
-    <summary>HTML Source</summary>
-    <pre class="example"><code class="language-markup">&lt;ul class="pager"&gt;
+    {{{create-example-scss "pagers" "all"}}}
+    <details>
+      <summary>HTML Source</summary>
+      <pre class="example"><code class="language-markup">&lt;ul class="pager"&gt;
   &lt;li class="pager-first"&gt;
     &lt;a href="#" title="Go to the first page"&gt; « First&lt;/a&gt;
   &lt;/li&gt;
@@ -48,6 +52,6 @@
     &lt;a href="#" title="Go to the last page"&gt; Last »&lt;/a&gt;
   &lt;/li&gt;
 &lt;/ul&gt;</code></pre>
-  </details>
+    </details>
   {{/if}}
 </div>
