@@ -1,0 +1,28 @@
+//////////////////////////////
+// link Component
+//
+// The partial and folder structure for this component should be as follows:
+// _link.scss
+// link (folder)
+//   _mixins.scss
+//   _extends.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component configuration: @{component--configuration}
+//  - End styling block for specific component configuration:   {component--configuration}@
+//////////////////////////////
+
+@import 'link/mixins';
+@import 'link/extends';
+
+//////////////////////////////
+// @{link--all}
+//
+a {
+  @extend %links-extend;
+}
+// {link--all}@
+//////////////////////////////
