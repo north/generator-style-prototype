@@ -1,0 +1,49 @@
+//////////////////////////////
+// Button Component
+//
+// The partial and folder structure for this component should be as follows:
+// _button.scss
+// button (folder)
+//   _mixins.scss
+//   _extends.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component configuration: @{component--configuration}
+//  - End styling block for specific component configuration:   {component--configuration}@
+//////////////////////////////
+
+@import "button/mixins";
+@import "button/extends";
+
+//////////////////////////////
+// @{button--call-to-action}
+// Call to Action styling for Button Component
+.call-to-action {
+  @extend %button-cta;
+}
+// {button--call-to-action}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{button--big-button}
+// Big Button styling for Button Component
+.big-button {
+  @extend %button-big;
+}
+// {button--big-button}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{button--warning-button}
+// Warning Button styling for Button Component
+.big-button.warning {
+  @extend %button-warning;
+}
+// {button--warning-button}@
+//////////////////////////////
+
