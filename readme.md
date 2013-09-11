@@ -322,7 +322,7 @@ If you're using Bower components, you won't get them when using Compass's instal
 ***That's It! Have Fun!***
 
 ## License
-© Sam Richard
+© Sam Richard, Mason Wendell
 
 Original code licensed under [GLPv3](http://www.gnu.org/licenses/gpl-3.0.html)
 Open Source projects used within this project retain their original licenses.
