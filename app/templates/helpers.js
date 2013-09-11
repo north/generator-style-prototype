@@ -87,14 +87,14 @@ module.exports = {
 
     return output;
   },
-  'create-example-html': function(type, component) {
-    var name = component;
-    if (typeof(component) === 'object') {
-      name = Object.keys(component)[0];
+  'create-example-html': function(component, type) {
+    var name = type;
+    if (typeof(type) === 'object') {
+      name = Object.keys(type)[0];
     }
     name = _s.slugify(name);
 
-    var path = 'partials/components/' + type + '/' + type + '--' + name + '.html';
+    var path = 'partials/components/' + component + '/' + component + '--' + name + '.html';
     var code = fs.readFileSync('templates/code.html').toString('utf-8');
     code = code.replace('{{summary}}', 'HTML Source');
     code = code.replace('{{language}}', 'markup');
@@ -107,10 +107,10 @@ module.exports = {
 
     return code;
   },
-  'create-example-scss': function(type, component, support) {
-    var name = component;
-    if (typeof(component) === 'object') {
-      name = Object.keys(component)[0];
+  'create-example-sass': function(component, type, support) {
+    var name = type;
+    if (typeof(type) === 'object') {
+      name = Object.keys(type)[0];
     }
     name = _s.slugify(name);
 
@@ -119,8 +119,8 @@ module.exports = {
     }
 
     if (support) {
-      var mixins = 'sass/components/' + type + '/_mixins.scss';
-      var extend = 'sass/components/' + type + '/_extends.scss';
+      var mixins = 'sass/components/' + component + '/_mixins.scss';
+      var extend = 'sass/components/' + component + '/_extends.scss';
 
       var mixinFile = '';
       var extendFile = '';
@@ -148,7 +148,7 @@ module.exports = {
       return mixinCode + extendCode;
     }
     else {
-      var path = 'sass/components/_' + type + '.scss';
+      var path = 'sass/components/_' + component + '.scss';
 
       var code = fs.readFileSync('templates/code.html').toString('utf-8');
       code = code.replace('{{summary}}', 'Sass Source');
@@ -156,14 +156,14 @@ module.exports = {
 
       var file = fs.readFileSync(path).toString('utf-8');
 
-      var startType = '// @{' + type + '}';
-      var endType = '// {' + type + '}@';
+      var startType = '// @{' + component + '}';
+      var endType = '// {' + component + '}@';
       var typeFindLength = startType.length;
       var indexStartType = file.indexOf(startType) >= 0 ? file.indexOf(startType) + typeFindLength + 1 : false;
       var indexEndType = file.indexOf(endType) >= 0 ? file.indexOf(endType) : false;
 
-      var startComp = '// @{' + type + '--' + name + '}';
-      var endComp = '// {' + type + '--' + name + '}@';
+      var startComp = '// @{' + component + '--' + name + '}';
+      var endComp = '// {' + component + '--' + name + '}@';
       var compFindLength = startComp.length;
       var indexStartComp = file.indexOf(startComp) >= 0 ? file.indexOf(startComp) + compFindLength + 1 : false;
       var indexEndComp = file.indexOf(endComp) >= 0 ? file.indexOf(endComp) : false;
@@ -179,15 +179,15 @@ module.exports = {
       return code;
     }
   },
-  'component': function(type, component) {
+  'component': function(component, type) {
 
-    var name = component;
-    if (typeof(component) === 'object') {
-      name = Object.keys(component)[0];
+    var name = type;
+    if (typeof(type) === 'object') {
+      name = Object.keys(type)[0];
     }
     name = _s.slugify(name);
 
-    var path = 'partials/components/' + type + '/' + _s.slugify(type) + '--' + name + '.html';
+    var path = 'partials/components/' + component + '/' + _s.slugify(component) + '--' + name + '.html';
 
     var file = fs.readFileSync(path).toString('utf-8');
 

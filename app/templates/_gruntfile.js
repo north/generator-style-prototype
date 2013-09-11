@@ -668,7 +668,7 @@ module.exports = function (grunt) {
       // Create Holder Partial
       var partial = '<div class="prototype-group--' + tmpl + '">' +
 '\n\n  {{#if page.examples}}' +
-'\n    {{{create-example-scss "' + tmpl + '" all true}}}' +
+'\n    {{{create-example-sass "' + tmpl + '" all true}}}' +
 '\n  {{/if}}' +
 '\n  <ul component-list>' +
 '\n    {{#each options.grunt.userConfig.components.' + tmpl + '}}' +
@@ -676,7 +676,7 @@ module.exports = function (grunt) {
 '\n        {{{component "' + tmpl + '" this}}}' +
 '\n\n        {{#if ../page.examples}}' +
 '\n          {{{create-example-html "' + tmpl + '" ../this}}}' +
-'\n          {{{create-example-scss "' + tmpl + '" ../this}}}' +
+'\n          {{{create-example-sass "' + tmpl + '" ../this}}}' +
 '\n        {{/if}}' +
 '\n      </li>' +
 '\n    {{/each}}' +
