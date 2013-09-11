@@ -1,0 +1,100 @@
+//////////////////////////////
+// Form Component
+//
+// The partial and folder structure for this component should be as follows:
+// _form.scss
+// form (folder)
+//   _mixins.scss
+//   _extends.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component configuration: @{component--configuration}
+//  - End styling block for specific component configuration:   {component--configuration}@
+//////////////////////////////
+
+@import 'button/mixins';
+@import 'button/extends';
+@import 'form/mixins';
+@import 'form/extends';
+
+//////////////////////////////
+// @{form--button}
+// Button styling for Form Component
+button {
+  @extend %button;
+}
+// {form--button}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{form--fieldset}
+// Fieldset styling for Form Component
+fieldset {
+  @extend %form-fieldset-extend;
+}
+// {form--fieldset}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{form--input}
+// Input styling for Form Component
+input {
+  &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
+  &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
+  &[type=number], &[type=range], &[type=search], &[type=color] {
+    @extend %form-textinput-extend;
+  }
+  &[type="radio"], &[type="checkbox"] {
+    @extend %form-check-radio-extend;
+  }
+  &[type='submit'], &[type='reset'], &[type='button'] {
+    @extend %button;
+  }
+}
+// {form--input}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{form--label}
+// Label styling for Form Component
+label {
+  @extend %form-label-extend;
+}
+// {form--label}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{form--legend}
+// Legend styling for Form Component
+legend {
+  @extend %form-legend-extend;
+}
+// {form--legend}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{form--select}
+// Select styling for Form Component
+select {
+  @extend %form-textinput-extend;
+}
+// {form--select}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{form--textarea}
+// Textarea styling for Form Component
+textarea {
+  @extend %form-text-area-extend;
+}
+// {form--textarea}@
+//////////////////////////////
