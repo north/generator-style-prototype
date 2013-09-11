@@ -1,0 +1,16 @@
+{{#if page.examples}}
+    <!-- Prism JavaScript -->
+    {{{script-ext 'prism/prism.js' true}}}
+    {{{script-ext 'prism/components/prism-scss.min.js' true}}}
+    <!-- Polyfill for Details element -->
+    {{{script-ext 'Element.details/__COMPILE/Element.details.js' true}}}
+{{/if}}
+
+{{#if options.development}}
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':{{options.lrport}}/livereload.js?snipver=1"></' + 'script>')
+    </script>
+{{/if}}
+{{#if options.remoteDebug}}
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':{{options.wnport}}/target/target-script-min.js"></' + 'script>')
+    </script>
+{{/if}}
