@@ -115,7 +115,7 @@ module.exports = {
     }
     name = _s.slugify(name);
 
-    var path = 'partials/components/' + type + '/' + type + '--' + name + '.html';
+    var path = 'partials/components/' + type + '/' + _s.slugify(type) + '--' + name + '.html';
 
     var file = fs.readFileSync(path).toString('utf-8');
 
