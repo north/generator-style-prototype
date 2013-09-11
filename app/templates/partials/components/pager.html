@@ -2,56 +2,22 @@
   {{#if page.examples}}
     {{{create-example-scss "pager" all true}}}
   {{/if}}
-  <ul class="pager">
-    <li class="pager-first">
-      <a href="#" title="Go to the first page"> « First</a>
+  <ul component-list>
+    <li>
+      {{{component "pager" "full"}}}
+
+      {{#if page.examples}}
+        {{{create-example-html "pager" "full"}}}
+        {{{create-example-scss "pager" "full"}}}
+      {{/if}}
     </li>
-    <li class="pager-previous">
-      <a href="#" title="Go to the previous page"> ‹ Previous</a>
-    </li>
-    <li class="pager-item">
-      <a href="#" title="Go to page 1">1</a>
-    </li>
-    <li class="pager-item">
-      <a href="#" title="Go to page 2">2</a>
-    </li>
-    <li class="pager-item">
-      <a href="#" title="Go to page 3">3</a>
-    </li>
-    <li class="pager-next">
-      <a href="#" title="Go to the next page"> Next ›</a>
-    </li>
-    <li class="pager-last">
-      <a href="#" title="Go to the last page"> Last »</a>
+    <li>
+      {{{component "pager" "mini"}}}
+
+      {{#if page.examples}}
+        {{{create-example-html "pager" "mini"}}}
+        {{{create-example-scss "pager" "mini"}}}
+      {{/if}}
     </li>
   </ul>
-  {{#if page.examples}}
-    {{{create-example-scss "pager" "all"}}}
-    <details>
-      <summary>HTML Source</summary>
-      <pre class="example"><code class="language-markup">&lt;ul class="pager"&gt;
-  &lt;li class="pager-first"&gt;
-    &lt;a href="#" title="Go to the first page"&gt; « First&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li class="pager-previous"&gt;
-    &lt;a href="#" title="Go to the previous page"&gt; ‹ Previous&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li class="pager-item"&gt;
-    &lt;a href="#" title="Go to page 1"&gt;1&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li class="pager-item"&gt;
-    &lt;a href="#" title="Go to page 2"&gt;2&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li class="pager-item"&gt;
-    &lt;a href="#" title="Go to page 3"&gt;3&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li class="pager-next"&gt;
-    &lt;a href="#" title="Go to the next page"&gt; Next ›&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li class="pager-last"&gt;
-    &lt;a href="#" title="Go to the last page"&gt; Last »&lt;/a&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-    </details>
-  {{/if}}
 </div>

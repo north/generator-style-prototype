@@ -19,7 +19,7 @@
 @import 'pager/extends';
 
 //////////////////////////////
-// @{pager--all}
+// @{pager}
 // Styling for Pager Component
 .pager {
   @extend %pager;
@@ -39,5 +39,5 @@
 .pager-last {
   @extend %pager-item;
 }
-// {pagers--all}@
+// {pager}@
 //////////////////////////////
