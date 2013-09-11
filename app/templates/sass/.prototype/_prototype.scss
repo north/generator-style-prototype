@@ -199,8 +199,8 @@ $prototype-header-text-color: #161616;
   list-style: none;
   padding: 0;
   margin: .25em .5em;
-  details {
-    margin: 0.5em 0 1em;
+  details:first-of-type {
+    margin-top: 1em;
   }
   li {
     margin: {
