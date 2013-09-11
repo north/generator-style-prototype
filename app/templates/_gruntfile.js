@@ -657,8 +657,14 @@ module.exports = function (grunt) {
     _.forEach(grunt.userConfig.components, function(v, e) {
       // Grab the template prefix for this component
       var tmpl = _s.slugify(e);
+      // Check to see if the template exists, and if not, create it
+      var tmplPath = 'templates/components/' + tmpl + '.html';
+      if (!grunt.file.exists(tmplPath)) {
+        var tmplContent = '<!-- ' + _s.capitalize(e) + ' Component -->';
+        grunt.file.write(tmplPath, tmplContent);
+      }
       // Load the template from the templates directory
-      var template = grunt.file.read('templates/components/' + tmpl + '.html');
+      var template = grunt.file.read(tmplPath);
       // Create Holder Partial
       var partial = '<div class="prototype-group--' + tmpl + '">' +
 '\n\n  {{#if page.examples}}' +
