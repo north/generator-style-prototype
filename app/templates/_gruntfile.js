@@ -656,23 +656,66 @@ module.exports = function (grunt) {
     // Loop over each item in components
     _.forEach(grunt.userConfig.components, function(v, e) {
       // Grab the template prefix for this component
-      var tmpl = e;
+      var tmpl = _s.slugify(e);
       // Load the template from the templates directory
       var template = grunt.file.read('templates/components/' + tmpl + '.html');
       // Create Holder Partial
-      var partial = '<div class="prototype-group--' + _s.slugify(tmpl) + '">' +
+      var partial = '<div class="prototype-group--' + tmpl + '">' +
+'\n\n  {{#if page.examples}}' +
+'\n    {{{create-example-scss "' + tmpl + '" all true}}}' +
+'\n  {{/if}}' +
 '\n  <ul component-list>' +
 '\n    {{#each options.grunt.userConfig.components.' + tmpl + '}}' +
 '\n      <li>' +
 '\n        {{{component "' + tmpl + '" this}}}' +
 '\n\n        {{#if ../page.examples}}' +
 '\n          {{{create-example-html "' + tmpl + '" ../this}}}' +
+'\n          {{{create-example-scss "' + tmpl + '" ../this}}}' +
 '\n        {{/if}}' +
 '\n      </li>' +
 '\n    {{/each}}' +
 '\n  </ul>' +
 '\n</div>';
       grunt.file.write('partials/components/prototype-group--' + tmpl + '.html', partial);
+
+      var basePath = 'sass/components/_' + tmpl + '.scss';
+      var mixinPath = 'sass/components/' + tmpl + '/_mixins.scss';
+      var extendsPath = 'sass/components/' + tmpl + '/_extends.scss';
+
+      var supportHeader = '//////////////////////////////' +
+'\n// ' + _s.capitalize(e) + ' Component {{type}}' +
+'\n//////////////////////////////';
+      var basePartial = '//////////////////////////////' +
+'\n// ' + _s.capitalize(e) + ' Component' +
+'\n//' +
+'\n// The partial and folder structure for this component should be as follows:' +
+'\n// _' + tmpl + '.scss' +
+'\n// ' + tmpl + ' (folder)' +
+'\n//   _mixins.scss' +
+'\n//   _extends.scss' +
+'\n//' +
+'\n// Automatic Sass parsing is done through special comment blocks' +
+'\n//  - Start styling block for base component: @{component}' +
+'\n//  - End styling block for base component:   {component}@' +
+'\n//' +
+'\n//  - Start styling block for specific component configuration: @{component--configuration}' +
+'\n//  - End styling block for specific component configuration:   {component--configuration}@' +
+'\n//////////////////////////////\n' +
+'\n@import "' + tmpl + '/mixins";' +
+'\n@import "' + tmpl + '/extends";' +
+'\n\n//////////////////////////////' +
+'\n// @{' + tmpl + '}' +
+'\n// Styling for ' + _s.capitalize(e) + ' Component' +
+'\n\n// {' + tmpl + '}@' +
+'\n//////////////////////////////\n\n';
+
+      if (!grunt.file.exists(mixinPath)) {
+        grunt.file.write(mixinPath, supportHeader.replace('{{type}}', 'Mixins'));
+      }
+      if (!grunt.file.exists(extendsPath)) {
+        grunt.file.write(extendsPath, supportHeader.replace('{{type}}', 'Extendable Classes'));
+      }
+
       // Loop over each version of the component
       _.forEach(v, function(value, name) {
         var singleton = true;
@@ -691,8 +734,15 @@ module.exports = function (grunt) {
         component = component.replace(new RegExp('{{name.slug}}', 'g'), _s.slugify(name));
 
         // Replace {{type}} with the type of component
-        component = component.replace(new RegExp('{{type}}', 'g'), tmpl);
+        component = component.replace(new RegExp('{{type}}', 'g'), e);
         component = component.replace(new RegExp('{{type.slug}}', 'g'), _s.slugify(tmpl));
+
+        // Create comment for base partial if it the partial doesn't exist
+        basePartial += '\n//////////////////////////////' +
+'\n// @{' + tmpl + '--' + _s.slugify(name) + '}' +
+'\n// ' + _s.capitalize(name) + ' styling for ' + _s.capitalize(e) + ' Component' +
+'\n\n// {' + tmpl + '--' + _s.slugify(name) + '}@' +
+'\n//////////////////////////////\n\n';
 
         if (!singleton) {
           // Loop over each property of the component
@@ -717,6 +767,10 @@ module.exports = function (grunt) {
         // Write component to disk
         grunt.file.write('partials/components/' + tmpl + '/' + tmpl + '--' + _s.slugify(name) + '.html', component);
       });
+      // If the base partial doesn't exist, freate it.
+      if (!grunt.file.exists(basePath)) {
+        grunt.file.write(basePath, basePartial);
+      }
     });
   });
 };
