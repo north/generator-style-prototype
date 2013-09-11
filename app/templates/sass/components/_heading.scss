@@ -1,0 +1,79 @@
+//////////////////////////////
+// Heading Component
+//
+// The partial and folder structure for this component should be as follows:
+// _heading.scss
+// heading (folder)
+//   _mixins.scss
+//   _extends.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component configuration: @{component--configuration}
+//  - End styling block for specific component configuration:   {component--configuration}@
+//////////////////////////////
+
+@import 'heading/mixins';
+@import 'heading/extends';
+
+//////////////////////////////
+// @{heading-h1}
+// H1 styling for Header Component
+h1 {
+  @extend %h1;
+}
+// {heading-h1}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{heading-h2}
+// H2 styling for Header Component
+h2 {
+  @extend %h2;
+}
+// {heading-h2}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{heading-h3}
+// H3 styling for Header Component
+h3 {
+  @extend %h3;
+}
+// {heading-h3}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{heading-h4}
+// H4 styling for Header Component
+h4 {
+  @extend %h4;
+}
+// {heading-h4}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{heading-h5}
+// H5 styling for Header Component
+h5 {
+  @extend %h5;
+}
+// {heading-h5}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{heading-h6}
+// H6 styling for Header Component
+h6 {
+  @extend %h6;
+}
+// {heading-h6}@
+//////////////////////////////
+
