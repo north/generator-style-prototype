@@ -738,10 +738,12 @@ module.exports = function (grunt) {
         // Replace {{name}} with the name of the component
         var component = template.replace(new RegExp('{{name}}', 'g'), name);
         component = component.replace(new RegExp('{{name.slug}}', 'g'), _s.slugify(name));
+        component = component.replace(new RegExp('{{name.cap}}', 'g'), _s.capitalize(name));
 
         // Replace {{type}} with the type of component
         component = component.replace(new RegExp('{{type}}', 'g'), e);
         component = component.replace(new RegExp('{{type.slug}}', 'g'), _s.slugify(tmpl));
+        component = component.replace(new RegExp('{{type.cap}}', 'g'), _s.capitalize(tmpl));
 
         // Create comment for base partial if it the partial doesn't exist
         basePartial += '\n//////////////////////////////' +
@@ -766,8 +768,9 @@ module.exports = function (grunt) {
               }
             }
             // Replace each instance of the key in the template with the property
-            component = component.replace('{{' + k + '}}', p);
-            component = component.replace('{{' + k + '.slug}}', _s.slugify(p));
+            component = component.replace(new RegExp('{{' + k + '}}', 'g'), p);
+            component = component.replace(new RegExp('{{' + k + '.slug}}', 'g'), _s.slugify(p));
+            component = component.replace(new RegExp('{{' + k + '.cap}}', 'g'), _s.capitalize(p));
           });
         }
         // Write component to disk
