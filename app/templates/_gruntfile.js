@@ -559,6 +559,11 @@ module.exports = function (grunt) {
   grunt.registerTask('export', 'Exports your build', function() {
     var path = grunt.option('to') || exportPath;
 
+    if (grunt.file.exists(path)) {
+      grunt.file.delete(path, {force: true});
+      console.log('Folder `' + path + '` removed to ensure a clean build.');
+    }
+
     grunt.task.run('build', 'exec:export:' + path);
   });
 
