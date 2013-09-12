@@ -105,7 +105,7 @@ server:
 #########################
 export:
   path: export
-  # If deploying somewhere (like GitHub Pages) where your files will not be located at the root directory, this will be the prefix that gets appended to assets run through image-url, style-url, script-url, and component-url
+  # If deploying somewhere (like GitHub Pages) where your files will not be located at the root directory, this will be the prefix that gets appended to assets run through image-url, style-url, script-url, and component-url. If they will be deployed to the root directory, set assetPrefix to ''
   assetPrefix: page
 
 #########################
