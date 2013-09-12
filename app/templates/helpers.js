@@ -12,19 +12,38 @@ marked.setOptions({
 
 module.exports = {
   'image-url': function(src) {
-    return this.options.assets + '/' + this.options.userConfig.assets.imagesDir + '/' + src;
+    var path = this.options.assets;
+    if (path === '/') {
+      path = '';
+    }
+    return path + '/' + this.options.userConfig.assets.imagesDir + '/' + src;
   },
   'script-url': function(src) {
-    return this.options.assets + '/' + this.options.userConfig.assets.jsDir + '/' + src;
+    var path = this.options.assets;
+    if (path === '/') {
+      path = '';
+    }
+    return path + '/' + this.options.userConfig.assets.jsDir + '/' + src;
   },
   'style-url': function(href) {
-    return this.options.assets + '/' + this.options.userConfig.assets.cssDir + '/' + href;
+    var path = this.options.assets;
+    if (path === '/') {
+      path = '';
+    }
+    return path + '/' + this.options.userConfig.assets.cssDir + '/' + href;
   },
   'component-url': function(src) {
-    return this.options.assets + '/' + this.options.userConfig.assets.componentsDir + '/' + src;
+    var path = this.options.assets;
+    if (path === '/') {
+      path = '';
+    }
+    return path + '/' + this.options.userConfig.assets.componentsDir + '/' + src;
   },
   'style-ext': function(href, component) {
     var path = this.options.assets;
+    if (path === '/') {
+      path = '';
+    }
 
     if (component.data === undefined) {
       path += '/' + this.options.userConfig.assets.componentsDir + '/';
@@ -37,6 +56,9 @@ module.exports = {
   },
   'script-ext': function(src, component) {
     var path = this.options.assets;
+    if (path === '/') {
+      path = '';
+    }
 
     if (component.data === undefined) {
       path += '/' + this.options.userConfig.assets.componentsDir + '/';
