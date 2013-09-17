@@ -43,15 +43,18 @@ $experimental-support-for-microsoft    : false !default;
 //////////////////////////////
 
 //////////////////////////////
-// BASES
-@import "bases/all";
+// ELEMENTS
+@import "elements/html";
+@import "elements/body";
+@import "elements/selection";
+@import "elements/heading";
+@import "elements/link";
+@import "elements/form";
 //////////////////////////////
 
 //////////////////////////////
 // COMPONENTS
-@import "components/link";
-@import "components/heading";
-@import "components/form";
+@import "components/a11y";
 @import "components/message";
 @import "components/button";
 @import "components/pager";
