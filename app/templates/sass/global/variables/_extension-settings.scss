@@ -1,0 +1,15 @@
+////////////////////////////
+// Modular Scale
+//
+// Values used to determine modular scale values
+// http://modularscale.com/
+$ratio: golden_ratio() major_third();
+$base-size: 1em;
+////////////////////////////
+
+//////////////////////////////
+// Breakpoint
+//
+// Settings for Breakpoint
+//////////////////////////////
+$breakpoint-to-ems: true;
