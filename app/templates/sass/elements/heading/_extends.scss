@@ -1,0 +1,43 @@
+//////////////////////////////
+// Heading Element Extendable Classes
+//////////////////////////////
+
+$heading-extendables-extended: false !default;
+
+@if not ($heading-extendables-extended) {
+  %headings-extend {
+    @include heading-base(false);
+  }
+
+  %h1 {
+    @extend %headings-extend;
+    @include heading-size(nth($heading-sizes, 1));
+  }
+
+  %h2 {
+    @extend %headings-extend;
+    @include heading-size(nth($heading-sizes, 2));
+  }
+
+  %h3 {
+    @extend %headings-extend;
+    @include heading-size(nth($heading-sizes, 3));
+  }
+
+  %h4 {
+    @extend %headings-extend;
+    @include heading-size(nth($heading-sizes, 4));
+  }
+
+  %h5 {
+    @extend %headings-extend;
+    @include heading-size(nth($heading-sizes, 5));
+  }
+
+  %h6 {
+    @extend %headings-extend;
+    @include heading-size(nth($heading-sizes, 6));
+  }
+}
+
+$heading-extendables-extended: true;

@@ -15,8 +15,8 @@
 //  - End styling block for specific component configuration:   {component--configuration}@
 //////////////////////////////
 
-@import 'button/mixins';
-@import 'button/extends';
+@import '../components/button/mixins';
+@import '../components/button/extends';
 @import 'form/mixins';
 @import 'form/extends';
 
