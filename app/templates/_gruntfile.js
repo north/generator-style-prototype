@@ -724,7 +724,14 @@ module.exports = function (grunt) {
         grunt.file.write(mixinPath, supportHeader.replace('{{type}}', 'Mixins'));
       }
       if (!grunt.file.exists(extendsPath)) {
-        grunt.file.write(extendsPath, supportHeader.replace('{{type}}', 'Extendable Classes'));
+        var extend = supportHeader.replace('{{type}}', 'Extendable Classes');
+        extend += '\n\n' +
+'$' + tmpl + '-extendables-extended: false !default;' +
+'\n\n@if not ($' + tmpl + '-extendables-extended) {' +
+'\n  // Replace this line with extendable calsses' +
+'\n}' +
+'\n\n$' + tmpl + '-extendables-extended: true;';
+        grunt.file.write(extendsPath, extend);
       }
 
       // Loop over each version of the component
