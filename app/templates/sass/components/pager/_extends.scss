@@ -2,16 +2,22 @@
 // Pager Mixin Extendable Classes
 //////////////////////////////
 
-%pager-container-extend {
-  @include pager-container(false);
-}
-%pager-item-extend {
-  @include pager-item(false);
+$pager-extendables-extended: false !default;
+
+@if not ($pager-extendables-extended) {
+  %pager-container-extend {
+    @include pager-container(false);
+  }
+  %pager-item-extend {
+    @include pager-item(false);
+  }
+
+  %pager {
+    @extend %pager-container-extend;
+  }
+  %pager-item {
+    @extend %pager-item-extend;
+  }
 }
 
-%pager {
-  @extend %pager-container-extend;
-}
-%pager-item {
-  @extend %pager-item-extend;
-}
+$pager-extendables-extended: true;
