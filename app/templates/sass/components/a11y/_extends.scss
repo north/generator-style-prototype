@@ -1,0 +1,21 @@
+//////////////////////////////
+// Accessibility Component Extendable Classes
+//////////////////////////////
+
+$a11y-extendables-extended: false !default;
+
+@if not ($a11y-extendables-extended) {
+  %hidden {
+    display: none;
+  }
+
+  %a11y-hidden-base-extend {
+    @include a11y-hidden($extend: false);
+  }
+
+  %a11y-hidden-focusable-extend {
+    @include a11y-hidden($a11y-focusable: true, $extend: false);
+  }
+}
+
+$a11y-extendables-extended: true;

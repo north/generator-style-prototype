@@ -1,0 +1,37 @@
+//////////////////////////////
+// Accessibility Component
+//
+// The partial and folder structure for this component should be as follows:
+// _a11y.scss
+// a11y (folder)
+//   _mixins.scss
+//   _extends.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component configuration: @{component--configuration}
+//  - End styling block for specific component configuration:   {component--configuration}@
+//////////////////////////////
+
+@import "a11y/mixins";
+@import "a11y/extends";
+
+//////////////////////////////
+// @{a11y--element-invisible}
+// Hides an element from view, preserves it for screen readers
+.a11y--element-invisible {
+  @extend %a11y-hidden-base-extend;
+}
+// {a11y--element-invisible}@
+//////////////////////////////
+
+//////////////////////////////
+// @{a11y--element-focusable}
+// Hides an element from view, allows it to be focusable
+.a11y--element-focusable {
+  @extend %a11y-hidden-focusable-extend;
+}
+// {a11y--element-focusable}@
+//////////////////////////////
