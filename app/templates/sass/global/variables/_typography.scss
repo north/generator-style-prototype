@@ -1,0 +1,22 @@
+//////////////////////////////
+// Typography
+//////////////////////////////
+
+//////////////////////
+// Default font stacks
+$font-sans: sans-serif;
+$font-serifs: serif;
+$font-mono: monospace;
+//////////////////////
+
+//////////////////////
+// General font variables
+$font-body: $font-serifs;
+$font-headline: $font-sans;
+//////////////////////
+
+//////////////////////
+// Font size and line-height
+$base-font-size: $base-size;
+$base-line-height: $base-font-size * 1.5;
+//////////////////////
