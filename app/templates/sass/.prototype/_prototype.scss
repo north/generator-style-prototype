@@ -60,6 +60,7 @@ $prototype-header-text-color: #161616;
     background: none;
     border: none;
     vertical-align: baseline;
+    color: $prototype-header-text-color;
     @include box-shadow(none);
     @include text-shadow(none);
   }
