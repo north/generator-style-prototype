@@ -1,0 +1,23 @@
+<div class="prototype-group--a11y">
+  {{#if page.examples}}
+    {{{create-example-sass "a11y" all true}}}
+  {{/if}}
+  <ul component-list>
+    <li>
+      {{{component "a11y" "element-invisible"}}}
+
+      {{#if page.examples}}
+        {{{create-example-html "a11y" "element-invisible"}}}
+        {{{create-example-sass "a11y" "element-invisible"}}}
+      {{/if}}
+    </li>
+    <li>
+      {{{component "a11y" "element-focusable"}}}
+
+      {{#if page.examples}}
+        {{{create-example-html "a11y" "element-focusable"}}}
+        {{{create-example-sass "a11y" "element-focusable"}}}
+      {{/if}}
+    </li>
+  </ul>
+</div>
