@@ -50,7 +50,6 @@ $cs-link-border-focus: nth($quaternary-shades, 4);
 // Background Colors
 //////////////////////////////
 $cs-background: $white;
-$cs-selection-bkg: $black;
 
 //////////////////////////////
 // Text Colors
@@ -58,8 +57,6 @@ $cs-selection-bkg: $black;
 $cs-text-dark: $black;
 $cs-text-light: $white;
 $cs-text: $cs-text-dark;
-
-$cs-selection: $cs-text-light;
 
 //////////////////////////////
 // Border Colors
