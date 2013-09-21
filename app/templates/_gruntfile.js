@@ -715,6 +715,11 @@ module.exports = function (grunt) {
 '\n@import "' + tmpl + '/mixins";' +
 '\n@import "' + tmpl + '/extends";' +
 '\n\n//////////////////////////////' +
+'\n// Having $output-selectors and $output-selectors--' + tmpl + ' set to `true` will output the CSS selectors for ' + _s.capitalize(e) + 'Component' +
+'\n$output-selectors--' + tmpl + ': true !default;' +
+'\n@if $output-selectors and $output-selectors--' + tmpl + ' {' +
+'\n//////////////////////////////' +
+'\n\n//////////////////////////////' +
 '\n// @{' + tmpl + '}' +
 '\n// Styling for ' + _s.capitalize(e) + ' Component' +
 '\n\n// {' + tmpl + '}@' +
@@ -785,10 +790,12 @@ module.exports = function (grunt) {
             component = component.replace(new RegExp('{{' + k + '.cap}}', 'g'), _s.capitalize(p));
           });
         }
+	component += '}';
         // Write component to disk
         grunt.file.write('partials/components/' + tmpl + '/' + tmpl + '--' + _s.slugify(name) + '.html', component);
       });
-      // If the base partial doesn't exist, freate it.
+      // If the base partial doesn't exist, create it.
+      basePartial += '}';
       if (!grunt.file.exists(basePath)) {
         grunt.file.write(basePath, basePartial);
       }
