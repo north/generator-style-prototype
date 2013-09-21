@@ -1,0 +1,13 @@
+//////////////////////////////
+// Body Element Extendable Classes
+//////////////////////////////
+
+$body-extendables-extended: false !default;
+
+@if not ($body-extendables-extended) {
+  %body-base {
+    @include body-base($extend: false);
+  }
+}
+
+$body-extendables-extended: true;

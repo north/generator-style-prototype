@@ -1,0 +1,20 @@
+//////////////////////////////
+// HTML Element Mixins
+//////////////////////////////
+
+//////////////////////////////
+// HTML Element Default Variables
+$html-font-size:   $base-font-size !default;
+$html-line-height: $base-line-height !default;
+$html-extend:      true !default;
+//////////////////////////////
+
+@mixin html-base($font-size: $html-font-size, $line-height: $html-line-height, $extend: $html-extend) {
+  @if not ($extend) {
+    font-size: $font-size;
+    line-height: $line-height;
+  }
+  @else {
+    @extend %html-base;
+  }
+}
