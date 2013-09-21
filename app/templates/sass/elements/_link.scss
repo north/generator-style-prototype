@@ -1,28 +1,36 @@
 //////////////////////////////
-// link Component
+// Link Element
 //
-// The partial and folder structure for this component should be as follows:
+// The partial and folder structure for this element should be as follows:
 // _link.scss
 // link (folder)
 //   _mixins.scss
 //   _extends.scss
 //
 // Automatic Sass parsing is done through special comment blocks
-//  - Start styling block for base component: @{component}
-//  - End styling block for base component:   {component}@
+//  - Start styling block for base element: @{element}
+//  - End styling block for base element:   {element}@
 //
-//  - Start styling block for specific component configuration: @{component--configuration}
-//  - End styling block for specific component configuration:   {component--configuration}@
+//  - Start styling block for specific element configuration: @{element--configuration}
+//  - End styling block for specific element configuration:   {element--configuration}@
 //////////////////////////////
 
 @import 'link/mixins';
 @import 'link/extends';
 
 //////////////////////////////
+// Having $output-elements and $output-elements--link set to `true` will output the CSS elements for Link Element
+$output-elements--link: true !default;
+@if $output-elements and $output-elements--link {
+//////////////////////////////
+
+//////////////////////////////
 // @{link}
-// Styling for Link Component
+// Styling for Link Element
 a {
   @extend %links-extend;
 }
 // {link}@
 //////////////////////////////
+
+}

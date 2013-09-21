@@ -1,28 +1,34 @@
 //////////////////////////////
-// Form Component
+// Form Element
 //
-// The partial and folder structure for this component should be as follows:
+// The partial and folder structure for this element should be as follows:
 // _form.scss
 // form (folder)
 //   _mixins.scss
 //   _extends.scss
 //
 // Automatic Sass parsing is done through special comment blocks
-//  - Start styling block for base component: @{component}
-//  - End styling block for base component:   {component}@
+//  - Start styling block for base Element: @{element}
+//  - End styling block for base Element:   {element}@
 //
-//  - Start styling block for specific component configuration: @{component--configuration}
-//  - End styling block for specific component configuration:   {component--configuration}@
+//  - Start styling block for specific Element configuration: @{element--configuration}
+//  - End styling block for specific Element configuration:   {element--configuration}@
 //////////////////////////////
 
-@import '../components/button/mixins';
-@import '../components/button/extends';
+@import '../Elements/button/mixins';
+@import '../Elements/button/extends';
 @import 'form/mixins';
 @import 'form/extends';
 
 //////////////////////////////
+// Having $output-elements and $output-elements--form set to `true` will output the CSS elements for Form Element
+$output-elements--form: true !default;
+@if $output-elements and $output-elements--form {
+//////////////////////////////
+
+//////////////////////////////
 // @{form--button}
-// Button styling for Form Component
+// Button styling for Form Element
 button {
   @extend %button;
 }
@@ -32,7 +38,7 @@ button {
 
 //////////////////////////////
 // @{form--fieldset}
-// Fieldset styling for Form Component
+// Fieldset styling for Form Element
 fieldset {
   @extend %form-fieldset-extend;
 }
@@ -42,7 +48,7 @@ fieldset {
 
 //////////////////////////////
 // @{form--input}
-// Input styling for Form Component
+// Input styling for Form Element
 input {
   &[type=text], &[type=password], &[type=email], &[type=url], &[type=tel],
   &[type=date], &[type=datetime], &[type=datetime-local], &[type=month], &[type=week], &[type=time],
@@ -62,7 +68,7 @@ input {
 
 //////////////////////////////
 // @{form--label}
-// Label styling for Form Component
+// Label styling for Form Element
 label {
   @extend %form-label-extend;
 }
@@ -72,7 +78,7 @@ label {
 
 //////////////////////////////
 // @{form--legend}
-// Legend styling for Form Component
+// Legend styling for Form Element
 legend {
   @extend %form-legend-extend;
 }
@@ -82,7 +88,7 @@ legend {
 
 //////////////////////////////
 // @{form--select}
-// Select styling for Form Component
+// Select styling for Form Element
 select {
   @extend %form-textinput-extend;
 }
@@ -92,9 +98,11 @@ select {
 
 //////////////////////////////
 // @{form--textarea}
-// Textarea styling for Form Component
+// Textarea styling for Form Element
 textarea {
   @extend %form-text-area-extend;
 }
 // {form--textarea}@
 //////////////////////////////
+
+}

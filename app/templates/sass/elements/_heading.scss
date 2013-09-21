@@ -1,26 +1,32 @@
 //////////////////////////////
-// Heading Component
+// Heading element
 //
-// The partial and folder structure for this component should be as follows:
+// The partial and folder structure for this element should be as follows:
 // _heading.scss
 // heading (folder)
 //   _mixins.scss
 //   _extends.scss
 //
 // Automatic Sass parsing is done through special comment blocks
-//  - Start styling block for base component: @{component}
-//  - End styling block for base component:   {component}@
+//  - Start styling block for base Element: @{element}
+//  - End styling block for base Element:   {element}@
 //
-//  - Start styling block for specific component configuration: @{component--configuration}
-//  - End styling block for specific component configuration:   {component--configuration}@
+//  - Start styling block for specific Element configuration: @{element--configuration}
+//  - End styling block for specific Element configuration:   {element--configuration}@
 //////////////////////////////
 
 @import 'heading/mixins';
 @import 'heading/extends';
 
 //////////////////////////////
+// Having $output-elements and $output-elements--heading set to `true` will output the CSS elements for Heading Element
+$output-elements--heading: true !default;
+@if $output-elements and $output-elements--heading {
+//////////////////////////////
+
+//////////////////////////////
 // @{heading-h1}
-// H1 styling for Header Component
+// H1 styling for Header Element
 h1 {
   @extend %h1;
 }
@@ -30,7 +36,7 @@ h1 {
 
 //////////////////////////////
 // @{heading-h2}
-// H2 styling for Header Component
+// H2 styling for Header Element
 h2 {
   @extend %h2;
 }
@@ -40,7 +46,7 @@ h2 {
 
 //////////////////////////////
 // @{heading-h3}
-// H3 styling for Header Component
+// H3 styling for Header Element
 h3 {
   @extend %h3;
 }
@@ -50,7 +56,7 @@ h3 {
 
 //////////////////////////////
 // @{heading-h4}
-// H4 styling for Header Component
+// H4 styling for Header Element
 h4 {
   @extend %h4;
 }
@@ -60,7 +66,7 @@ h4 {
 
 //////////////////////////////
 // @{heading-h5}
-// H5 styling for Header Component
+// H5 styling for Header Element
 h5 {
   @extend %h5;
 }
@@ -70,10 +76,11 @@ h5 {
 
 //////////////////////////////
 // @{heading-h6}
-// H6 styling for Header Component
+// H6 styling for Header Element
 h6 {
   @extend %h6;
 }
 // {heading-h6}@
 //////////////////////////////
 
+}
