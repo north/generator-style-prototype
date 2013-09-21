@@ -19,6 +19,12 @@
 @import "button/extends";
 
 //////////////////////////////
+// Having $output-selectors and $output-selectors--button set to `true` will output the CSS selectors for Button Component
+$output-selectors--button: true !default;
+@if $output-selectors and $output-selectors--button {
+//////////////////////////////
+
+//////////////////////////////
 // @{button--call-to-action}
 // Call to Action styling for Button Component
 .call-to-action {
@@ -47,3 +53,4 @@
 // {button--warning-button}@
 //////////////////////////////
 
+}

@@ -19,6 +19,12 @@
 @import 'pager/extends';
 
 //////////////////////////////
+// Having $output-selectors and $output-selectors--pager set to `true` will output the CSS selectors for Pager Component
+$output-selectors--pager: true !default;
+@if $output-selectors and $output-selectors--pager {
+//////////////////////////////
+
+//////////////////////////////
 // @{pager}
 // Styling for Pager Component
 .pager {
@@ -41,3 +47,5 @@
 }
 // {pager}@
 //////////////////////////////
+
+}

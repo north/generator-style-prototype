@@ -19,6 +19,12 @@
 @import "a11y/extends";
 
 //////////////////////////////
+// Having $output-selectors and $output-selectors--a11y set to `true` will output the CSS selectors for a11y Component
+$output-selectors--a11y: true !default;
+@if $output-selectors and $output-selectors--a11y {
+//////////////////////////////
+
+//////////////////////////////
 // @{a11y--element-invisible}
 // Hides an element from view, preserves it for screen readers
 .a11y--element-invisible {
@@ -35,3 +41,5 @@
 }
 // {a11y--element-focusable}@
 //////////////////////////////
+
+}
