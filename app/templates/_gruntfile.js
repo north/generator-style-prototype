@@ -790,7 +790,6 @@ module.exports = function (grunt) {
             component = component.replace(new RegExp('{{' + k + '.cap}}', 'g'), _s.capitalize(p));
           });
         }
-	component += '}';
         // Write component to disk
         grunt.file.write('partials/components/' + tmpl + '/' + tmpl + '--' + _s.slugify(name) + '.html', component);
       });
