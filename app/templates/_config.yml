@@ -30,8 +30,8 @@ prototype:
 ## Main Navigation Sections
 sections:
   Style Tile: ''
+  Content Strategy: content
   Elements: elements
-  Typography: typography
   Components: components
   Colors: colors
 
