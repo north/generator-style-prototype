@@ -3,7 +3,7 @@
     "sass": [
       "_<%= clientSlug %>-style-guide.scss",
       "global/**/*",
-      "bases/**/*",
+      "elements/**/*",
       "components/**/*",
       "layouts/**/*"
     ],
