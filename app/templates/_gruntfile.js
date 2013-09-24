@@ -49,7 +49,7 @@ module.exports = function (grunt) {
     hostname = '*';
     remoteDebug = true;
   }
-  var remoteHost = os.hostname() + '.local';
+  var remoteHost = os.hostname();
 
   // Compass Configuration
   var debugInfo = userConfig.compass.debugInfo;
