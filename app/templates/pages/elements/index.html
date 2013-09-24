@@ -3,7 +3,7 @@
 }
 ---
 
-<article class="headers">
+<article class="prototype-group--headers">
   <header>
     <h2>Headers</h2>
   </header>
@@ -14,181 +14,225 @@
   <h5>Level five heading</h5>
   <h6>Level six heading</h6>
 </article>
-<article class="links">
+<article class="prototype-group--links">
   <header>
     <h2>Links</h2>
-  </header><ul><li><a href="#">Local Link</a></li><li><a href="http://google.com">External Link</a></li><li><a href="https://google.com">External Link, Encrypted</a></li><li><a href="mailto:test@foo.bar">Email Link</a></li></ul>
+  </header>
+  <ul>
+    <li><a href="#">Local Link</a></li>
+    <li><a href="http://google.com">External Link</a></li>
+    <li><a href="https://google.com">External Link, Encrypted</a></li>
+    <li><a href="mailto:test@foo.bar">Email Link</a></li>
+  </ul>
 </article>
-<article class="lists">
+<article class="prototype-group--lists">
   <header>
     <h2>List</h2>
   </header>
-  <div class="unordered group">
+  <div class="prototype-group--unordered">
     <header>
-      <h3>Unordered List</h3><ul><li>Apple</li><li>Banana</li><li>Pear<ul><li>Carrot</li><li>Mushroom<ul><li>Zuccini</li><li>Squash</li></ul></li></ul></li><li>Orange</li><li>Tomato</li></ul>
+      <h3>Unordered List</h3>
     </header>
+    <ul>
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Pear<ul>
+        <li>Carrot</li>
+        <li>Mushroom<ul>
+          <li>Zuccini</li>
+          <li>Squash</li>
+        </ul></li>
+      </ul></li>
+      <li>Orange</li>
+      <li>Tomato</li>
+    </ul>
   </div>
-  <div class="ordered-list group">
+  <div class="prototype-group--ordered-list">
     <header>
-      <h3>Ordered List</h3><ol><li>Apple</li><li>Banana</li><li>Pear<ol><li>Carrot</li><li>Mushroom<ol><li>Zuccini</li><li>Squash</li></ol></li></ol></li><li>Orange</li><li>Tomato</li></ol>
+      <h3>Ordered List</h3>
     </header>
+    <ol>
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Pear<ol>
+        <li>Carrot</li>
+        <li>Mushroom<ol>
+          <li>Zuccini</li>
+          <li>Squash</li>
+        </ol></li>
+      </ol></li>
+      <li>Orange</li>
+      <li>Tomato</li>
+    </ol>
   </div>
-  <div class="mixed-list group">
+  <div class="prototype-group--mixed-list">
     <header>
-      <h3>Mixed Lists</h3><ol><li>Apple</li><li>Banana</li><li>Pear<ul><li>Carrot</li><li>Mushroom<ol><li>Zuccini</li><li>Squash</li></ol></li></ul></li><li>Orange</li><li>Tomato</li></ol>
+      <h3>Mixed Lists</h3>
     </header>
+    <ol>
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Pear<ul>
+        <li>Carrot</li>
+        <li>Mushroom<ol>
+          <li>Zuccini</li>
+          <li>Squash</li>
+        </ol></li>
+      </ul></li>
+      <li>Orange</li>
+      <li>Tomato</li>
+    </ol>
   </div>
 </article>
 <article class="options">
   <header>
     <h2>Options</h2>
   </header>
-  <div class="radios group">
+  <div class="protoype-group--radios">
     <header>
       <h3>Radios</h3>
     </header>
-              <input type="radio" name="radio-input" value="Foo" id="Foo-radio">
-              <label for="Foo-radio">Foo</label>
-              <input type="radio" name="radio-input" value="Bar" id="Bar-radio">
-              <label for="Bar-radio">Bar</label>
-              <input type="radio" name="radio-input" value="Baz" id="Baz-radio">
-              <label for="Baz-radio">Baz</label>
+      <input type="radio" name="radio-input" value="Foo" id="Foo-radio">
+      <label for="Foo-radio">Foo</label>
+      <input type="radio" name="radio-input" value="Bar" id="Bar-radio">
+      <label for="Bar-radio">Bar</label>
+      <input type="radio" name="radio-input" value="Baz" id="Baz-radio">
+      <label for="Baz-radio">Baz</label>
   </div>
-  <div class="checkboxes group">
+  <div class="protoype-group--checkboxes">
     <header>
       <h3>Checkboxes</h3>
     </header>
-              <input type="checkbox" name="checkbox-input" value="Alpha" id="Alpha-checkbox">
-              <label for="Alpha-checkbox">Alpha</label>
-              <input type="checkbox" name="checkbox-input" value="Beta" id="Beta-checkbox">
-              <label for="Beta-checkbox">Beta</label>
-              <input type="checkbox" name="checkbox-input" value="Gamma" id="Gamma-checkbox">
-              <label for="Gamma-checkbox">Gamma</label>
+      <input type="checkbox" name="checkbox-input" value="Alpha" id="Alpha-checkbox">
+      <label for="Alpha-checkbox">Alpha</label>
+      <input type="checkbox" name="checkbox-input" value="Beta" id="Beta-checkbox">
+      <label for="Beta-checkbox">Beta</label>
+      <input type="checkbox" name="checkbox-input" value="Gamma" id="Gamma-checkbox">
+      <label for="Gamma-checkbox">Gamma</label>
   </div>
-  <div class="select group">
+  <div class="protoype-group--select">
     <header>
       <h3>Select</h3>
     </header>
-              <select>
-                <option>Fus</option>
-                <option>Ro</option>
-                <option>Dah</option>
-              </select>
+      <select>
+        <option>Fus</option>
+        <option>Ro</option>
+        <option>Dah</option>
+      </select>
   </div>
 </article>
 <article class="inputs">
   <header>
     <h2>Inputs</h2>
   </header>
-  <div class="input-types group">
+  <div class="prototype-group--input-types">
     <header>
       <h3>Input Types</h3>
     </header>
     <form>
       <div class="group input-text">
-                  <label for="text-Text">Text</label>
-                  <input type="text" id="text-Text">
+        <label for="text-Text">Text</label>
+        <input type="text" id="text-Text">
       </div>
       <div class="group input-textarea">
-                  <label for="textarea-Textarea">Textarea</label>
-                  <textarea id="textarea-Textarea" rows="5" cols="20"></textarea>
+        <label for="textarea-Textarea">Textarea</label>
+        <textarea id="textarea-Textarea" rows="5" cols="20"></textarea>
       </div>
       <div class="group input-password">
-                  <label for="password-Password">Password</label>
-                  <input type="password" id="password-Password">
+        <label for="password-Password">Password</label>
+        <input type="password" id="password-Password">
       </div>
       <div class="group input-button">
-                  <label for="button-Button">Button</label>
-                  <input type="button" id="button-Button">
+        <label for="button-Button">Button</label>
+        <input type="button" id="button-Button">
       </div>
       <div class="group input-file">
-                  <label for="file-File">File</label>
-                  <input type="file" id="file-File">
+        <label for="file-File">File</label>
+        <input type="file" id="file-File">
       </div>
       <div class="group input-hidden">
-                  <label for="hidden-Hidden">Hidden</label>
-                  <input type="hidden" id="hidden-Hidden">
+        <label for="hidden-Hidden">Hidden</label>
+        <input type="hidden" id="hidden-Hidden">
       </div>
       <div class="group input-image">
-                  <label for="image-Image">Image</label>
-                  <input type="image" id="image-Image">
+        <label for="image-Image">Image</label>
+        <input type="image" id="image-Image">
       </div>
       <div class="group input-datetime">
-                  <label for="datetime-Datetime">Datetime</label>
-                  <input type="datetime" id="datetime-Datetime">
+        <label for="datetime-Datetime">Datetime</label>
+        <input type="datetime" id="datetime-Datetime">
       </div>
       <div class="group input-datetime-local">
-                  <label for="datetime-local-Datetime-local">Datetime-local</label>
-                  <input type="datetime-local" id="datetime-local-Datetime-local">
+        <label for="datetime-local-Datetime-local">Datetime-local</label>
+        <input type="datetime-local" id="datetime-local-Datetime-local">
       </div>
       <div class="group input-date">
-                  <label for="date-Date">Date</label>
-                  <input type="date" id="date-Date">
+        <label for="date-Date">Date</label>
+        <input type="date" id="date-Date">
       </div>
       <div class="group input-month">
-                  <label for="month-Month">Month</label>
-                  <input type="month" id="month-Month">
+        <label for="month-Month">Month</label>
+        <input type="month" id="month-Month">
       </div>
       <div class="group input-time">
-                  <label for="time-Time">Time</label>
-                  <input type="time" id="time-Time">
+        <label for="time-Time">Time</label>
+        <input type="time" id="time-Time">
       </div>
       <div class="group input-week">
-                  <label for="week-Week">Week</label>
-                  <input type="week" id="week-Week">
+        <label for="week-Week">Week</label>
+        <input type="week" id="week-Week">
       </div>
       <div class="group input-number">
-                  <label for="number-Number">Number</label>
-                  <input type="number" id="number-Number">
+        <label for="number-Number">Number</label>
+        <input type="number" id="number-Number">
       </div>
       <div class="group input-range">
-                  <label for="range-Range">Range</label>
-                  <input type="range" id="range-Range">
+        <label for="range-Range">Range</label>
+        <input type="range" id="range-Range">
       </div>
       <div class="group input-email">
-                  <label for="email-Email">Email</label>
-                  <input type="email" id="email-Email">
+        <label for="email-Email">Email</label>
+        <input type="email" id="email-Email">
       </div>
       <div class="group input-url">
-                  <label for="url-Url">Url</label>
-                  <input type="url" id="url-Url">
+        <label for="url-Url">Url</label>
+        <input type="url" id="url-Url">
       </div>
       <div class="group input-search">
-                  <label for="search-Search">Search</label>
-                  <input type="search" id="search-Search">
+        <label for="search-Search">Search</label>
+        <input type="search" id="search-Search">
       </div>
       <div class="group input-tel">
-                  <label for="tel-Tel">Tel</label>
-                  <input type="tel" id="tel-Tel">
+        <label for="tel-Tel">Tel</label>
+        <input type="tel" id="tel-Tel">
       </div>
       <div class="group input-color">
-                  <label for="color-Color">Color</label>
-                  <input type="color" id="color-Color">
+        <label for="color-Color">Color</label>
+        <input type="color" id="color-Color">
       </div>
       <div class="group input-submit">
-                  <label for="submit-Submit">Submit</label>
-                  <input type="submit" id="submit-Submit">
+        <label for="submit-Submit">Submit</label>
+        <input type="submit" id="submit-Submit">
       </div>
       <div class="group input-reset">
-                  <label for="reset-Reset">Reset</label>
-                  <input type="reset" id="reset-Reset">
+        <label for="reset-Reset">Reset</label>
+        <input type="reset" id="reset-Reset">
       </div>
     </form>
-    <div class="group content-editable">
+    <div class="prototype-group--content-editable">
       <header>
         <h3>Content Editable</h3>
       </header>
-      <div contenteditable="true"><h2>Exit Strategy</h2>
-
-<p>Not tricks, Michael, illusions. It's a hug, Michael. I'm hugging you. I hear the jury's still out on science. That's what it said on 'Ask Jeeves.'</p>
-
-<ol>
-  <li>No, I did not kill Kitty. However, I am going to oblige and answer the nice officer's questions because I am an honest man with no secrets to hide.</li>
-  <li>We just call it a sausage.</li>
-  <li>But I bought a yearbook ad from you, doesn't that mean anything anymore?</li>
-  <li>I'm a monster.</li>
-  <li>Oh, you're gonna be in a coma, all right.</li>
-</ol>
+      <div contenteditable="true">
+        <h2>Exit Strategy</h2>
+        <p>Not tricks, Michael, illusions. It's a hug, Michael. I'm hugging you. I hear the jury's still out on science. That's what it said on 'Ask Jeeves.'</p>
+        <ol>
+          <li>No, I did not kill Kitty. However, I am going to oblige and answer the nice officer's questions because I am an honest man with no secrets to hide.</li>
+          <li>We just call it a sausage.</li>
+          <li>But I bought a yearbook ad from you, doesn't that mean anything anymore?</li>
+          <li>I'm a monster.</li>
+          <li>Oh, you're gonna be in a coma, all right.</li>
+        </ol>
       </div>
     </div>
   </div>
@@ -197,7 +241,7 @@
   <header>
     <h2>Content Displays</h2>
   </header>
-  <div class="table group">
+  <div class="prototype-group--table">
     <header>
       <h3>Table</h3>
     </header>
@@ -251,7 +295,7 @@
       </tbody>
     </table>
   </div>
-  <div class="fieldset group">
+  <div class="prototype-group--fieldset">
     <header>
       <h3>Form with Field Group</h3>
     </header>
@@ -288,7 +332,7 @@
       </fieldset>
     </form>
   </div>
-  <div class="code group">
+  <div class="prototype-group--code">
     <header>
       <h3>Code Block</h3>
     </header>
@@ -304,5 +348,26 @@
 .triangle-red {
   @include triangle(red, 20px);
 }</code></pre>
+  </div>
+  <div class="prototype-group--mixed-text">
+    <header>
+      <h3>Mixed Text</h3>
+    </header>
+    <p>What a strange person. You can't expect to wield supreme power just 'cause some watery tart threw a sword at you! Oh, ow! Why?</p>
+    <ul>
+      <li>But you are dressed as one&hellip;</li>
+      <li>No, no, no! Yes, yes. A bit. But she's got a wart.</li>
+    </ul>
+    <h3>King Arthur</h3>
+    <p>Ah, now we see the violence inherent in the system! Burn her! Burn her! It's only a model. Camelot!</p>
+    <p>She looks like one. Well, I didn't vote for you. Well, we did do the nose. Well, Mercia's a temperate zone! Well, she turned me into a newt. But you are dressed as one&hellip;</p>
+    <h4>First shalt thou take out the Holy Pin</h4>
+    <p>Who's that then? Well, Mercia's a temperate zone! Ni! Ni! Ni! Ni! The nose?</p>
+    <ol>
+      <li>Bring her forward!</li>
+      <li>Now, look here, my good man.</li>
+      <li>Burn her!</li>
+      <li>Shh! Knights, I bid you welcome to your new home. Let us ride to Camelot!</li>
+    </ol>
   </div>
 </article>
