@@ -1,6 +1,6 @@
 {
   "name": "generator-style-prototype",
-  "version": "0.6.4",
+  "version": "0.7.0",
   "description": "Yeoman generator for style prototypes",
   "keywords": [
     "yeoman-generator",
