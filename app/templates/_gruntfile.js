@@ -693,7 +693,7 @@ module.exports = function (grunt) {
       // Load the template from the templates directory
       var template = grunt.file.read(tmplPath);
       // Create Holder Partial
-      var partial = '<div class="prototype-group--' + tmpl + '">' +
+      var partial = '<div class="component-group--' + tmpl + '">' +
 '\n\n  {{#if page.examples}}' +
 '\n    {{{create-example-sass "' + tmpl + '" all true}}}' +
 '\n  {{/if}}' +
@@ -709,7 +709,7 @@ module.exports = function (grunt) {
 '\n    {{/each}}' +
 '\n  </ul>' +
 '\n</div>';
-      grunt.file.write('partials/components/prototype-group--' + tmpl + '.html', partial);
+      grunt.file.write('partials/components/component-group--' + tmpl + '.html', partial);
 
       var basePath = 'sass/components/_' + tmpl + '.scss';
       var mixinPath = 'sass/components/' + tmpl + '/_mixins.scss';
