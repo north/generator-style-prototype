@@ -29,8 +29,8 @@ prototype:
 
 ## Main Navigation Sections
 sections:
-  Style Tile: ''
-  Content Strategy: content
+  Content Strategy: ''
+  Style Tile: style-tile
   Elements: elements
   Components: components
   Colors: colors
