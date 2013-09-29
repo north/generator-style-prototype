@@ -1,3 +1,9 @@
+{
+  "title": "Content Strategy: Human Interest Story Content Type",
+  "template": "markdown"
+}
+---
+
 ## Human Interest Story
 
 **Description**
