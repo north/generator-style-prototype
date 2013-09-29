@@ -1,0 +1,7 @@
+#########################
+## Sections for Content section
+#########################
+Goal: 'content/goal'
+Content Types:
+  Article: 'content/article'
+  Human Interest Story: 'content/human-interest-story'

@@ -29,7 +29,7 @@ prototype:
 
 ## Main Navigation Sections
 sections:
-  Content Strategy: ''
+  Content Strategy: content
   Style Tile: style-tile
   Elements: elements
   Components: components
