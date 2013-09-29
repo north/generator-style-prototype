@@ -64,10 +64,10 @@ var AppGenerator = module.exports = function Appgenerator(args, options, config)
       });
 
       // Log the install
-      console.log("\nI'm all done! If your installs did not finish properly, run ".white + "bower install & npm install".yellow + " to finish installation.");
+      console.log("\nI'm all done! If your installs did not finish properly, run " + chalk.yellow("bower install & npm install") + " to finish installation.");
     }
     else {
-      var bye = "\n I'm all done! Now run ".white + "bower install & npm install".yellow + " to finish installation.";
+      var bye = "\n I'm all done! Now run " + chalk.yellow("bower install & npm install") + " to finish installation.";
       console.log(bye);
     }
   });
@@ -112,33 +112,56 @@ AppGenerator.prototype.askFor = function askFor() {
         name: 'clientName',
         message: 'The name of your client. (Required)',
         default: '',
-        warning: 'You did include your client name.',
-        required: true
+        validate: function (input) {
+          try {
+            check(input).notEmpty();
+          }
+          catch (err) {
+            return 'Please enter the name of your client';
+          }
+          return true;
+        }
       },
       {
         name: 'clientHomepage',
         message: 'The client\'s URL. (Required)',
         default: '',
-        warning: 'You need to include your client URL',
-        required: true,
-        validate: function(value) {
-          console.log(value);
-          return false;
+        validate: function (input) {
+          try {
+            check(input).isUrl()
+          }
+          catch (err) {
+            return 'Please enter a valid URL';
+          }
+          return true;
         }
       },
       {
         name: 'authorName',
         message: 'The author of the Style Prototype. (Required)',
-        default: '',
-        warning: 'You did not include the author',
-        required: true
+        validate: function (input) {
+          try {
+            check(input).notEmpty();
+          }
+          catch (err) {
+            return 'Please enter the name of the author';
+          }
+          return true;
+        }
       },
       {
         name: 'authorEmail',
         message: 'The email address of the author. (Required)',
         default: '',
-        warning: 'You did not include the author email address',
-        required: true
+        validate: function (input) {
+          try {
+            check(input).isEmail();
+          }
+          catch (err) {
+            return 'Please enter a valid email address';
+          }
+          return true;
+        }
       }
       //,
       // {
@@ -152,17 +175,7 @@ AppGenerator.prototype.askFor = function askFor() {
   if (this.options['git']) {
     prompts.push({
       name: 'ghRepo',
-      message: 'Add Origin Git Remote? [ex: git@github.com:Snugug/generator-armadillo] (false)',
-      default: '',
-      warning: 'You did not include a GitHub Repo.',
-      before: function(value) {
-        if (value === '') {
-          return false;
-        }
-        else {
-          return value;
-        }
-      }
+      message: 'Add Origin Git Remote? [ex: git@github.com:Team-Sass/generator-style-prototype] (false)'
     });
   }
 
@@ -173,12 +186,7 @@ AppGenerator.prototype.askFor = function askFor() {
   //   warning: 'You did not specify if you\'re going to deploy to GitHub'
   // });
 
-  this.prompt(prompts, function (err, props) {
-
-    if (err) {
-      return this.emit('error', err);
-    }
-
+  this.prompt(prompts, function (props) {
     // manually deal with the response, get back and store the results.
     // we change a bit this way of doing to automatically do this in the self.prompt() method.
     this.clientName = props.clientName;
@@ -187,6 +195,9 @@ AppGenerator.prototype.askFor = function askFor() {
     this.clientHomepage = props.clientHomepage;
     this.authorName = props.authorName;
     this.authorEmail = props.authorEmail;
+    if (props.ghRepo === '') {
+      props.ghRepo = false;
+    }
     this.ghRepo = props.ghRepo;
     // this.devHost = props.devHost;
     // this.devPort = props.devPort;
