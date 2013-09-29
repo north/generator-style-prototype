@@ -2,6 +2,7 @@
 var os = require('os');
 var _ = require('underscore');
 var _s = require('underscore.string');
+var modRewrite = require('connect-modrewrite');
 
 module.exports = function (grunt) {
 
@@ -50,6 +51,18 @@ module.exports = function (grunt) {
     remoteDebug = true;
   }
   var remoteHost = os.hostname();
+  var firstSection = userConfig.sections;
+  for (var a in firstSection) {
+    if (typeof(firstSection[a]) === 'string') {
+      firstSection = firstSection[a];
+      if (firstSection.indexOf('.html', firstSection.length - 5) === -1) {
+
+        firstSection += '/';
+      }
+      break;
+    }
+    break;
+  }
 
   // Compass Configuration
   var debugInfo = userConfig.compass.debugInfo;
@@ -78,7 +91,15 @@ module.exports = function (grunt) {
         options: {
           port: port,
           base: root,
-          hostname: hostname
+          hostname: hostname,
+          middleware: function (connect, options) {
+            return [
+              modRewrite([
+                '^/$ /' + firstSection
+              ]),
+              connect.static(options.base)
+            ];
+          }
         }
       }
     },
