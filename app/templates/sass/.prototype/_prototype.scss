@@ -35,7 +35,7 @@ $prototype-header-text-color: #161616;
   $prototype-header-text-color: #e9e9e9;
 };
 
-#prototype-header {
+#prototype-section--header {
   @include clearfix(true);
 
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -43,8 +43,14 @@ $prototype-header-text-color: #161616;
 
   color: $prototype-header-text-color;
   font-weight: 100;
+  font-size: 1em;
+  line-height: 1.618em;
 
   background: $sp-header-color;
+
+  header {
+    @include clearfix(true);
+  }
 
  .inner-wrapper {
     background: $sp-header-color;
@@ -115,16 +121,25 @@ $prototype-header-text-color: #161616;
   }
 }
 
-#menu-toggle {
-  float: right;
-  width: 100%;
+b[data-menu-toggle] {
+  font-weight: 300;
   height: 1em;
   line-height: 1em;
-  text-align: right;
-  font-weight: 300;
   position: relative;
-  margin-top: -1.25em;
-  z-index: 3;
+
+  #prototype-nav > & {
+    float: right;
+    width: 100%;
+    text-align: right;
+    font-weight: 300;
+    position: relative;
+    margin-top: -1.25em;
+    z-index: 3;
+
+    @include breakpoint($sp-single-to-multi-column) {
+      display: none;
+    }
+  }
 
   &:hover {
     cursor: pointer;
@@ -132,24 +147,56 @@ $prototype-header-text-color: #161616;
 
   &:after {
     content: '×';
-    height: 1em;
+    height: 1.618em;
     width: 1em;
     font-size: 1em;
-    line-height: 1em;
     display: inline-block;
 
     color: shade($prototype-header-text-color, 25%);
 
-    @include create-transform($rotate-z: 45deg, $trans-y: -.25em);
+    @include create-transform($rotate-z: 45deg, $trans-y: -.1em, $trans-x: -.25em);
 
     @include single-transition(transform .5s);
   }
-  &.open:after {
-    @include rotate(0);
+
+  div[role="menubar"] & {
+    @include breakpoint($sp-single-to-multi-column) {
+      padding: 0 .25em;
+      display: inline;
+    }
+    font-weight: 100;
+    text-transform: lowercase;
+    color: $prototype-header-text-color;
+
+    &:after {
+      @include create-transform($rotate-z: 45deg, $trans-y: -0em, $trans-x: .1em);
+    }
+  }
+}
+
+div[role="menubar"] {
+  div[role="menubar"] {
+    display: none;
+    padding-left: .5em;
+    border-bottom: 1px solid shade($prototype-header-text-color, 25%);
+    margin-bottom: -1px;
   }
 
-  @include breakpoint($sp-single-to-multi-column) {
-    display: none;
+  #prototype-nav > b[data-menu-toggle] ~ & {
+    // background: red;
+  }
+}
+
+b[data-menu-toggle="open"] {
+  &:after {
+    @include rotate(0);
+
+    div[role="menubar"] & {
+      @include create-transform($rotate-z: 0, $trans-y: 0, $trans-x: .25em);
+    }
+  }
+  + div[role="menubar"] {
+    display: block;
   }
 }
 
@@ -181,7 +228,7 @@ $prototype-header-text-color: #161616;
 
   @include breakpoint('max-width' $sp-single-to-multi-column) {
 
-    div[role="menubar"] {
+    > div[role="menubar"] {
       position: relative;
       z-index: 1;
       float: left;
@@ -190,7 +237,7 @@ $prototype-header-text-color: #161616;
       @include single-transition(margin-top 1s ease-in-out);
     }
 
-    .open ~ div[role="menubar"] {
+    > b[data-menu-toggle="open"] ~ div[role="menubar"] {
       margin-top: 0;
     }
   }
@@ -208,16 +255,5 @@ $prototype-header-text-color: #161616;
       top: 1em;
       bottom: 1em;
     }
-  }
-}
-
-.text-preroll {
-  background: #333;
-
-  .cyan {
-    color: cyan;
-  }
-  .magenta {
-    color: magenta;
   }
 }

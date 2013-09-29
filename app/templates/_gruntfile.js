@@ -92,6 +92,7 @@ module.exports = function (grunt) {
         files: [
           pagesDir + '/**/*.html',
           pagesDir + '/**/*.md',
+          pagesDir + '/**/*.yml',
           partialsDir + '/**/*.html',
           templatesDir + '/**/*.html',
           '!' + templatesDir + '/components/**/*.html',

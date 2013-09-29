@@ -1,5 +1,6 @@
 var fs = require('fs');
 var _s = require ('underscore.string');
+var yaml = require('js-yaml');
 var marked = require('marked');
 marked.setOptions({
   gfm: true,
@@ -214,5 +215,57 @@ module.exports = {
     var file = fs.readFileSync(path).toString('utf-8');
 
     return file;
+  },
+  'prototype-navigation': function(menu) {
+    var basePath = this.options.assets;
+    if (basePath === '/') {
+      basePath = '';
+    }
+    var path = basePath + this.options.userConfig.generator.pagesDir + '/';
+
+    var output = '';
+
+    function recurseSections(obj) {
+      for (var k in obj) {
+        if (typeof(obj[k]) === 'object') {
+          output += '<b role="menuitem" data-menu-toggle="closed">' + k + '</b>';
+          output += '\n<div role="menubar">';
+          recurseSections(obj[k]);
+        }
+        else {
+          if (k !== 'undefined') {
+            output += '\n<a href="' + basePath + '/' + obj[k] + '" role="menuitem">' + k + '</a>';
+          }
+        }
+      }
+      output += '\n</div>';
+    }
+
+    for (var k in menu) {
+      if (typeof(k) === 'string' && typeof(menu[k] === 'string')) {
+        var sectionsPath = path + menu[k];
+        if (menu[k] !== '') {
+          sectionsPath += '/';
+        }
+        sectionsPath += 'sections.yml';
+
+        var file = fs.existsSync(sectionsPath);
+
+        if (!file) {
+          output += '\n<a href="' + basePath + '/' + menu[k] + '" role="menuitem">' + k + '</a>';
+        }
+        else {
+
+          output += '\n<b role="menuitem" data-menu-toggle="closed">' + k + '</b>';
+
+          file = fs.readFileSync(sectionsPath).toString('utf-8');
+          output += '<div role="menubar">';
+          output += '\n<a href="' + basePath + '/' + menu[k] + '" role="menuitem">' + k + '</a>';
+          var sections = yaml.safeLoad(file);
+          recurseSections(sections);
+        }
+      }
+    }
+    return output;
   }
 };
