@@ -233,6 +233,11 @@ AppGenerator.prototype.editorConfig = function editorConfig() {
   this.copy('editorconfig', this.projectDir + '.editorconfig');
 };
 
+AppGenerator.prototype.bundler = function bundler() {
+  this.directory('bundle', this.projectDir + '.bundle');
+  this.directory('bundle', this.projectDir + '.compass/.bundle');
+}
+
 // AppGenerator.prototype.h5bp = function h5bp() {
 //   // this.copy('favicon.ico', 'app/favicon.ico');
 //   // this.copy('404.html', 'pages/404.html');

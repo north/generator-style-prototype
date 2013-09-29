@@ -5,6 +5,7 @@ node_modules
 .compass/lib
 .compass/stylesheets
 .compass/templates
+.vendor
 export
 *.gem
 <% if (!ghDeploy) { %>.dist<% } %>
