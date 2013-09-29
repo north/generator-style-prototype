@@ -1,6 +1,6 @@
 {
   "name": "generator-style-prototype",
-  "version": "0.7.1",
+  "version": "1.0.0",
   "description": "Yeoman generator for style prototypes",
   "keywords": [
     "yeoman-generator",
@@ -20,10 +20,11 @@
     "url": "git://github.com/Team-Sass/generator-style-prototype.git"
   },
   "dependencies": {
-    "yeoman-generator": "~0.11.1",
+    "yeoman-generator": "~0.13.4",
     "lodash": "~1.3.1",
     "validator": "~1.1.3",
-    "underscore.string": "~2.3.1"
+    "underscore.string": "~2.3.1",
+    "chalk": "~0.2.0"
   },
   "engines": {
     "node": ">=0.8.0"

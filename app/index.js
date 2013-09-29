@@ -5,6 +5,7 @@ var spawn = require('child_process').spawn;
 var yeoman = require('yeoman-generator');
 var _s = require('underscore.string');
 var check = require('validator').check;
+var chalk = require('chalk');
 
 
 var AppGenerator = module.exports = function Appgenerator(args, options, config) {
@@ -86,22 +87,22 @@ AppGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
   var welcome =
-  '\n ______     ______   __  __     __         ______'.magenta +
-  '\n/\\  ___\\   /\\__  _\\ /\\ \\_\\ \\   /\\ \\       /\\  ___\\      '.magenta + 'D  B  S  i'.yellow.bold +
-  '\n\\ \\___  \\  \\/_/\\ \\/ \\ \\____ \\  \\ \\ \\____  \\ \\  __\\      '.magenta + 'e  u  i  n'.yellow.bold +
-  '\n \\/\\_____\\    \\ \\_\\  \\/\\_____\\  \\ \\_____\\  \\ \\_____\\    '.magenta + 's  i  g'.yellow.bold +
-  '\n  \\/_____/'.magenta+ '_'.cyan + '   '.magenta+ '_'.cyan + '\\/_/'.magenta+ '_'.cyan + '  \\/_____/   \\/_____/'.magenta+ '_'.cyan + '  \\/_____/    '.magenta + 'i  l  n  B'.yellow.bold +
-  '\n    /_____/\\ /_____/\\  /_____/\\ /________/\\/_____/\\'.cyan + '     g  d     r'.yellow.bold +
-  '\n    \\:::_ \\ \\\\:::_ \\ \\ \\:::_ \\ \\\\__.::.__\\/\\:::_ \\ \\'.cyan + '    n     o  o'.yellow.bold +
-  '\n     \\:(_) \\ \\\\:(_) ) )_\\:\\ \\ \\ \\  \\::\\ \\   \\:\\ \\ \\ \\'.cyan + '         f  w'.yellow.bold +
-  '\n      \\: ___\\/ \\: __ `\\ \\\\:\\ \\ \\ \\  \\::\\ \\   \\:\\ \\ \\ \\'.cyan + '        f  s'.yellow.bold +
-  '\n       \\_\\/_____\\_\\/_\\_\\/_\\_____\\/_  \\__\\/__  \\_____\\/'.cyan + '           e'.yellow.bold +
-  '\n        /________/\\/_/\\/_/\\ /_____/\\ /_____/\\ /_____/\\'.cyan + '           r'.yellow.bold +
-  '\n        \\__.::.__\\/\\ \\ \\ \\ \\\\:::_ \\ \\\\::::_\\/_\\::::_\\/_'.cyan +
-  '\n           \\::\\ \\   \\:\\_\\ \\ \\\\:(_) \\ \\\\:\\/___/\\\\:\\/___/\\'.cyan +
-  '\n            \\::\\ \\   \\::::_\\/ \\: ___\\/ \\::___\\/_\\_::._\\:\\'.cyan +
-  '\n             \\::\\ \\    \\::\\ \\  \\ \\ \\    \\:\\____/\\ /____\\:\\'.cyan +
-  '\n              \\__\\/     \\__\\/   \\_\\/     \\_____\\/ \\_____\\/'.cyan;
+  chalk.magenta('\n ______     ______   __  __     __         ______') +
+  chalk.magenta('\n/\\  ___\\   /\\__  _\\ /\\ \\_\\ \\   /\\ \\       /\\  ___\\      ') + chalk.yellow.bold('D  B  S  i') +
+  chalk.magenta('\n\\ \\___  \\  \\/_/\\ \\/ \\ \\____ \\  \\ \\ \\____  \\ \\  __\\      ') + chalk.yellow.bold('e  u  i  n') +
+  chalk.magenta('\n \\/\\_____\\    \\ \\_\\  \\/\\_____\\  \\ \\_____\\  \\ \\_____\\    ') + chalk.yellow.bold('s  i  g') +
+  chalk.magenta('\n  \\/_____/') + chalk.cyan('_') + chalk.magenta('   ')+ chalk.cyan('_') + chalk.magenta('\\/_/') + chalk.cyan('_') + chalk.magenta('  \\/_____/   \\/_____/')+ chalk.cyan('_') + chalk.magenta('  \\/_____/    ') + chalk.yellow.bold('i  l  n  B') +
+  chalk.cyan('\n    /_____/\\ /_____/\\  /_____/\\ /________/\\/_____/\\') + chalk.yellow.bold('     g  d     r') +
+  chalk.cyan('\n    \\:::_ \\ \\\\:::_ \\ \\ \\:::_ \\ \\\\__.::.__\\/\\:::_ \\ \\') + chalk.yellow.bold('    n     o  o') +
+  chalk.cyan('\n     \\:(_) \\ \\\\:(_) ) )_\\:\\ \\ \\ \\  \\::\\ \\   \\:\\ \\ \\ \\') + chalk.yellow.bold('         f  w') +
+  chalk.cyan('\n      \\: ___\\/ \\: __ `\\ \\\\:\\ \\ \\ \\  \\::\\ \\   \\:\\ \\ \\ \\') + chalk.yellow.bold('        f  s') +
+  chalk.cyan('\n       \\_\\/_____\\_\\/_\\_\\/_\\_____\\/_  \\__\\/__  \\_____\\/') + chalk.yellow.bold('           e') +
+  chalk.cyan('\n        /________/\\/_/\\/_/\\ /_____/\\ /_____/\\ /_____/\\') + chalk.yellow.bold('           r') +
+  chalk.cyan('\n        \\__.::.__\\/\\ \\ \\ \\ \\\\:::_ \\ \\\\::::_\\/_\\::::_\\/_') +
+  chalk.cyan('\n           \\::\\ \\   \\:\\_\\ \\ \\\\:(_) \\ \\\\:\\/___/\\\\:\\/___/\\') +
+  chalk.cyan('\n            \\::\\ \\   \\::::_\\/ \\: ___\\/ \\::___\\/_\\_::._\\:\\') +
+  chalk.cyan('\n             \\::\\ \\    \\::\\ \\  \\ \\ \\    \\:\\____/\\ /____\\:\\') +
+  chalk.cyan('\n              \\__\\/     \\__\\/   \\_\\/     \\_____\\/ \\_____\\/');
 
   console.log(welcome);
   console.log("\nOut of the box I include Sass+Compass, Generator for Handlebars templating and Markdown powered pages, Image Optimization, JavaScript Hinting and Minification, and CSS Linting. I also make publishing sites to GitHub Pages very easy. If you have any questions, ask my handler at https://github.com/Team-Sass/generator-style-prototype.\n");
