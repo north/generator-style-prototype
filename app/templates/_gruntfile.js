@@ -3,6 +3,31 @@ var os = require('os');
 var _ = require('underscore');
 var _s = require('underscore.string');
 var modRewrite = require('connect-modrewrite');
+var Handlebars = require('handlebars');
+
+//////////////////////////////
+// Handlebars Helpers for component templating
+//////////////////////////////
+Handlebars.registerHelper('slugify', function(input) {
+  return _s.slugify(input);
+});
+Handlebars.registerHelper('capitalize', function(input) {
+  return _s.capitalize(input);
+});
+Handlebars.registerHelper('flatten', function (input, separator) {
+  if (typeof(input) === 'object') {
+    input = Array.prototype.slice.call(input);
+    if (separator !== 'space') {
+      return input.join(', ');
+    }
+    else {
+      return input.join(' ');
+    }
+  }
+  else {
+    return input;
+  }
+});
 
 module.exports = function (grunt) {
 
@@ -687,7 +712,7 @@ module.exports = function (grunt) {
       // Check to see if the template exists, and if not, create it
       var tmplPath = 'templates/components/' + tmpl + '.html';
       if (!grunt.file.exists(tmplPath)) {
-        var tmplContent = '<!-- Component: {{component.cap}},  Type: {{type.cap}} -->';
+        var tmplContent = '<!-- Component: {{capitalize component}},  Type: {{capitalize type}} -->';
         grunt.file.write(tmplPath, tmplContent);
       }
       // Load the template from the templates directory
@@ -774,15 +799,8 @@ module.exports = function (grunt) {
           name = Object.keys(name)[0];
           value = value[name];
         }
-        // Replace {{type}} with the name of the specific component
-        var component = template.replace(new RegExp('{{type}}', 'g'), name);
-        component = component.replace(new RegExp('{{type.slug}}', 'g'), _s.slugify(name));
-        component = component.replace(new RegExp('{{type.cap}}', 'g'), _s.capitalize(name));
-
-        // Replace {{component}} with the name of the general component
-        component = component.replace(new RegExp('{{component}}', 'g'), e);
-        component = component.replace(new RegExp('{{component.slug}}', 'g'), _s.slugify(tmpl));
-        component = component.replace(new RegExp('{{component.cap}}', 'g'), _s.capitalize(tmpl));
+        // Set up Name and Component Context
+        var context = {'type': name, 'component': e};
 
         // Create comment for base partial if it the partial doesn't exist
         basePartial += '\n//////////////////////////////' +
@@ -794,26 +812,14 @@ module.exports = function (grunt) {
         if (!singleton) {
           // Loop over each property of the component
           _.forEach(value, function(p, k) {
-            // If the type of the property is an object, let's convert it
-            if (typeof(p) === 'object') {
-              p = Array.prototype.slice.call(p);
-              // If the key of the property contains class, convert to a space delimited list
-              if (k.toLowerCase().indexOf('class') >= 0) {
-                p = p.join(' ');
-              }
-              // If the key of the property doesn't contain class, convert to a comma delimited list
-              else {
-                p = p.join(', ');
-              }
-            }
-            // Replace each instance of the key in the template with the property
-            component = component.replace(new RegExp('{{' + k + '}}', 'g'), p);
-            component = component.replace(new RegExp('{{' + k + '.slug}}', 'g'), _s.slugify(p));
-            component = component.replace(new RegExp('{{' + k + '.cap}}', 'g'), _s.capitalize(p));
+            // Set up key context in Handlebars
+            context[k] = p;
           });
         }
+        // Compile the template through Handlebars
+        var hbCompile = Handlebars.compile(template);
         // Write component to disk
-        grunt.file.write('partials/components/' + tmpl + '/' + tmpl + '--' + _s.slugify(name) + '.html', component);
+        grunt.file.write('partials/components/' + tmpl + '/' + tmpl + '--' + _s.slugify(name) + '.html', hbCompile(context));
       });
       // If the base partial doesn't exist, create it.
       basePartial += '}';
