@@ -75,7 +75,18 @@ module.exports = function (grunt) {
     hostname = '*';
     remoteDebug = true;
   }
-  var remoteHost = os.hostname();
+  var remoteHost = os.networkInterfaces();
+  for (var dev in remoteHost) {
+    var alias = 0;
+    remoteHost[dev].forEach(function (details) {
+      if (details.family=='IPv4') {
+        if (dev === 'en0') {
+          remoteHost = details.address;
+        }
+      }
+    });
+  };
+
   var firstSection = userConfig.sections;
   for (var a in firstSection) {
     if (typeof(firstSection[a]) === 'string') {
