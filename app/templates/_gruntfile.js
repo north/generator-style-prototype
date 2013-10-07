@@ -172,13 +172,6 @@ module.exports = function (grunt) {
         files: [componentsDir + '/**/*'],
         tasks: ['copy:dev']
       },
-      sass: {
-        files: [sassDir + '/**/*.scss'],
-        tasks: ['compass:dev'],
-        options: {
-          livereload: false
-        }
-      },
       css: {
         files: [root + '/' + cssDir + '/**/*.css'],
         tasks: ['csslint']
@@ -249,7 +242,8 @@ module.exports = function (grunt) {
           cssDir: root + '/' + cssDir,
           javascriptsDir: root + '/' + jsDir,
           fontsDir: root + '/' + fontsDir,
-          environment: 'development'
+          environment: 'development',
+          watch: true
         }
       },
       dist: {
@@ -463,14 +457,21 @@ module.exports = function (grunt) {
           grunt: true,
           stream: true
         },
-        tasks: ['watch', 'exec:weinre']
+        tasks: ['parallel:watch', 'exec:weinre']
       },
       remoteLaunch: {
         options: {
           grunt: true,
           stream: true
         },
-        tasks: ['watch', 'exec:weinre', 'exec:launch:' + remoteHost, 'exec:launch:' + remoteHost + ':' + wnport + ':client']
+        tasks: ['parallel:watch', 'exec:weinre', 'exec:launch:' + remoteHost, 'exec:launch:' + remoteHost + ':' + wnport + ':client']
+      },
+      watch: {
+        options: {
+          grunt: true,
+          stream: true
+        },
+        tasks: ['watch', 'compass:dev']
       }
     },
 
@@ -544,7 +545,6 @@ module.exports = function (grunt) {
     grunt.config([
       'copy:dev',
       'uglify:dev',
-      'compass:dev',
       'generator:dev',
       'jshint',
       'csslint'
@@ -620,7 +620,6 @@ module.exports = function (grunt) {
   grunt.registerTask('server-init', [
     'copy:dev',
     'uglify:dev',
-    'compass:dev',
     'generator:dev',
     'jshint',
     'csslint'
@@ -649,7 +648,7 @@ module.exports = function (grunt) {
       if (launch) {
         grunt.task.run('exec:launch:localhost');
       }
-      grunt.task.run('watch');
+      grunt.task.run('parallel:watch');
     }
   });
 
