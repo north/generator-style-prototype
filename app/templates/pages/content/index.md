@@ -9,15 +9,36 @@
 
 Content Strategy is a process by which, through a content inventory, content audit and examination of business needs, a holistic understanding of a business's content is achieved in order develop a content model and information architecture to best serve said business and its users. It is one of the most essential parts to design as it lays the groundwork for each feature that gets developed, be it for a web property, a native app property, a content feed, or any other mode of consumption.
 
-## Goal
+## Vision Statement
 
-The content strategy process should start with a goal for the design and development process. Each project needs a purpose and by defining a goal at the beginning of the process it becomes easier to identify what will provide the most value and ultimately produce a better end result.
+The content strategy process should start with a vision for the design and development process. Each project needs a purpose and by defining a vision at the beginning of the process it becomes easier to identify what will provide the most value and ultimately produce a better end result. A good vision statement will answer the following questions:
+
+* Who will use, buy, or consume the product?
+* Who is our target customer?
+* Who will administer and maintain the product?
+* What needs will the product address?
+* What attributes are critical to success?
+* How does the product compare with existing products?
+* What are the unique selling points?
+
+By answering these questions at the offset of our project, we are able to use it as a guide throughout the whole design and development process. A vision statement provides a single grounding point for all decisions we need to make.
 
 ## Content Inventory
 
-Your content inventory is usually a spreadsheet used to get take an objective look at your current content assets. Generally, you'd like to include the se
+A content inventory takes an objective, broad strokes look at content currently available on a site. Generally built as a spreadsheet, it includes both intrinsic (title, owner, last updated) and analytical (page views, page rank, notes) data. They aren't just about pages, they are about the different pieces, or chunks, that go into making those pages. Your content is not just long blobs of text, it's also images, videos, charts, and any other form of information your user may want from you. We're interested not only in the types of content, but in their attributes as well, the metadata that make up a piece of content. 
 
 ## Content Audit
+
+A content audit provides you with a first look at how your content is written as a way to begin the process of sussing out if what you currently offer is worth keeping, editing, or throwing away. Ask yourself the following questions:
+
+* Is the content too long, too short, or just right? Can longer content be cut into shorter chunks and still make sense?
+* Is the copy wordy? Does it ramble? Can you clean it up without loosing its meaning?
+* Does each page or chunk get to the point quickly?
+* Is the content even broken up into chunks?
+* Is the content relevant and important?
+
+After evaluating your content, start editing and cutting! Not everything needs to make the final site! You are now in a position to do a *gap analysis* of your content. Evaluate each piece of content and decide if you should keep it as is, revise and edit it, delete it because it's irrelevant, not useful, or outdated, or create new content where new business goals don't meet existing content.
+
 
 ## Content Model
 
@@ -57,7 +78,7 @@ These resources will help you understand content strategy, including for mobile:
 
 A sample goal and content model for a fictitious news organization are presented below.
 
-* [Goal](content/goal)
+* [Vision Statement](content/vision)
 * **Content Types:**
 	* [Article](content/article)
 	* [Human Interest Story](content/human-interest-story)

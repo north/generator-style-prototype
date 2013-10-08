@@ -12,8 +12,8 @@
 
 **Benefits:**
 
-* As a reader, I would like to connect to the people effected by events in the world
-* As a site owner, I would like reduce bounce rate by providing additional engagement opportunities to readers
+* *As a* reader, *I want* to connect to the people effected by events in the world *so that* I can identify more closely with those events
+* *As a* site owner, *I want* to provide additional engagement opportunities to readers *so that* I can reduce bounce rate and increase ad revenue
 
 **Value:**
 
@@ -22,13 +22,60 @@
 * Revenue per Ad per Year: $200
 * *$199 Nett Ad Revenue per Year*
 
-**Chunks:**
+**Attributes:**
 
-* **Title** [1, Required] - A descriptive title of the content. Limited to 127 characters
-* **Body** [1, Required] - Long Form text box that accepts plaintext or Markdown.
-* **Author** [1, Required] - Reference to Author entity
-* **Published Date** [1, Required] - Datestamp of when story was published
-* **Summary** [1, Required] - Short summary of article. Limited to 200 characters.
-* **Primary Media** [1, Required] - Primary image or video for article. Reference to Image or Video entity
-* **Related Media Gallery** [1, Optional] - Reference to Media Gallery entity.
-* **Taxonomy** [Multiple, 1 Required] - Reference to Term entity to relate Content entities together
+* **Title**
+	* *Total:* 1
+	* *Required:* true
+	* *Type:* text input
+	* *Character Limit:* 127
+	* *Description:* A descriptive title of the content
+* **Body**
+	* *Total:* 1
+	* *Required:* true
+	* *Type:* long text input
+	* *Character Limit:* false
+	* *Description:* Long Form text box of main content
+* **Author**
+	* *Total:* 1
+	* *Required:* true
+	* *Type:* reference (person)
+	* *Description:* Author who wrote article
+* **Published Date**
+	* *Total:* 1
+	* *Required:* true
+	* *Type:* datestamp
+	* *Formatting:* mm/dd/yyyy hh:mm
+	* *Description:* Date, including hour and minute, of when article was published
+* **Summary**
+	* *Total:* 1
+	* *Required:* true
+	* *Type:* text input
+	* *Character Limit:* 200
+	* *Description:* Summary of article
+* **Primary Media**
+	* *Total:* 1
+	* *Required:* true
+	* *Type:* reference (image, video, audio)
+	* *Description:* Primary media for article
+* **Related Media Gallery**
+	* *Total:* 1
+	* *Required:* false
+	* *Type:* reference (media gallery)
+	* *Description:* Related media gallery
+* **Taxonomy**
+	* *Total:* multiple
+	* *Required:* true
+	* *Type:* reference (term)
+	* *Minimum:* 1
+	* *Maximum:* 5
+	* *Description:* Taxonomy allows content types to be related to each other in a meta sense
+	
+**Relationships**
+
+* Person
+* Image
+* Video
+* Audio
+* Media Gallery
+* Term
