@@ -168,7 +168,7 @@ b[data-menu-toggle] {
     color: $prototype-header-text-color;
 
     &:after {
-      @include create-transform($rotate-z: 45deg, $trans-y: -0em, $trans-x: .2em);
+      @include create-transform($rotate-z: 45deg, $trans-y: -0em, $trans-x: .225em);
     }
   }
 }
