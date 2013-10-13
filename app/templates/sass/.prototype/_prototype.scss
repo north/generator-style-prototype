@@ -124,7 +124,6 @@ $prototype-header-text-color: #161616;
 b[data-menu-toggle] {
   font-weight: 300;
   height: 1em;
-  line-height: 1em;
   position: relative;
 
   #prototype-nav > & {
@@ -169,7 +168,7 @@ b[data-menu-toggle] {
     color: $prototype-header-text-color;
 
     &:after {
-      @include create-transform($rotate-z: 45deg, $trans-y: -0em, $trans-x: .1em);
+      @include create-transform($rotate-z: 45deg, $trans-y: -0em, $trans-x: .225em);
     }
   }
 }
