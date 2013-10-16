@@ -63,6 +63,10 @@ After you have installed the underlying dependencies, you need to install the ge
 npm install -g yo grunt-cli bower generator-style-prototype weinre
 ```
 
+```bash
+gem install bundler
+```
+
 You may need to run these as an administrator. To do so, type `sudo` in front of both `gem` and `npm`. This command will install the Ruby gem [Bundler](http://gembundler.com/) for handling gem dependencies, Yeoman, [Grunt](http://gruntjs.com/), [Bower](http://bower.io/), and the Style Prototype generator.
 
 #### Please Note
