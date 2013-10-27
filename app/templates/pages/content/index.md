@@ -78,7 +78,7 @@ These resources will help you understand content strategy, including for mobile:
 
 A sample goal and content model for a fictitious news organization are presented below.
 
-* [Vision Statement](content/vision)
+* [Vision Statement](/content/vision)
 * **Content Types:**
-	* [Article](content/article)
-	* [Human Interest Story](content/human-interest-story)
+	* [Article](/content/article)
+	* [Human Interest Story](/content/human-interest-story)
