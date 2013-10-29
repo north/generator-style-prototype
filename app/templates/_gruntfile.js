@@ -78,7 +78,7 @@ module.exports = function (grunt) {
   var remoteHost = os.networkInterfaces();
   for (var dev in remoteHost) {
     var alias = 0;
-    remoteHost[dev].forEach(function (details) {
+    _.forEach(remoteHost[dev], function (details) {
       if (details.family=='IPv4') {
         if (dev === 'en0') {
           remoteHost = details.address;
