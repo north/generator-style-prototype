@@ -24,7 +24,7 @@ prototype:
   webfonts:
     # Typekit Kit ID (uses advanced loading method)
     typekit: false
-    # Copy in the the families from inside the brackets [] from the JavaScript tab. Be sure to wrap it in "double quotes".
+    # Copy in the the families from inside the brackets [] from the JavaScript tab. Be sure to wrap it in "double quotes". e.g.: "'Open+Sans::latin'"
     googleFonts: false
 
 ## Main Navigation Sections
