@@ -4,6 +4,7 @@ var _ = require('underscore');
 var _s = require('underscore.string');
 var modRewrite = require('connect-modrewrite');
 var Handlebars = require('handlebars');
+var iniparser = require('iniparser');
 
 //////////////////////////////
 // Handlebars Helpers for component templating
@@ -13,6 +14,15 @@ Handlebars.registerHelper('slugify', function(input) {
 });
 Handlebars.registerHelper('capitalize', function(input) {
   return _s.capitalize(input);
+});
+Handlebars.registerHelper('uppercase', function(input) {
+  return input.toUpperCase();
+});
+Handlebars.registerHelper('aspect', function(object, aspect) {
+  return _s.slugify(object) + '--' + _s.slugify(aspect).toUpperCase();
+});
+Handlebars.registerHelper('element', function(object, element) {
+  return _s.slugify(object) + '--' + _s.slugify(element).toLowerCase();
 });
 Handlebars.registerHelper('flatten', function (input, separator) {
   if (typeof(input) === 'object') {
@@ -573,8 +583,21 @@ module.exports = function (grunt) {
   grunt.registerTask('build', 'Production build', function() {
     var commit = grunt.option('commit');
     var deploy = grunt.option('deploy');
+    var first = userConfig.sections[Object.keys(userConfig.sections)[0]];
 
     grunt.task.run(['parallel:assets', 'compass:dist', 'jshint']);
+
+    var git = iniparser.parseSync('.git/config') || false;
+    var gitURL = git['remote "' + userConfig.git.deployUpstream + '"'].url;
+    if (gitURL.indexOf('git@github.com:') >= 0) {
+      gitURL = gitURL.replace('git@github.com:', '');
+      gitURL = gitURL.split('/');
+      gitURL[1] = gitURL[1].replace('.git', '');
+    }
+
+    var redirect = "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"robots\" content=\"noindex\"><meta http-equiv=\"refresh\" content=\"0;URL='http://" + gitURL[0].toLowerCase() + ".github.io/" + gitURL[1] + "/" + first + "'\"><title>" + userConfig.client.name + " Style Prototype</title></head><body></body></html>";
+
+    grunt.file.write('./.dist/index.html', redirect);
 
     if (commit) {
       if (commit === true) {
