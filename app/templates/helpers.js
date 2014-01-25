@@ -2,6 +2,7 @@ var fs = require('fs');
 var _s = require ('underscore.string');
 var yaml = require('js-yaml');
 var marked = require('marked');
+
 marked.setOptions({
   gfm: true,
   langPrefix: 'language-',
@@ -218,10 +219,8 @@ module.exports = {
   },
   'prototype-navigation': function(menu) {
     var basePath = this.options.assets;
-    if (basePath === '/') {
-      basePath = '';
-    }
-    var path = basePath + this.options.userConfig.generator.pagesDir + '/';
+
+    var path = this.options.userConfig.generator.pagesDir + '/';
 
     var output = '';
 
