@@ -128,7 +128,7 @@ AppGenerator.prototype.askFor = function askFor() {
         default: '',
         validate: function (input) {
           try {
-            check(input).isUrl()
+	    check(input).isUrl();
           }
           catch (err) {
             return 'Please enter a valid URL';
