@@ -26,7 +26,8 @@
     "underscore.string": "~2.3.3",
     "js-yaml": "~2.1.0",
     "connect-modrewrite": "~0.5.8",
-    "handlebars": "~1.0.12"
+    "handlebars": "~1.0.12",
+    "iniparser": "~1.0.5"
   },
   "engines": {
     "node": ">=0.8.0"
