@@ -115,9 +115,7 @@ compass:
   debugInfo: false
   # Your dependencies should all go here. Style Prototypes will automatically generate your Bundler Gemfile and Gemfile.lock for you. If you run into dependency issues with Bundler, update your gem versions here.
   dependencies:
-    sass: ">=3.2.0"
-    compass: '>=0.12.1'
-    style-prototypes: "~>1.3.0"
+    style-prototypes: "~>2.0.0.alpha.1"
 
 #########################
 ## Versioning
