@@ -1,9 +1,10 @@
-@import "toolkit-no-css";
+@import "compass";
+@import "toolkit";
 @import "breakpoint";
 
 @mixin golden($dir) {
   @if breakpoint-has-context() {
-    @include box-sizing('border-box', false);
+    @include box-sizing('border-box');
   }
   @else {
     @include box-sizing('border-box');

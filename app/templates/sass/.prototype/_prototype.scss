@@ -1,11 +1,7 @@
 // Style Prototypes rely upon Toolkit and Breakpoint compass extensions, to be sure to keep them available in your Gemfile.
-@import "toolkit-no-css";
+@import "toolkit";
 @import "breakpoint";
 @import "color-schemer";
-
-$experimental-support-for-webkit: true;
-$experimental-support-for-moz: true;
-$experimental-support-for-microsoft: true;
 
 main {
   display: block;
@@ -32,7 +28,7 @@ body {
 
 $prototype-header-text-color: #161616;
 @if (cs-is-dark($sp-header-color)) {
-  $prototype-header-text-color: #e9e9e9;
+  $prototype-header-text-color: #e9e9e9 !global;
 };
 
 #prototype-section--header {
@@ -255,4 +251,60 @@ b[data-menu-toggle="open"] {
       bottom: 1em;
     }
   }
+}
+
+
+.prototype--ia-group {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  border: 1px solid #999;
+  padding: .25em;
+  background: #ddd;
+  margin-bottom: 1em;
+
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.prototype--ia-content {
+  font-family: sans-serif;
+  display: block;
+  list-style-type: disc;
+  margin-left: 1em;
+  padding-left: 1em;
+
+  li {
+    display: list-item;
+    margin-left: 0;
+  }
+}
+
+.prototype--ia-ct {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.prototype--ia-attr {
+  font-family: sans-serif;
+  font-style: italic;
+  margin-left: .25em;
+}
+
+.prototype--ia-header {
+  font-family: sans-serif;
+  font-size: 1.25rem;
+  line-height: 1em;
+  margin: 0;
+}
+
+.prototype--ia-details {
+  display: block;
+}
+
+.prototype--ia-summary {
+  font-family: sans-serif;
+  font-weight: normal;
 }
