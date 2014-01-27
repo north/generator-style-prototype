@@ -25,7 +25,7 @@
 
 .text-examples {
   width: 100%;
-  @include clearfix(true);
+  @extend %prototype-clearfix;
   @include breakpoint($sp-single-to-multi-column) {
     @include golden('left');
   }
@@ -33,7 +33,7 @@
 
 .graphic-examples {
   width: 100%;
-  @include clearfix(true);
+  @extend %prototype-clearfix;
   @include breakpoint($sp-single-to-multi-column) {
     @include golden('right');
   }
@@ -43,7 +43,7 @@
   ul {
     text-align: center;
     list-style: none;
-    @include clearfix(true);
+    @extend %prototype-clearfix;
     margin: 0;
     padding: .5em;
   }

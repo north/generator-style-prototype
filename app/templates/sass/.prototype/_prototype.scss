@@ -3,6 +3,10 @@
 @import "breakpoint";
 @import "color-schemer";
 
+%prototype-clearfix {
+  @include clearfix;
+}
+
 main {
   display: block;
 }
@@ -22,7 +26,7 @@ body {
 .content-wrapper {
   max-width: $sp-max-page-width;
   @include box-sizing('border-box');
-  @include clearfix(true);
+  @extend %prototype-clearfix;
   padding: .5em .75em;
 }
 
@@ -32,7 +36,7 @@ $prototype-header-text-color: #161616;
 };
 
 #prototype-section--header {
-  @include clearfix(true);
+  @extend %prototype-clearfix;
 
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
@@ -45,7 +49,7 @@ $prototype-header-text-color: #161616;
   background: $sp-header-color;
 
   header {
-    @include clearfix(true);
+    @extend %prototype-clearfix;
   }
 
  .inner-wrapper {
@@ -100,7 +104,7 @@ $prototype-header-text-color: #161616;
 
 #client-id {
   width: 100%;
-  @include clearfix(true);
+  @extend %prototype-clearfix;
 
   @include breakpoint($sp-single-to-multi-column) {
     @include golden('left');
@@ -109,7 +113,7 @@ $prototype-header-text-color: #161616;
 
 #page-id {
   width: 100%;
-  @include clearfix(true);
+  @extend %prototype-clearfix;
 
   @include breakpoint($sp-single-to-multi-column) {
     text-align: right;
