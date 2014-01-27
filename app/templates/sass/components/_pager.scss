@@ -4,6 +4,7 @@
 // The partial and folder structure for this component should be as follows:
 // _pager.scss
 // pager (folder)
+//   _variables.scss
 //   _mixins.scss
 //   _extends.scss
 //
@@ -15,8 +16,9 @@
 //  - End styling block for specific component configuration:   {component--configuration}@
 //////////////////////////////
 
-@import 'pager/mixins';
-@import 'pager/extends';
+@import "pager/variables";
+@import "pager/mixins";
+@import "pager/extends";
 
 //////////////////////////////
 // Having $output-selectors and $output-selectors--pager set to `true` will output the CSS selectors for Pager Component

@@ -4,6 +4,7 @@
 // The partial and folder structure for this component should be as follows:
 // _a11y.scss
 // a11y (folder)
+//   _variables.scss
 //   _mixins.scss
 //   _extends.scss
 //
@@ -15,6 +16,7 @@
 //  - End styling block for specific component configuration:   {component--configuration}@
 //////////////////////////////
 
+@import "a11y/variables";
 @import "a11y/mixins";
 @import "a11y/extends";
 

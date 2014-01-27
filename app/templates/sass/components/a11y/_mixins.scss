@@ -1,13 +1,6 @@
 //////////////////////////////
 // Accessibility Component Mixins
 //////////////////////////////
-
-//////////////////////////////
-// A11y Default Variables
-$a11y-hidden-base-extend: true !default;
-$a11y-focusable-default: false !default;
-//////////////////////////////
-
 @mixin a11y-hidden($a11y-focusable: $a11y-focusable-default, $extend: $a11y-hidden-base-extend) {
   @if $extend {
     @if $a11y-focusable {

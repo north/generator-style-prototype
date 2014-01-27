@@ -2,29 +2,23 @@
 // Message Component Extendable Classes
 //////////////////////////////
 
-$message-extendables-extended: false !default;
-
-@if not ($message-extendables-extended) {
-  %message-base-extend {
-    @include message-base(false);
-  }
-  %message-colors-extend {
-    @include message-colors($cs-status-status, $extend: false);
-  }
-
-  %message {
-    @extend %message-base-extend;
-    @extend %message-colors-extend;
-  }
-  %status {
-    @include message-colors($cs-status-status);
-  }
-  %warning {
-    @include message-colors($cs-status-warning);
-  }
-  %error {
-    @include message-colors($cs-status-error);
-  }
+%message-base-extend {
+  @include message-base(false);
+}
+%message-colors-extend {
+  @include message-colors($cs-status-status, $extend: false);
 }
 
-$message-extendables-extended: true;
+%message {
+  @extend %message-base-extend;
+  @extend %message-colors-extend;
+}
+%status {
+  @include message-colors($cs-status-status);
+}
+%warning {
+  @include message-colors($cs-status-warning);
+}
+%error {
+  @include message-colors($cs-status-error);
+}

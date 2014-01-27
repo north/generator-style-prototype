@@ -2,43 +2,37 @@
 // Button Component Extendable Classes
 //////////////////////////////
 
-$button-extendables-extended: false !default;
-
-@if not ($button-extendables-extended) {
-  %button-base-extend {
-    @include button-base(false);
-  }
-  %button-size-normal-extend {
-    @include button-size-normal(false);
-  }
-
-  %button-size-large-extend {
-    @include button-size-large(false);
-  }
-
-  %button-colors-extend {
-    @include button-colors($extend: false);
-  }
-  %button {
-    @include button-base(true);
-    @include button-size-normal(true);
-    @include button-colors($gray, $extend: true);
-  }
-  %button-warning {
-    @extend %warning;
-    @include button-hover($cs-status-warning);
-    @include button-active($cs-status-warning);
-  }
-  %button-big {
-    @include button-base(true);
-    @include button-size-large(true);
-    @include button-colors(nth($quaternary-tints, 6), $extend: true);
-  }
-  %button-cta {
-    @include button-base(true);
-    @include button-size-normal(true);
-    @include button-colors($button-color: nth($primary-shades, 4));
-  }
+%button-base-extend {
+  @include button-base(false);
+}
+%button-size-normal-extend {
+  @include button-size-normal(false);
 }
 
-$button-extendables-extended: true;
+%button-size-large-extend {
+  @include button-size-large(false);
+}
+
+%button-colors-extend {
+  @include button-colors($extend: false);
+}
+%button {
+  @include button-base(true);
+  @include button-size-normal(true);
+  @include button-colors($gray, $extend: true);
+}
+%button-warning {
+  @extend %warning;
+  @include button-hover($cs-status-warning);
+  @include button-active($cs-status-warning);
+}
+%button-big {
+  @include button-base(true);
+  @include button-size-large(true);
+  @include button-colors(nth($quaternary-tints, 6), $extend: true);
+}
+%button-cta {
+  @include button-base(true);
+  @include button-size-normal(true);
+  @include button-colors($button-color: nth($primary-shades, 4));
+}

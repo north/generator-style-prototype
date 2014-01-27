@@ -4,6 +4,7 @@
 // The partial and folder structure for this component should be as follows:
 // _message.scss
 // message (folder)
+//   _variables.scss
 //   _mixins.scss
 //   _extends.scss
 //
@@ -15,6 +16,7 @@
 //  - End styling block for specific component configuration:   {component--configuration}@
 //////////////////////////////
 
+@import "message/variables";
 @import "message/mixins";
 @import "message/extends";
 
