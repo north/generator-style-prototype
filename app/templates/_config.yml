@@ -29,11 +29,12 @@ prototype:
 
 ## Main Navigation Sections
 sections:
-  Content Strategy: content
   Style Tile: style-tile
   Elements: elements
   Components: components
+  Layouts: layouts
   Colors: colors
+  Content Strategy: content
 
 ## Style Tile Options
 styleTile:
@@ -75,6 +76,14 @@ components:
           - warning
 
 #########################
+## Layout Guide
+#########################
+layouts:
+  article:
+    - with media
+    - without media
+
+#########################
 ## Color Guide
 #########################
 colors:
@@ -113,9 +122,11 @@ export:
 #########################
 compass:
   debugInfo: false
+  # This will enable [Compass Import Once](https://github.com/chriseppstein/compass/blob/master/import-once/README.md).
+  importOnce: true
   # Your dependencies should all go here. Style Prototypes will automatically generate your Bundler Gemfile and Gemfile.lock for you. If you run into dependency issues with Bundler, update your gem versions here.
   dependencies:
-    style-prototypes: "~>2.0.0.alpha.1"
+    style-prototypes: "~>2.0.0.alpha.2"
 
 #########################
 ## Versioning
