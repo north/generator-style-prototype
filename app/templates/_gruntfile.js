@@ -123,13 +123,29 @@ module.exports = function (grunt) {
   // Export Configuration
   var distPath = userConfig.export.distPath;
   var exportPath = userConfig.export.path;
-  var assetPrefix = userConfig.export.assetPrefix;
+  var assetPrefix = '';
 
   // Github Configuration
   var gh_commit = userConfig.git.defaultCommit;<% if (ghDeploy) { %>
   var gh_upstream = userConfig.git.deployUpstream;
   var gh_deploy = userConfig.git.deployBranch;
   <% } %>
+
+  // Base URL
+  var baseURL = '/';
+
+  if (grunt.file.exists('.git/config')) {
+    var git = iniparser.parseSync('.git/config') || false;
+    var gitURL = git['remote "' + userConfig.git.deployUpstream + '"'].url;
+    if (gitURL.indexOf('git@github.com:') >= 0) {
+      gitURL = gitURL.replace('git@github.com:', '');
+      gitURL = gitURL.split('/');
+      gitURL[1] = gitURL[1].replace('.git', '');
+      baseURL = 'http://' + gitURL[0].toLowerCase() + '.github.io/' + gitURL[1] + '/';
+      assetPrefix = gitURL[1];
+    }
+  }
+
   //////////////////////////////
   //Grunt Config
   //////////////////////////////
@@ -605,8 +621,6 @@ module.exports = function (grunt) {
     }
 
     var redirect = "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"robots\" content=\"noindex\"><meta http-equiv=\"refresh\" content=\"0;URL='" + baseURL + first + "'\"><title>" + userConfig.client.name + " Style Prototype</title></head><body></body></html>";
-
-    var redirect = "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"robots\" content=\"noindex\"><meta http-equiv=\"refresh\" content=\"0;URL='http://" + gitURL[0].toLowerCase() + ".github.io/" + gitURL[1] + "/" + first + "'\"><title>" + userConfig.client.name + " Style Prototype</title></head><body></body></html>";
 
     grunt.file.write('./.dist/index.html', redirect);
 
