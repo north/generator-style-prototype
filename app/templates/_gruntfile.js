@@ -116,6 +116,9 @@ module.exports = function (grunt) {
   _.forEach(userConfig.compass.dependencies, function(v, e) {
     extensions.push(e);
   });
+  if (userConfig.compass.importOnce === true) {
+    extensions.push('compass/import-once/activate');
+  }
 
   // Export Configuration
   var distPath = userConfig.export.distPath;
@@ -170,9 +173,10 @@ module.exports = function (grunt) {
       generatedComponents: {
         files: [
           templatesDir + '/components/**/*.html',
+	  templatesDir + '/layouts/**/*.html',
           'config.yml'
         ],
-        tasks: ['create-components']
+	tasks: ['create-components', 'create-layouts']
       },
       js: {
         files: [
@@ -587,13 +591,20 @@ module.exports = function (grunt) {
 
     grunt.task.run(['parallel:assets', 'compass:dist', 'jshint']);
 
-    var git = iniparser.parseSync('.git/config') || false;
-    var gitURL = git['remote "' + userConfig.git.deployUpstream + '"'].url;
-    if (gitURL.indexOf('git@github.com:') >= 0) {
-      gitURL = gitURL.replace('git@github.com:', '');
-      gitURL = gitURL.split('/');
-      gitURL[1] = gitURL[1].replace('.git', '');
+    var baseURL = '/';
+
+    if (grunt.file.exists('.git/config')) {
+      var git = iniparser.parseSync('.git/config') || false;
+      var gitURL = git['remote "' + userConfig.git.deployUpstream + '"'].url;
+      if (gitURL.indexOf('git@github.com:') >= 0) {
+	gitURL = gitURL.replace('git@github.com:', '');
+	gitURL = gitURL.split('/');
+	gitURL[1] = gitURL[1].replace('.git', '');
+	baseURL = 'http://' + gitURL[0].toLowerCase() + '.github.io/' + gitURL[1] + '/';
+      }
     }
+
+    var redirect = "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"robots\" content=\"noindex\"><meta http-equiv=\"refresh\" content=\"0;URL='" + baseURL + first + "'\"><title>" + userConfig.client.name + " Style Prototype</title></head><body></body></html>";
 
     var redirect = "<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\" /><meta name=\"robots\" content=\"noindex\"><meta http-equiv=\"refresh\" content=\"0;URL='http://" + gitURL[0].toLowerCase() + ".github.io/" + gitURL[1] + "/" + first + "'\"><title>" + userConfig.client.name + " Style Prototype</title></head><body></body></html>";
 
@@ -664,7 +675,7 @@ module.exports = function (grunt) {
     var launch = grunt.option('launch');
 
     grunt.task.run(['bundler']);
-    grunt.task.run(['create-components']);
+    grunt.task.run(['create-components', 'create-layouts']);
 
 
     grunt.task.run(['server-init', 'connect']);
@@ -735,88 +746,100 @@ module.exports = function (grunt) {
   });
 
   //////////////////////////////
-  // Create Components from Templates
+  // Create Items from Templates
   //////////////////////////////
-  grunt.registerTask('create-components', 'Build real components from component templates', function() {
+  grunt.registerTask('create-components', 'Build real component from template', function() {
+    grunt.task.run(['generate-items:components']);
+  });
+
+  grunt.registerTask('create-layouts', 'Build real layout from template', function() {
+    grunt.task.run(['generate-items:layouts']);
+  });
+
+  grunt.registerTask('generate-items', 'Build real components from component templates', function(type) {
+
+    var items = (type === 'components') ? grunt.userConfig.components : (type === 'layouts') ? grunt.userConfig.layouts : {};
+    var typeSubstring = type.substr(0, type.length - 1);
+    items = (items !== undefined) ? items : {};
+
     // Loop over each item in components
-    _.forEach(grunt.userConfig.components, function(v, e) {
+    _.forEach(items, function(v, e) {
       // Grab the template prefix for this component
       var tmpl = _s.slugify(e);
       // Check to see if the template exists, and if not, create it
-      var tmplPath = 'templates/components/' + tmpl + '.html';
+      var tmplPath = 'templates/' + type + '/' + tmpl + '.html';
       if (!grunt.file.exists(tmplPath)) {
-        var tmplContent = '<!-- Component: {{capitalize component}},  Type: {{capitalize type}} -->';
+	var tmplContent = '<!-- ' + _s.capitalize(type) + ': {{capitalize ' + typeSubstring + '}},  Type: {{capitalize type}} -->';
         grunt.file.write(tmplPath, tmplContent);
       }
       // Load the template from the templates directory
       var template = grunt.file.read(tmplPath);
       // Create Holder Partial
-      var partial = '<div class="component-group--' + tmpl + '">' +
+      var partial = '<div class="' + typeSubstring + '-group--' + tmpl + '">' +
 '\n\n  {{#if page.examples}}' +
-'\n    {{{create-example-sass "' + tmpl + '" all true}}}' +
+'\n    {{{create-example-sass "' + tmpl + '" all true "' + type + '"}}}' +
 '\n  {{/if}}' +
-'\n  <ul component-list>' +
-'\n    {{#each options.grunt.userConfig.components.' + tmpl + '}}' +
+'\n  <ul ' + type + '-list>' +
+'\n    {{#each options.grunt.userConfig.' + type + '.' + tmpl + '}}' +
 '\n      <li>' +
-'\n        {{{component "' + tmpl + '" this}}}' +
+'\n        {{{component "' + tmpl + '" this "' + type + '"}}}' +
 '\n\n        {{#if ../page.examples}}' +
-'\n          {{{create-example-html "' + tmpl + '" ../this}}}' +
-'\n          {{{create-example-sass "' + tmpl + '" ../this}}}' +
+'\n          {{{create-example-html "' + tmpl + '" ../this "' + type + '"}}}' +
+'\n          {{{create-example-sass "' + tmpl + '" ../this false "' + type + '"}}}' +
 '\n        {{/if}}' +
 '\n      </li>' +
 '\n    {{/each}}' +
 '\n  </ul>' +
 '\n</div>';
-      grunt.file.write('partials/components/component-group--' + tmpl + '.html', partial);
+      grunt.file.write('partials/' + type + '/' + typeSubstring + '-group--' + tmpl + '.html', partial);
 
-      var basePath = 'sass/components/_' + tmpl + '.scss';
-      var mixinPath = 'sass/components/' + tmpl + '/_mixins.scss';
-      var extendsPath = 'sass/components/' + tmpl + '/_extends.scss';
+      var basePath = 'sass/' + type + '/_' + tmpl + '.scss';
+      var varsPath = 'sass/' + type + '/' + tmpl + '/_variables.scss';
+      var mixinPath = 'sass/' + type + '/' + tmpl + '/_mixins.scss';
+      var extendsPath = 'sass/' + type + '/' + tmpl + '/_extends.scss';
 
       var supportHeader = '//////////////////////////////' +
-'\n// ' + _s.capitalize(e) + ' Component {{type}}' +
+'\n// ' + _s.capitalize(e) + ' ' + _s.capitalize(type) + ' {{type}}' +
 '\n//////////////////////////////';
       var basePartial = '//////////////////////////////' +
-'\n// ' + _s.capitalize(e) + ' Component' +
+'\n// ' + _s.capitalize(e) + ' ' + _s.capitalize(type) + '' +
 '\n//' +
-'\n// The partial and folder structure for this component should be as follows:' +
+'\n// The partial and folder structure for this ' + type + ' should be as follows:' +
 '\n// _' + tmpl + '.scss' +
 '\n// ' + tmpl + ' (folder)' +
+'\n//   _variables.scss' +
 '\n//   _mixins.scss' +
 '\n//   _extends.scss' +
 '\n//' +
 '\n// Automatic Sass parsing is done through special comment blocks' +
-'\n//  - Start styling block for base component: @{component}' +
-'\n//  - End styling block for base component:   {component}@' +
+'\n//  - Start styling block for base ' + type + ': @{' + type + '}' +
+'\n//  - End styling block for base ' + type + ':   {' + type + '}@' +
 '\n//' +
-'\n//  - Start styling block for specific component configuration: @{component--configuration}' +
-'\n//  - End styling block for specific component configuration:   {component--configuration}@' +
+'\n//  - Start styling block for specific ' + type + ' configuration: @{' + type + '--configuration}' +
+'\n//  - End styling block for specific ' + type + ' configuration:   {' + type + '--configuration}@' +
 '\n//////////////////////////////\n' +
+'\n@import "' + tmpl + '/variables";' +
 '\n@import "' + tmpl + '/mixins";' +
 '\n@import "' + tmpl + '/extends";' +
 '\n\n//////////////////////////////' +
-'\n// Having $output-selectors and $output-selectors--' + tmpl + ' set to `true` will output the CSS selectors for ' + _s.capitalize(e) + 'Component' +
+'\n// Having $output-selectors and $output-selectors--' + tmpl + ' set to `true` will output the CSS selectors for ' + _s.capitalize(e) + '' + _s.capitalize(type) + '' +
 '\n$output-selectors--' + tmpl + ': true !default;' +
-'\n@if $output-selectors and $output-selectors--' + tmpl + ' {' +
+'\n@if $output-selectors and $output-selectors--' + tmpl + '-' + typeSubstring + ' {' +
 '\n//////////////////////////////' +
 '\n\n//////////////////////////////' +
 '\n// @{' + tmpl + '}' +
-'\n// Styling for ' + _s.capitalize(e) + ' Component' +
+'\n// Styling for ' + _s.capitalize(e) + ' ' + _s.capitalize(type) + '' +
 '\n\n// {' + tmpl + '}@' +
 '\n//////////////////////////////\n\n';
 
       if (!grunt.file.exists(mixinPath)) {
         grunt.file.write(mixinPath, supportHeader.replace('{{type}}', 'Mixins'));
       }
+      if (!grunt.file.exists(varsPath)) {
+	grunt.file.write(varsPath, supportHeader.replace('{{type}}', 'Variables'));
+      }
       if (!grunt.file.exists(extendsPath)) {
-        var extend = supportHeader.replace('{{type}}', 'Extendable Classes');
-        extend += '\n\n' +
-'$' + tmpl + '-extendables-extended: false !default;' +
-'\n\n@if not ($' + tmpl + '-extendables-extended) {' +
-'\n  // Replace this line with extendable calsses' +
-'\n}' +
-'\n\n$' + tmpl + '-extendables-extended: true;';
-        grunt.file.write(extendsPath, extend);
+	grunt.file.write(extendsPath, supportHeader.replace('{{type}}', 'Extendable Classes'));
       }
 
       // Loop over each version of the component
@@ -833,12 +856,16 @@ module.exports = function (grunt) {
           value = value[name];
         }
         // Set up Name and Component Context
-        var context = {'type': name, 'component': e};
+	var typeKey = typeSubstring;
+	var typeVal = e;
+	var context = JSON.parse('{"' + typeKey + '":"' + typeVal + '"}');
+	context.type = name;
+	// var context = {'type': name, typeSubstring: e};
 
         // Create comment for base partial if it the partial doesn't exist
         basePartial += '\n//////////////////////////////' +
 '\n// @{' + tmpl + '--' + _s.slugify(name) + '}' +
-'\n// ' + _s.capitalize(name) + ' styling for ' + _s.capitalize(e) + ' Component' +
+'\n// ' + _s.capitalize(name) + ' styling for ' + _s.capitalize(e) + ' ' + _s.capitalize(type) + '' +
 '\n\n// {' + tmpl + '--' + _s.slugify(name) + '}@' +
 '\n//////////////////////////////\n\n';
 
@@ -852,7 +879,7 @@ module.exports = function (grunt) {
         // Compile the template through Handlebars
         var hbCompile = Handlebars.compile(template);
         // Write component to disk
-        grunt.file.write('partials/components/' + tmpl + '/' + tmpl + '--' + _s.slugify(name) + '.html', hbCompile(context));
+	grunt.file.write('partials/' + type + '/' + tmpl + '/' + tmpl + '--' + _s.slugify(name) + '.html', hbCompile(context));
       });
       // If the base partial doesn't exist, create it.
       basePartial += '}';
