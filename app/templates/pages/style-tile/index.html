@@ -2,50 +2,51 @@
   "title": "Style Tile"
 }
 ---
+<div class="base--STYLED">
+  <article class="text-examples">
+    <div class="headers group">
+      {{#markdown}}
+  ## This is a header
+  ### This is a Sub Header
 
-<article class="text-examples">
-  <div class="headers group">
-    {{#markdown}}
-## This is a header
-### This is a Sub Header
+  [This is an example of link text](#)
+    {{/markdown}}
+    </div>
+    <div class="text group">
+      {{#markdown}}
+  Nullam id dolor id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.
 
-[This is an example of link text](#)
-  {{/markdown}}
-  </div>
-  <div class="text group">
-    {{#markdown}}
-Nullam id dolor id nibh ultricies vehicula ut id elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.
+  Maecenas faucibus mollis interdum. Vivamus sagittis [donec odio](#) lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Sed posuere consectetur est at lobortis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 
-Maecenas faucibus mollis interdum. Vivamus sagittis [donec odio](#) lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas faucibus mollis interdum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Sed posuere consectetur est at lobortis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+  Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod.
 
-Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod.
+  Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Curabitur blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Maecenas sed diam eget risus varius blandit sit amet non magna.
+    {{/markdown}}
+    </div>
+    {{> component-group--button}}
+  </article>
 
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Curabitur blandit tempus porttitor. Nullam id dolor id nibh ultricies vehicula ut id elit. Cras mattis consectetur purus sit amet fermentum. Maecenas sed diam eget risus varius blandit sit amet non magna.
-  {{/markdown}}
-  </div>
-  {{> component-group--button}}
-</article>
-
-<article class="graphic-examples">
-  <div class="colors groups">
-    <h4>Possible Colors</h4>
-    <ul>
-      {{#for 0 options.grunt.userConfig.styleTile.colors 1}}
-      <li class="color-{{this}}"></li>
-      {{/for}}
-    </ul>
-  </div>
-  <div class="images group">
-    <h4>Possible Patterns</h4>
-    <ul>
-      {{#each options.grunt.userConfig.styleTile.images}}
-        {{{possible-pattern @index this ../this}}}
+  <article class="graphic-examples">
+    <div class="colors groups">
+      <h4>Possible Colors</h4>
+      <ul>
+	{{#for 0 options.grunt.userConfig.styleTile.colors 1}}
+	<li class="color-{{this}}"></li>
+	{{/for}}
+      </ul>
+    </div>
+    <div class="images group">
+      <h4>Possible Patterns</h4>
+      <ul>
+	{{#each options.grunt.userConfig.styleTile.images}}
+	  {{{possible-pattern @index this ../this}}}
+	{{/each}}
+      </ul>
+    </div>
+    <div class="keywords group">
+      {{#each options.grunt.userConfig.styleTile.keywords}}
+      <span class="keyword-{{@index}}">{{this}}</span>
       {{/each}}
-    </ul>
-  </div>
-  <div class="keywords group">
-    {{#each options.grunt.userConfig.styleTile.keywords}}
-    <span class="keyword-{{@index}}">{{this}}</span>
-    {{/each}}
-  </div>
-</article>
+    </div>
+  </article>
+</div>
