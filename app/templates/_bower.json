@@ -2,13 +2,12 @@
   "name": "<%= (clientSlug) %>-styleguide",
   "version": "0.0.0",
   "dependencies": {
-    "formalize": "git://github.com/nathansmith/formalize",
-    "modernizr": "~2.6.2",
-    "jquery": "~2.0.0",
     "prism": "gh-pages",
-    "Element.details": "termi/Element.details"
+    "Element.details": "termi/Element.details",
+    "eq.js": "<2.0.0"
   },
   "devDependencies": {
-    "responsive-indicator": "~0.1.3"
+    "responsive-indicator": "<1.0.0",
+    "north": "<1.0.0"
   }
 }
