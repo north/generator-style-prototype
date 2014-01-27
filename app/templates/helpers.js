@@ -111,14 +111,14 @@ module.exports = {
 
     return output;
   },
-  'create-example-html': function(component, type) {
+  'create-example-html': function(component, type, location) {
     var name = type;
     if (typeof(type) === 'object') {
       name = Object.keys(type)[0];
     }
     name = _s.slugify(name);
 
-    var path = 'partials/components/' + component + '/' + component + '--' + name + '.html';
+    var path = 'partials/' + location + '/' + component + '/' + component + '--' + name + '.html';
     var code = fs.readFileSync('templates/code.html').toString('utf-8');
     code = code.replace('{{summary}}', 'HTML Source');
     code = code.replace('{{language}}', 'markup');
@@ -131,7 +131,7 @@ module.exports = {
 
     return code;
   },
-  'create-example-sass': function(component, type, support) {
+  'create-example-sass': function(component, type, support, location) {
     var name = type;
     if (typeof(type) === 'object') {
       name = Object.keys(type)[0];
@@ -143,8 +143,8 @@ module.exports = {
     }
 
     if (support) {
-      var mixins = 'sass/components/' + component + '/_mixins.scss';
-      var extend = 'sass/components/' + component + '/_extends.scss';
+      var mixins = 'sass/' + location + '/' + component + '/_mixins.scss';
+      var extend = 'sass/' + location + '/' + component + '/_extends.scss';
 
       var mixinFile = '';
       var extendFile = '';
@@ -172,7 +172,7 @@ module.exports = {
       return mixinCode + extendCode;
     }
     else {
-      var path = 'sass/components/_' + component + '.scss';
+      var path = 'sass/' + location + '/_' + component + '.scss';
 
       var code = fs.readFileSync('templates/code.html').toString('utf-8');
       code = code.replace('{{summary}}', 'Sass Source');
@@ -203,7 +203,7 @@ module.exports = {
       return code;
     }
   },
-  'component': function(component, type) {
+  'component': function(component, type, location) {
 
     var name = type;
     if (typeof(type) === 'object') {
@@ -211,7 +211,7 @@ module.exports = {
     }
     name = _s.slugify(name);
 
-    var path = 'partials/components/' + component + '/' + _s.slugify(component) + '--' + name + '.html';
+    var path = 'partials/' + location + '/' + component + '/' + _s.slugify(component) + '--' + name + '.html';
 
     var file = fs.readFileSync(path).toString('utf-8');
 
