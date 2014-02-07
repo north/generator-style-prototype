@@ -1,0 +1,5 @@
+{
+  "name": "Style-prototypes",
+  "description": "Yeoman generator for creating Sass and Compass based living style guides",
+  "tags": ["livingstyleguide", "documentation", "testing", "dry", "yeoman", "style-guide"]
+}
