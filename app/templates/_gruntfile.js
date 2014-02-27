@@ -725,6 +725,7 @@ module.exports = function (grunt) {
   grunt.registerTask('bundler', 'Manages Development Dependencies', function(path) {
     path = path || '.';
     var gemfileContent = '# Pull gems from RubyGems\nsource "https://rubygems.org"\n';
+    gemfileContent += 'gem "rake"\n';
     _.forEach(grunt.userConfig.compass.dependencies, function(v, e) {
       gemfileContent += 'gem "' + e + '", "' + v + '"\n';
     });
