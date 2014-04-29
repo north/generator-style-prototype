@@ -1,6 +1,6 @@
 {
   "name": "generator-style-prototype",
-  "version": "1.0.0-alpha.3",
+  "version": "2.0.0-alpha.1",
   "description": "Yeoman generator for style prototypes",
   "keywords": [
     "yeoman-generator",
@@ -11,20 +11,29 @@
     "style-guide",
     "sass"
   ],
-  "homepage": "https://github.com/Team-Sass/generator-style-prototype",
-  "bugs": "https://github.com/Team-Sass/generator-style-prototype/issues",
-  "author": "Sam Richard",
+  "homepage": "https://github.com/north/generator-style-prototype",
+  "bugs": "https://github.com/north/generator-style-prototype/issues",
+  "author": {
+    "name": "Sam Richard",
+    "url": "https://github.com/Snugug"
+  },
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Team-Sass/generator-style-prototype.git"
+    "url": "git://github.com/north/generator-style-prototype.git"
   },
+  "files": [
+    "app",
+    "shared.js"
+  ],
   "dependencies": {
-    "yeoman-generator": "~0.13.4",
+    "yeoman-generator": "~0.16.0",
     "lodash": "~1.3.1",
     "validator": "~1.1.3",
-    "underscore.string": "~2.3.1",
-    "chalk": "~0.2.0"
+    "underscore.string": "~2.3",
+    "chalk": "~0.4.0",
+    "execSync": "~1.0.1-pre",
+    "inquirer": "^0.4.1"
   },
   "engines": {
     "node": ">=0.8.0"
