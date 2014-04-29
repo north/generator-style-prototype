@@ -1,0 +1,53 @@
+//////////////////////////////
+// <%= projectName %>
+//////////////////////////////
+
+////////////////////////////
+// Cross Browser Support
+$graceful-usage-threshold: 100;
+$critical-usage-threshold: 100;
+
+$browser-minimum-versions: (
+  "ie": "9",
+  "android": "4",
+  "chrome": "31",
+  "safari": "5",
+  "firefox": "25",
+  "ios-safari": "6.0-6.1",
+  "android-chrome": "0"
+);
+////////////////////////////
+
+////////////////////////
+// Compass Imports
+@import "compass";
+@import "compass/reset";
+////////////////////////
+
+////////////////////////
+// Compass Extensions
+@import "toolkit";
+@import "toolkit/kickstart";
+@import "breakpoint";
+@import "singularitygs";
+@import "modular-scale";
+@import "color-schemer";
+////////////////////////
+
+//////////////////////////////
+// GLOBALS
+@import "partials/global/variables";
+@import "partials/global/functions";
+@import "partials/global/mixins";
+@import "partials/global/extends";
+//////////////////////////////
+
+//////////////////////////////
+// COMPONENTS
+
+//////////////////////////////
+
+//////////////////////////////
+// LAYOUTS
+
+//////////////////////////////

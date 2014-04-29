@@ -1,11 +1,12 @@
 node_modules
-/bower_components
+bower_components
+css
+.tmp
 .www
 .sass-cache
 .compass/lib
 .compass/stylesheets
 .compass/templates
-.vendor
+vendor
 export
 *.gem
-<% if (!ghDeploy) { %>.dist<% } %>

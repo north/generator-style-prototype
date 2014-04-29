@@ -1,10 +1,19 @@
 {
-  "name": "<%= (clientSlug) %>-styleguide",
+  "name": "<%= projectSlug %>--style-prototype",
   "version": "0.0.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "vendor"
+  ],
   "dependencies": {
-    "prism": "gh-pages",
-    "Element.details": "termi/Element.details",
-    "eq.js": "<2.0.0"
+    "eq.js": "<2.0.0",
+    "borealis": "<2.0.0",
+    "style-prototype": "~2.0.0-alpha.2"
   },
   "devDependencies": {
     "responsive-indicator": "<1.0.0",
