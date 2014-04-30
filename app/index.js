@@ -52,6 +52,18 @@ var SPGenerator = yeoman.generators.Base.extend({
       }
     }];
 
+    if (!this.options['atomic-design'] && !this.options['north']) {
+      prompts.push(
+        {
+          type: 'list',
+          name: 'projectType',
+          message: 'Would you like to include a base folder structure?',
+          choices: ['North', 'Atomic Design', 'None'],
+          default: 'North'
+        }
+      );
+    }
+
 
     this.prompt(prompts, function (props) {
       this.projectName = props.projectName;
@@ -61,6 +73,15 @@ var SPGenerator = yeoman.generators.Base.extend({
       // Initialization Options
       //////////////////////////////
       this.projectFolder = this.options['init'] ? './' : this.projectSlug + '/';
+      if (this.options['north']) {
+        this.projectType = 'north'
+      }
+      else if (this.options['atomic-design']) {
+        this.projectType = 'atomic-design';
+      }
+      else {
+        this.projectType = _s.slugify(props.projectType) === 'none' ? null : _s.slugify(props.projectType);
+      }
 
       done();
     }.bind(this));
@@ -106,15 +127,17 @@ var SPGenerator = yeoman.generators.Base.extend({
     //////////////////////////////
     // Folders
     //////////////////////////////
-    var folders = ['base', 'components', 'layouts'];
-    for (var i in folders) {
-      this.copy(folders[i] + '.yml', this.projectFolder + folders[i] + '/' + folders[i] + '.yml');
+    if (this.projectType !== null) {
+      this.directory(this.projectType, this.projectFolder);
+    }
+    else {
+      this.copy('sections.yml', this.projectFolder + 'config/sections.yml');
     }
 
     //////////////////////////////
     // Config
     //////////////////////////////
-    this.copy('sections.yml', this.projectFolder + 'config/sections.yml');
+    // this.copy('sections.yml', this.projectFolder + 'config/sections.yml');
     this.copy('style-tile.yml', this.projectFolder + 'config/style-tile.yml');
   },
 
@@ -132,7 +155,14 @@ var SPGenerator = yeoman.generators.Base.extend({
 
   gitkeep: function () {
     // Loop over each folder and add a gitkeep
-    var keep = ['sass', 'images', 'fonts', 'js', 'sass/partials', 'sass/partials/components', 'sass/partials/layouts', 'sass/enhancements', 'sass/fallbacks'];
+    var keep = ['sass', 'images', 'fonts', 'js', 'sass/partials', 'sass/enhancements', 'sass/fallbacks'];
+
+    if (this.projectType === 'north') {
+      keep.push('sass/partials/components', 'sass/partials/layouts')
+    }
+    else if (this.projectType === 'atomic-design') {
+      keep.push('sass/partials/atoms', 'sass/partials/molecules', 'sass/partials/organisms', 'sass/partials/templates');
+    }
 
     for (var i in keep) {
       this.copy('gitkeep', this.projectFolder + keep[i] + '/.gitkeep');
