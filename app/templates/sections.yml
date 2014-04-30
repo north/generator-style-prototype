@@ -1,7 +1,5 @@
 base:
   title: Base
-  plugins:
-    - banana
 components:
   title: Components
 layouts:
