@@ -12,22 +12,28 @@ var SPGenerator = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
 
     this.on('end', function () {
+      //////////////////////////////
+      // If the --init flag isn't passed in, move into project dir
+      //////////////////////////////
+      if (!this.options['init']) {
+        process.chdir(this.projectFolder);
+      }
+
+      //////////////////////////////
+      // Install dependencies unless --skip-install is passed
+      //////////////////////////////
       if (!this.options['skip-install']) {
-        if (!this.options['init']) {
-          process.chdir(this.projectFolder);
-        }
         sh.run('bundle install --path vendor');
         this.installDependencies();
       }
 
-      this.log(chalk.magenta('Git: ' + this.git));
-
-      // if (this.options['git']) {
-      //   if (!this.options['init']) {
-      //     process.chdir(this.projectFolder);
-      //   }
-      //   sh.run('git init');
-      // }
+      //////////////////////////////
+      // If the --git flag is passed, initialize git and add for initial commit
+      //////////////////////////////
+      if (this.options['git']) {
+        sh.run('git init');
+        sh.run('git add . && git commit -m "Style Prototype Generation"');
+      }
     });
   },
 
@@ -52,7 +58,7 @@ var SPGenerator = yeoman.generators.Base.extend({
       }
     }];
 
-    if (!this.options['atomic-design'] && !this.options['north']) {
+    if (!this.options['atomic'] && !this.options['north']) {
       prompts.push(
         {
           type: 'list',
@@ -76,7 +82,7 @@ var SPGenerator = yeoman.generators.Base.extend({
       if (this.options['north']) {
         this.projectType = 'north'
       }
-      else if (this.options['atomic-design']) {
+      else if (this.options['atomic']) {
         this.projectType = 'atomic-design';
       }
       else {
