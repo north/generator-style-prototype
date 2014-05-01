@@ -8,15 +8,18 @@
     "bower_components",
     "test",
     "tests",
-    "vendor"
+    "vendor",
+    "Gulpfile.js",
+    "config",
+    "index.html",
+    "package.json"
   ],
   "dependencies": {
     "eq.js": "<2.0.0",
     "borealis": "<2.0.0",
-    "style-prototype": "~2.0.0-alpha.2"
+    "north": "<1.0.0"
   },
   "devDependencies": {
-    "responsive-indicator": "<1.0.0",
-    "north": "<1.0.0"
+    "style-prototype": "~2.0.0-alpha.2"
   }
 }
