@@ -1,1 +1,3 @@
+# Variables that will be available for `components` patterns.
+# To use: {{components.variable}}
 components:

@@ -1,1 +1,3 @@
+# Variables that will be available for `templates` patterns.
+# To use: {{templates.variable}}
 templates:

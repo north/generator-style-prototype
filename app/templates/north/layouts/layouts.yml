@@ -1,1 +1,3 @@
+# Variables that will be available for `layouts` patterns.
+# To use: {{layouts.variable}}
 layouts:
