@@ -20,6 +20,6 @@
     "north": "<1.0.0"
   },
   "devDependencies": {
-    "style-prototype": "~2.0.0-alpha.4"
+    "style-prototype": "~2.0.0-alpha.6"
   }
 }
