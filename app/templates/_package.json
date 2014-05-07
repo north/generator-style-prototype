@@ -4,7 +4,7 @@
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.6.0",
-    "gulp-style-prototype": "^0.2.2"
+    "gulp-style-prototype": "0.x.x"
   },
   "engines": {
     "node": ">=0.8.0"

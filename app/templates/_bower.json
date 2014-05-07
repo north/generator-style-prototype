@@ -15,11 +15,11 @@
     "package.json"
   ],
   "dependencies": {
-    "eq.js": "<2.0.0",
-    "borealis": "<2.0.0",
-    "north": "<1.0.0"
+    "eq.js": "1.x.x",
+    "borealis": "1.x.x",
+    "north": "0.x.x"
   },
   "devDependencies": {
-    "style-prototype": "~2.0.0-alpha.6"
+    "style-prototype": "2.x.x"
   }
 }
