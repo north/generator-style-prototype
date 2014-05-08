@@ -19,12 +19,23 @@ var SPGenerator = yeoman.generators.Base.extend({
         process.chdir(this.projectFolder);
       }
 
+      var dir = this.projectFolder;
+
       //////////////////////////////
       // Install dependencies unless --skip-install is passed
       //////////////////////////////
       if (!this.options['skip-install']) {
         sh.run('bundle install --path vendor');
-        this.installDependencies();
+        this.installDependencies({
+          callback: function () {
+            console.log('\n\nRunning ' + chalk.yellow('gulp init') + ' for you to initialize your project. If this fails, try running the command yourself\n\n');
+            sh.run('gulp init');
+            console.log('\u001b[2J\u001b[0;0H');
+            console.log(chalk.yellow('★ ') + chalk.green('Installation Complete!\n') +
+              '  ▪ Move into the ' + chalk.cyan(dir) + ' directory\n' +
+              '  ▪ Run ' + chalk.yellow('gulp') + ' to start working with Style Prototypes!');
+          }
+        });
       }
 
       //////////////////////////////
@@ -145,6 +156,7 @@ var SPGenerator = yeoman.generators.Base.extend({
     //////////////////////////////
     // this.copy('sections.yml', this.projectFolder + 'config/sections.yml');
     this.copy('style-tile.yml', this.projectFolder + 'config/style-tile.yml');
+    this.copy('deploy.yml', this.projectFolder + 'config/deploy.yml');
   },
 
   sass: function () {
