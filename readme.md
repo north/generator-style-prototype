@@ -41,13 +41,14 @@ Ensure you have [Ruby](https://www.ruby-lang.org/en/) with [RubyGems](http://rub
 
 1. Install [Homebrew](http://brew.sh/)
 2. `brew update`
-2. `brew install rbenv ruby-build`
-3. Add `eval "$(rbenv init -)"` to your profile (`~/.bashrc` or `~/.zshrc`. If you have not installed `ZSH` or are unsure if you have, use the former) and restart your terminal.
-4. `rbenv install 2.0.0-p451`
-5. `rbenv rehash`
-6. `rbenv shell 2.0.0-p451`
-7. `gem install bundler`
-8. `bash` or `zsh` (if you are running `ZSH`)
+3. `brew install rbenv ruby-build`
+4. Add `eval "$(rbenv init -)"` to your profile (`~/.bashrc` or `~/.zshrc`. If you have not installed `ZSH` or are unsure if you have, use the former) and restart your terminal.
+5. `rbenv install 2.0.0-p451`
+6. `rbenv rehash`
+7. `bash` or `zsh` (if you are running `ZSH`)
+8. `rbenv shell 2.0.0-p451`
+9. `gem install bundler`
+10. `bash` or `zsh` (if you are running `ZSH`)
 
 ## Creating a Style Prototype
 
