@@ -37,7 +37,7 @@ To install the generator, make sure you have [NodeJS](http://nodejs.org/) instal
 $ npm install -g yo gulp bower generator-style-prototype
 ```
 
-Ensure you have [Ruby](https://www.ruby-lang.org/en/) with [RubyGems](http://rubygems.org/) installed as well. If you are on an Apple computer, you need at least Ruby version *2.0.0p451* installed. You can check your Ruby version by running `$ ruby -v`. If you do not have the correct version of Ruby installed, do the following:
+Ensure you have [Ruby](https://www.ruby-lang.org/en/) with [RubyGems](http://rubygems.org/) installed as well. If you are on an Apple computer, you need at least Ruby version *2.0.0p451* installed. You can check your Ruby version by running `$ ruby -v`. If you do not have the correct version of Ruby installed, do the following (you may need to `sudo` these steps):
 
 1. Install [Homebrew](http://brew.sh/)
 2. `brew install rbenv ruby-build`
@@ -56,9 +56,8 @@ Run the following:
 $ yo style-prototype
 ```
 
-
 # License
-© Sam Richard, Mason Wendell
+©2013-2014 Sam Richard
 
-Original code licensed under [GLPv3](http://www.gnu.org/licenses/gpl-3.0.html)
+Original code licensed under [MIT](http://opensource.org/licenses/MIT)
 Open Source projects used within this project retain their original licenses.
