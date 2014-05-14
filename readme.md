@@ -40,6 +40,7 @@ $ npm install -g yo gulp bower generator-style-prototype
 Ensure you have [Ruby](https://www.ruby-lang.org/en/) with [RubyGems](http://rubygems.org/) installed as well. If you are on an Apple computer, you need at least Ruby version *2.0.0p451* installed. You can check your Ruby version by running `$ ruby -v`. If you do not have the correct version of Ruby installed, do the following (you may need to `sudo` these steps):
 
 1. Install [Homebrew](http://brew.sh/)
+2. `brew update`
 2. `brew install rbenv ruby-build`
 3. Add `eval "$(rbenv init -)"` to your profile (`~/.bashrc` or `~/.zshrc`. If you have not installed `ZSH` or are unsure if you have, use the former) and restart your terminal.
 4. `rbenv install 2.0.0-p451`
