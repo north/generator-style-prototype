@@ -24,7 +24,7 @@ var SPSectionGenerator = yeoman.generators.Base.extend({
     }
 
     this.on('end', function () {
-      console.log(chalk.yellow('Please restart `gulp` for your new section to be picked up'));
+      console.log(chalk.yellow('Please restart `gulp` in order for your new section to be picked up'));
     });
   },
 
