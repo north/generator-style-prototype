@@ -36,7 +36,8 @@
     "execSync": "~1.0.1-pre",
     "inquirer": "^0.4.1",
     "js-yaml": "^3.0.2",
-    "fs-extra": "^0.8.1"
+    "fs-extra": "^0.8.1",
+    "gulp-util": "^2.2.14"
   },
   "engines": {
     "node": ">=0.8.0"
