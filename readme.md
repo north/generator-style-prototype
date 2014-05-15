@@ -59,6 +59,22 @@ Run the following:
 $ yo style-prototype
 ```
 
+### Creating New Sections
+
+While you can create a new section by hand, there's a handy dandy subgenerator to make scaffolding out a section easier.
+
+```bash
+$ yo style-prototype:section
+```
+
+### Creating New Patterns
+
+The two things needed for a new pattern are the HTML in the section you'd like and the Sass to style it. Style Prototypes can help you scaffold out a [North partial structure](http://pointnorth.io/#partial-structure) for each pattern, import it into your Sass file, and generates an empty HTML file for you. While everything this generator does isn't needed, it gives you a quick, easy, and standard way of architecting your Sass.
+
+```bash
+$ yo style-prototype:pattern
+```
+
 # License
 ©2013-2014 Sam Richard
 
