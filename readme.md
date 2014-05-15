@@ -39,16 +39,17 @@ $ npm install -g yo gulp bower generator-style-prototype
 
 Ensure you have [Ruby](https://www.ruby-lang.org/en/) with [RubyGems](http://rubygems.org/) installed as well. If you are on an Apple computer, you need at least Ruby version *2.0.0p451* installed. You can check your Ruby version by running `$ ruby -v`. If you do not have the correct version of Ruby installed, do the following (you may need to `sudo` these steps):
 
-1. Install [Homebrew](http://brew.sh/)
-2. `brew update`
-3. `brew install rbenv ruby-build`
-4. Add `eval "$(rbenv init -)"` to your profile (`~/.bashrc` or `~/.zshrc`. If you have not installed `ZSH` or are unsure if you have, use the former) and restart your terminal.
-5. `rbenv install 2.0.0-p451`
-6. `rbenv rehash`
-7. `bash` or `zsh` (if you are running `ZSH`)
-8. `rbenv shell 2.0.0-p451`
-9. `gem install bundler`
-10. `bash` or `zsh` (if you are running `ZSH`)
+1. Uninstall Bundler and Compass if you have it installed globally (`which bundle` or `which compass` to check to see if they're installed, `gem uninstall bundler` or `gem uninstall compass` if they are)
+2. Install [Homebrew](http://brew.sh/)
+3. `brew update`
+4. `brew install rbenv ruby-build`
+5. Add `eval "$(rbenv init -)"` to your profile (`~/.bashrc` or `~/.zshrc`. If you have not installed `ZSH` or are unsure if you have, use the former) and restart your terminal.
+6. `rbenv install 2.0.0-p451`
+7. `rbenv rehash`
+8. `bash` or `zsh` (if you are running `ZSH`)
+9. `rbenv shell 2.0.0-p451`
+10. `gem install bundler`
+11. `bash` or `zsh` (if you are running `ZSH`)
 
 ## Creating a Style Prototype
 
