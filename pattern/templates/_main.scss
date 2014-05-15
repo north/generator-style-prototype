@@ -1,0 +1,30 @@
+//////////////////////////////
+// <%= patternName %> <%= sectionName %>
+//
+// The partial and folder structure for this <%= sectionLowercase %> should be as follows:
+// _<%= patternSlug %>.scss
+// <%= patternSlug %> (folder)
+//   _extends.scss
+//   _mixins.scss
+//   _variables.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base <%= sectionLowercase %>: @{<%= sectionLowercase %>}
+//  - End styling block for base <%= sectionLowercase %>:   {<%= sectionLowercase %>}@
+//
+//  - Start styling block for specific <%= sectionLowercase %> aspect: @{<%= sectionLowercase %>--aspect}
+//  - End styling block for specific <%= sectionLowercase %> aspect:   {<%= sectionLowercase %>--aspect}@
+//////////////////////////////
+
+@import "<%= patternSlug %>/variables";
+@import "<%= patternSlug %>/mixins";
+@import "<%= patternSlug %>/extends";
+
+//////////////////////////////
+// @{<%= patternSlug %>}
+// Styling for <%= patternName %> <%= sectionName %>
+.<%= patternSlug %> {
+
+}
+// {<%= patternSlug %>}@
+//////////////////////////////
