@@ -5,7 +5,6 @@ var _s = require('underscore.string');
 var yaml = require('js-yaml');
 var fs = require('fs-extra');
 var chalk = require('chalk');
-var file = require('file');
 var gutil = require('gulp-util');
 var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder('utf8');
