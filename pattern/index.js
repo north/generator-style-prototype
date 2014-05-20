@@ -135,19 +135,21 @@ var SPPatternGenerator = yeoman.generators.Base.extend({
         var content = decoder.write(fs.readFileSync('sass/' + k));
         var startSearch = '//////////////////////////////\n// ' + _this.sectionName.toUpperCase();
         var start = content.indexOf(startSearch);
-        var end = content.indexOf('//////////////////////////////', start + startSearch.length);
+        if (start >= 0) {
+          var end = content.indexOf('//////////////////////////////', start + startSearch.length);
 
-        var importString = '@import "partials/' + _this.sectionSlug + '/' + _this.patternSlug + '"';
-        if (extension === 'scss') {
-          importString += ';';
+          var importString = '@import "partials/' + _this.sectionSlug + '/' + _this.patternSlug + '"';
+          if (extension === 'scss') {
+            importString += ';';
+          }
+          importString += '\n';
+
+          var output = [content.slice(0, end), importString, content.slice(end)].join('')
+
+          fs.writeFileSync('sass/' + k, output);
+          gutil.log('Updated ' + gutil.colors.magenta('sass/' + k));
+          imported = true;
         }
-        importString += '\n';
-
-        var output = [content.slice(0, end), importString, content.slice(end)].join('')
-
-        fs.writeFileSync('sass/' + k, output);
-        gutil.log('Updated ' + gutil.colors.magenta('sass/' + k));
-        imported = true;
       }
     });
 
