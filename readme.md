@@ -43,7 +43,7 @@ Ensure you have [Ruby](https://www.ruby-lang.org/en/) with [RubyGems](http://rub
 2. Install [Homebrew](http://brew.sh/)
 3. `brew update`
 4. `brew install rbenv ruby-build`
-5. Add `eval "$(rbenv init -)"` to your profile (`~/.bashrc` or `~/.zshrc`. If you have not installed `ZSH` or are unsure if you have, use the former) and restart your terminal.
+5. Add `eval "$(rbenv init -)"`  and `export GEM_HOME=$(brew --prefix)` to your profile (`~/.bashrc` or `~/.zshrc`. If you have not installed `ZSH` or are unsure if you have, use the former) and restart your terminal.
 6. `rbenv install 2.0.0-p451`
 7. `rbenv rehash`
 8. `bash` or `zsh` (if you are running `ZSH`)
