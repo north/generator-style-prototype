@@ -74,6 +74,12 @@ var SPPatternGenerator = yeoman.generators.Base.extend({
             return true;
           }
         }
+      },
+      {
+        type: 'confirm',
+        name: 'javascript',
+        message: 'Create JavaScript file?',
+        default: false
       }
     ];
 
@@ -81,6 +87,7 @@ var SPPatternGenerator = yeoman.generators.Base.extend({
       _this.prompt(pattern, function (props) {
         _this.patternName = _s.titleize(props.pattern);
         _this.patternSlug = _s.slugify(props.pattern);
+        _this.patternJS = props.javascript;
 
         done();
 
@@ -99,10 +106,19 @@ var SPPatternGenerator = yeoman.generators.Base.extend({
 
   files: function () {
     var _this = this;
+    var placement = this.sectionSlug + '/' + this.patternSlug + '/' + this.patternSlug;
+
     //////////////////////////////
     // Create HTML for pattern
     //////////////////////////////
-    this.template('_pattern.html', this.sectionSlug + '/' + this.patternSlug + '/' + this.patternSlug + '.html');
+    this.template('_pattern.html', placement + '.html');
+
+    //////////////////////////////
+    // Create JavaScript for pattern
+    //////////////////////////////
+    if (this.patternJS) {
+      this.template('_pattern.js', 'js/' + placement + '.js');
+    }
 
     //////////////////////////////
     // Create Sass for pattern
@@ -138,7 +154,7 @@ var SPPatternGenerator = yeoman.generators.Base.extend({
         if (start >= 0) {
           var end = content.indexOf('//////////////////////////////', start + startSearch.length);
 
-          var importString = '@import "partials/' + _this.sectionSlug + '/' + _this.patternSlug + '"';
+          var importString = '@import "partials/' + placement + '"';
           if (extension === 'scss') {
             importString += ';';
           }
@@ -147,14 +163,14 @@ var SPPatternGenerator = yeoman.generators.Base.extend({
           var output = [content.slice(0, end), importString, content.slice(end)].join('')
 
           fs.writeFileSync('sass/' + k, output);
-          gutil.log('Updated ' + gutil.colors.magenta('sass/' + k));
+          console.log('Updated ' + gutil.colors.magenta('sass/' + k));
           imported = true;
         }
       }
     });
 
     if (!imported) {
-      gutil.log('Now import ' + gutil.colors.magenta('partials/' + _this.sectionSlug + '/' + _this.patternSlug) + ' into your Sass file');
+      console.log('Now import ' + gutil.colors.magenta('partials/' + placement) + ' into your Sass file');
     }
 
 
