@@ -1,0 +1,51 @@
+//////////////////////////////
+// Base Component
+//
+// The partial and folder structure for this component should be as follows:
+// _base.scss
+// base (folder)
+//   _extends.scss
+//   _mixins.scss
+//   _variables.scss
+//
+// Automatic Sass parsing is done through special comment blocks
+//  - Start styling block for base component: @{component}
+//  - End styling block for base component:   {component}@
+//
+//  - Start styling block for specific component aspect: @{component--aspect}
+//  - End styling block for specific component aspect:   {component--aspect}@
+//////////////////////////////
+
+@import "base/variables";
+@import "base/mixins";
+@import "base/extends";
+
+//////////////////////////////
+// @{base}
+// Styling for Base Component
+.base {
+
+}
+// {base}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{base--text}
+// Text styling for Base Component
+.base--TEXT {
+
+}
+// {base--text}@
+//////////////////////////////
+
+
+//////////////////////////////
+// @{base--form}
+// Form styling for Base Component
+.base--FORM {
+
+}
+// {base--form}@
+//////////////////////////////
+

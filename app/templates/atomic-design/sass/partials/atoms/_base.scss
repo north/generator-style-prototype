@@ -1,7 +1,7 @@
 //////////////////////////////
-// Base Component
+// Base Atoms
 //
-// The partial and folder structure for this component should be as follows:
+// The partial and folder structure for this atoms should be as follows:
 // _base.scss
 // base (folder)
 //   _extends.scss
@@ -9,11 +9,11 @@
 //   _variables.scss
 //
 // Automatic Sass parsing is done through special comment blocks
-//  - Start styling block for base component: @{component}
-//  - End styling block for base component:   {component}@
+//  - Start styling block for base atoms: @{atoms}
+//  - End styling block for base atoms:   {atoms}@
 //
-//  - Start styling block for specific component aspect: @{component--aspect}
-//  - End styling block for specific component aspect:   {component--aspect}@
+//  - Start styling block for specific atoms aspect: @{atoms--aspect}
+//  - End styling block for specific atoms aspect:   {atoms--aspect}@
 //////////////////////////////
 
 @import "base/variables";
@@ -22,7 +22,7 @@
 
 //////////////////////////////
 // @{base}
-// Styling for Base Component
+// Styling for Base  Atoms
 .base {
 
 }
@@ -32,9 +32,9 @@
 
 //////////////////////////////
 // @{base--text}
-// Text styling for Base Component
+// Text styling for Base Atoms
 .base--TEXT {
-  
+
 }
 // {base--text}@
 //////////////////////////////
@@ -42,9 +42,9 @@
 
 //////////////////////////////
 // @{base--form}
-// Form styling for Base Component
+// Form styling for Base Atoms
 .base--FORM {
-  
+
 }
 // {base--form}@
 //////////////////////////////
