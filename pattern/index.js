@@ -154,7 +154,7 @@ var SPPatternGenerator = yeoman.generators.Base.extend({
         if (start >= 0) {
           var end = content.indexOf('//////////////////////////////', start + startSearch.length);
 
-          var importString = '@import "partials/' + placement + '"';
+          var importString = '@import "partials/' + _this.sectionSlug + '/' + _this.patternSlug + '"';
           if (extension === 'scss') {
             importString += ';';
           }
@@ -170,7 +170,7 @@ var SPPatternGenerator = yeoman.generators.Base.extend({
     });
 
     if (!imported) {
-      console.log('Now import ' + gutil.colors.magenta('partials/' + placement) + ' into your Sass file');
+      console.log('Now import ' + gutil.colors.magenta('partials/' + _this.sectionSlug + '/' + _this.patternSlug) + ' into your Sass file');
     }
 
 
