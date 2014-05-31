@@ -161,7 +161,18 @@ var SPGenerator = yeoman.generators.Base.extend({
 
   sass: function () {
     // Move Style over
-    this.copy('style.scss', this.projectFolder + 'sass/' + this.projectSlug + '.scss');
+    if (this.projectType === 'north') {
+      this.directory('base', this.projectFolder + 'sass/partials/components');
+      this.copy('north.scss', this.projectFolder + 'sass/' + this.projectSlug + '.scss');
+    }
+    else if (this.projectType === 'atomic-design') {
+      this.directory('base', this.projectFolder + 'sass/partials/atoms');
+      this.copy('atomic.scss', this.projectFolder + 'sass/' + this.projectSlug + '.scss');
+    }
+    else {
+      this.copy('default.scss', this.projectFolder + 'sass/' + this.projectSlug + '.scss');
+    }
+
 
     // Loop over each Sass folder and throw a Sass file there
     var globals = ['variables', 'functions', 'mixins', 'extends'];
