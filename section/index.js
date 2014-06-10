@@ -44,6 +44,9 @@ var SPSectionGenerator = yeoman.generators.Base.extend({
           if (answer === '') {
             return 'Section name cannot be empty';
           }
+          if (_this.section === undefined) {
+            return true;
+          }
           if (Object.keys(_this.sections).indexOf(_s.slugify(answer)) > -1) {
             return 'Section ' + answer + ' already exists!';
           }
@@ -71,13 +74,14 @@ var SPSectionGenerator = yeoman.generators.Base.extend({
     // Add Section to Sections and save
     //////////////////////////////
     var sections = this.sections;
+    if (sections === null) {
+      sections = {};
+    }
     sections[this.sectionSlug] = {
       title: this.sectionName
     }
     fs.writeFileSync('config/sections.yml', yaml.safeDump(sections));
     console.log('   ' + chalk.green('update ') + 'config/sections.yml');
-
-
   }
 });
 
