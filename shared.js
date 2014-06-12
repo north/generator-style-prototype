@@ -21,3 +21,17 @@ module.exports.welcome = function () {
 
   return welcome;
 }
+
+
+
+module.exports.commentFind = function (content, section) {
+  var startSearch = '//////////////////////////////\n// ' + section.toUpperCase();
+  var start = content.indexOf(startSearch);
+
+  if (start >= 0) {
+    return start;
+  }
+  else {
+    return false;
+  }
+}

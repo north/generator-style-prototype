@@ -1,1 +1,6 @@
+#########################
+# Variables available for `<%= sectionSlug %>` patterns.
+#
+# To use: {{<%= sectionSlug %>.variable}}
+#########################
 <%= sectionSlug %>:

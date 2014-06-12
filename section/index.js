@@ -6,6 +6,8 @@ var yaml = require('js-yaml');
 var fs = require('fs-extra');
 var chalk = require('chalk');
 var inquirer = require("inquirer");
+var StringDecoder = require('string_decoder').StringDecoder;
+var decoder = new StringDecoder('utf8');
 
 var SPSectionGenerator = yeoman.generators.Base.extend({
   init: function () {
@@ -65,6 +67,8 @@ var SPSectionGenerator = yeoman.generators.Base.extend({
   },
 
   files: function () {
+    var _this = this;
+
     //////////////////////////////
     // Create Section w/Yaml
     //////////////////////////////
@@ -82,6 +86,25 @@ var SPSectionGenerator = yeoman.generators.Base.extend({
     }
     fs.writeFileSync('config/sections.yml', yaml.safeDump(sections));
     console.log('   ' + chalk.green('update ') + 'config/sections.yml');
+
+    //////////////////////////////
+    // Create Section Partial Hook
+    //////////////////////////////
+    var files = fs.readdirSync('sass');
+    files.forEach(function (k, v) {
+      var extension = k.split('.').pop();
+      if (extension === 'scss' || extension === 'sass') {
+        var content = decoder.write(fs.readFileSync('sass/' + k));
+        var startSearch = '//////////////////////////////\n// ' + _this.sectionName.toUpperCase();
+        var start = content.indexOf(startSearch);
+        if (start < 0) {
+          content += '\n\n' + startSearch + '\n\n' + '//////////////////////////////\n'
+
+          fs.writeFileSync('sass/' + k, content);
+          console.log('   ' + chalk.green('update ') + 'sass/' + k);
+        }
+      }
+    });
   }
 });
 
