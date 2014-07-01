@@ -31,7 +31,7 @@ Come with me on this journey.
 
 ## Installation
 
-To install the generator, make sure you have [NodeJS](http://nodejs.org/) installed, then run the following from the command line:
+To install the generator, make sure you have [NodeJS](http://nodejs.org/) installed (if using an Apple computer, it is recommended to install [Homebrew](http://brew.sh/) then install NodeJS by running `brew install node`), then run the following from the command line:
 
 ```bash
 $ npm install -g yo gulp bower generator-style-prototype
