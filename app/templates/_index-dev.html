@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" ng-app="StylePrototype">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= projectName %> Style Prototype</title>
+  <!-- build:css css/app.css -->
+  <link rel="stylesheet" href="bower_components/style-prototype/css/prototype.css">
+  <link rel="stylesheet" href="css/<%= projectSlug %>.css">
+  <!-- endbuild -->
+</head>
+<body>
+  <header ng-controller="GlobalHeader">
+    <div navbar></div>
+  </header>
+
+  <main ng-view></main>
+
+  <!-- build:js js/app.js -->
+  <script src='bower_components/angular/angular.js'></script>
+  <script src='bower_components/angular-route/angular-route.js'></script>
+  <script src='bower_components/angular-local-storage/angular-local-storage.js'></script>
+  <script src='bower_components/prism/prism.js'></script>
+  <script src='bower_components/prism/components/prism-scss.js'></script>
+  <script src='bower_components/prism/components/prism-javascript.js'></script>
+  <script src='bower_components/style-prototype/build/templates.js'></script>
+  <script src='bower_components/style-prototype/build/factories.js'></script>
+  <script src='bower_components/style-prototype/build/directives.js'></script>
+  <script src='bower_components/style-prototype/build/app.js'></script>
+  <!-- endbuild -->
+</body>
+</html>

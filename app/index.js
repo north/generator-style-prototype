@@ -125,19 +125,38 @@ var SPGenerator = yeoman.generators.Base.extend({
     // Managers
     //////////////////////////////
     this.template('_bower.json', this.projectFolder + 'bower.json');
-    this.template('_package.json', this.projectFolder + 'package.json');
+
+    if (this.options['dev']) {
+      this.template('_package-dev.json', this.projectFolder + 'package.json');
+    }
+    else {
+      this.template('_package.json', this.projectFolder + 'package.json');
+    }
+
     this.copy('Gemfile', this.projectFolder + 'Gemfile');
 
     //////////////////////////////
     // Runners and Settings
     //////////////////////////////
-    this.copy('Gulpfile.js', this.projectFolder + 'Gulpfile.js');
+    if (this.options['dev']) {
+      this.copy('Gulpfile-dev.js', this.projectFolder + 'Gulpfile.js');
+    }
+    else {
+      this.copy('Gulpfile.js', this.projectFolder + 'Gulpfile.js');
+    }
+
     this.copy('config.rb', this.projectFolder + 'config.rb');
 
     //////////////////////////////
     // Index
     //////////////////////////////
-    this.template('_index.html', this.projectFolder + 'index.html');
+    if (this.options['dev']) {
+      this.template('_index-dev.html', this.projectFolder + 'index.html');
+    }
+    else {
+      this.template('_index.html', this.projectFolder + 'index.html');
+    }
+
   },
 
   prototypes: function () {
