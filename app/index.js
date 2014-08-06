@@ -15,10 +15,6 @@ var SPGenerator = yeoman.generators.Base.extend({
       //////////////////////////////
       // If the --init flag isn't passed in, move into project dir
       //////////////////////////////
-      if (!this.options['init']) {
-        process.chdir(this.projectFolder);
-      }
-
       var dir = this.projectFolder;
 
       //////////////////////////////
@@ -28,8 +24,6 @@ var SPGenerator = yeoman.generators.Base.extend({
         sh.run('bundle install --path vendor');
         this.installDependencies({
           callback: function () {
-            console.log('\n\nRunning ' + chalk.yellow('gulp init') + ' for you to initialize your project. If this fails, try running the command yourself\n\n');
-            sh.run('gulp init');
             console.log('\u001b[2J\u001b[0;0H');
             console.log(chalk.yellow('★ ') + chalk.green('Installation Complete!\n') +
               '  ▪ Move into the ' + chalk.cyan(dir) + ' directory\n' +
@@ -89,7 +83,6 @@ var SPGenerator = yeoman.generators.Base.extend({
       //////////////////////////////
       // Initialization Options
       //////////////////////////////
-      this.projectFolder = this.options['init'] ? './' : this.projectSlug + '/';
       if (this.options['north']) {
         this.projectType = 'north'
       }
@@ -104,57 +97,62 @@ var SPGenerator = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
+  enforceFolderName: function () {
+    this.projectFolder = this.options['init'] ? './' : this.projectSlug + '/';
+    this.destinationRoot(this.projectFolder);
+  },
+
   dotfiles: function () {
     //////////////////////////////
     // Code Quality
     //////////////////////////////
-    this.copy('bowerrc', this.projectFolder + '.bowerrc');
-    this.copy('csslintrc', this.projectFolder + '.csslintrc');
-    this.copy('jshintrc', this.projectFolder + '.jshintrc');
-    this.copy('editorconfig', this.projectFolder + '.editorconfig');
+    this.copy('bowerrc', '.bowerrc');
+    this.copy('csslintrc', '.csslintrc');
+    this.copy('jshintrc', '.jshintrc');
+    this.copy('editorconfig', '.editorconfig');
 
     //////////////////////////////
     // Git
     //////////////////////////////
-    this.copy('gitattributes', this.projectFolder + '.gitattributes');
-    this.copy('gitignore', this.projectFolder + '.gitignore');
+    this.copy('gitattributes', '.gitattributes');
+    this.copy('gitignore', '.gitignore');
   },
 
   managers: function () {
     //////////////////////////////
     // Managers
     //////////////////////////////
-    this.template('_bower.json', this.projectFolder + 'bower.json');
+    this.template('_bower.json', 'bower.json');
 
     if (this.options['dev']) {
-      this.template('_package-dev.json', this.projectFolder + 'package.json');
+      this.template('_package-dev.json', 'package.json');
     }
     else {
-      this.template('_package.json', this.projectFolder + 'package.json');
+      this.template('_package.json', 'package.json');
     }
 
-    this.copy('Gemfile', this.projectFolder + 'Gemfile');
+    this.copy('Gemfile', 'Gemfile');
 
     //////////////////////////////
     // Runners and Settings
     //////////////////////////////
     if (this.options['dev']) {
-      this.copy('Gulpfile-dev.js', this.projectFolder + 'Gulpfile.js');
+      this.copy('Gulpfile-dev.js', 'Gulpfile.js');
     }
     else {
-      this.copy('Gulpfile.js', this.projectFolder + 'Gulpfile.js');
+      this.copy('Gulpfile.js', 'Gulpfile.js');
     }
 
-    this.copy('config.rb', this.projectFolder + 'config.rb');
+    this.copy('config.rb', 'config.rb');
 
     //////////////////////////////
     // Index
     //////////////////////////////
     if (this.options['dev']) {
-      this.template('_index-dev.html', this.projectFolder + 'index.html');
+      this.template('_index-dev.html', 'index.html');
     }
     else {
-      this.template('_index.html', this.projectFolder + 'index.html');
+      this.template('_index.html', 'index.html');
     }
 
   },
@@ -164,41 +162,41 @@ var SPGenerator = yeoman.generators.Base.extend({
     // Folders
     //////////////////////////////
     if (this.projectType !== null) {
-      this.directory(this.projectType, this.projectFolder);
+      this.directory(this.projectType, './');
     }
     else {
-      this.copy('sections.yml', this.projectFolder + 'config/sections.yml');
+      this.copy('sections.yml', 'config/sections.yml');
     }
 
     //////////////////////////////
     // Config
     //////////////////////////////
-    // this.copy('sections.yml', this.projectFolder + 'config/sections.yml');
-    // this.copy('style-tile.yml', this.projectFolder + 'config/style-tile.yml');
+    // this.copy('sections.yml', 'config/sections.yml');
+    // this.copy('style-tile.yml', 'config/style-tile.yml');
     this.invoke('style-prototype:style-tile');
-    this.copy('deploy.yml', this.projectFolder + 'config/deploy.yml');
+    this.copy('deploy.yml', 'config/deploy.yml');
   },
 
   sass: function () {
     // Move Style over
     if (this.projectType === 'north') {
-      this.directory('base', this.projectFolder + 'sass/partials/components');
-      this.copy('north.scss', this.projectFolder + 'sass/' + this.projectSlug + '.scss');
+      this.directory('base', 'sass/partials/components');
+      this.copy('north.scss', 'sass/' + this.projectSlug + '.scss');
     }
     else if (this.projectType === 'atomic-design') {
-      this.directory('base', this.projectFolder + 'sass/partials/atoms');
-      this.copy('atomic.scss', this.projectFolder + 'sass/' + this.projectSlug + '.scss');
+      this.directory('base', 'sass/partials/atoms');
+      this.copy('atomic.scss', 'sass/' + this.projectSlug + '.scss');
     }
     else {
-      this.copy('default.scss', this.projectFolder + 'sass/' + this.projectSlug + '.scss');
+      this.copy('default.scss', 'sass/' + this.projectSlug + '.scss');
     }
 
 
     // Loop over each Sass folder and throw a Sass file there
     var globals = ['variables', 'functions', 'mixins', 'extends'];
     for (var i in globals) {
-      this.copy('all.scss', this.projectFolder + 'sass/partials/global/_' + globals[i] + '.scss');
-      this.copy('gitkeep', this.projectFolder + 'sass/partials/global/' + globals[i] + '/.gitkeep');
+      this.copy('all.scss', 'sass/partials/global/_' + globals[i] + '.scss');
+      this.copy('gitkeep', 'sass/partials/global/' + globals[i] + '/.gitkeep');
     }
   },
 
@@ -214,7 +212,7 @@ var SPGenerator = yeoman.generators.Base.extend({
     }
 
     for (var i in keep) {
-      this.copy('gitkeep', this.projectFolder + keep[i] + '/.gitkeep');
+      this.copy('gitkeep', keep[i] + '/.gitkeep');
     }
   }
 
