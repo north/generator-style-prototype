@@ -175,6 +175,7 @@ var SPGenerator = yeoman.generators.Base.extend({
     //////////////////////////////
     // this.copy('sections.yml', this.projectFolder + 'config/sections.yml');
     // this.copy('style-tile.yml', this.projectFolder + 'config/style-tile.yml');
+    this.invoke('style-prototype:style-tile');
     this.copy('deploy.yml', this.projectFolder + 'config/deploy.yml');
   },
 

@@ -27,7 +27,8 @@
     "shared.js",
     "section",
     "pattern",
-    "extension"
+    "extension",
+    "style-tile"
   ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
