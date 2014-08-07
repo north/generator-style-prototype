@@ -103,6 +103,16 @@ If you would like to publish a production-ready version of your Style Prototype 
 $ gulp deploy
 ```
 
+## Using Your Style Prototype
+
+After your Style Prototype is built, you can access it from your projects via Bower. As long as you have access to the Git repo you your Style Prototype lives in (even if it's a private repo), Bower is able to [use it as a dependency](http://bower.io/#install-packages). Simply run the following from your project and you'll get your prototype as a Bower dependency:
+
+```bash
+$ bower install {{git@git-url}} --save
+```
+
+From there, for Sass, point your import path to your Sass and your task runners to move your images/JavaScript/etc… around, and you're good to go.
+
 # License
 ©2013-2014 Sam Richard
 
