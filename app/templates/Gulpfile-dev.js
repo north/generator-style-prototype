@@ -14,3 +14,5 @@ gulp.task('dev', function () {
 gulp.task('dev-watch', function () {
   gulp.watch('bower_components/**/*', ['dev']);
 });
+
+gulp.task('dev-server', ['dev-watch', 'server']);
