@@ -202,7 +202,7 @@ var SPGenerator = yeoman.generators.Base.extend({
 
   gitkeep: function () {
     // Loop over each folder and add a gitkeep
-    var keep = ['sass', 'images', 'fonts', 'js', 'sass/partials', 'sass/enhancements', 'sass/fallbacks'];
+    var keep = ['sass', 'images', 'fonts', 'js', 'sass/partials'];
 
     if (this.projectType === 'north') {
       keep.push('sass/partials/components', 'sass/partials/layouts')
