@@ -1,9 +1,15 @@
 #########################
 ## `gulp deploy`
 ##
-##   These options will be used with [Gulp Subtree(https://github.com/Snugug/gulp-subtree) to publish your Style Prototype to a remote branch.
-##   To ensure all changes are being published, run `gulp init` first
+##   These options will be used with [Gulp Subtree](https://github.com/Snugug/gulp-subtree) to publish your Style Prototype to a remote branch.
 #########################
-remote: 'upstream'
+remote: 'origin'
 branch: 'gh-pages'
-message: 'Deploy'
+message: 'Style Prototype Deploy'
+
+#########################
+## `gulp export`
+##
+# The folder to export a compiled Style Prototype to (for deploying external to a Git Deploy)
+#########################
+export: 'export'
