@@ -11,7 +11,9 @@
     "vendor",
     "Gulpfile.js",
     "config",
+    "pages",
     "index.html",
+    "bower.json",
     "package.json"
   ],
   "dependencies": {
