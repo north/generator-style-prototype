@@ -103,7 +103,19 @@ If you would like to publish a production-ready version of your Style Prototype 
 $ gulp deploy
 ```
 
+## Keeping Up To Date
+
+Keeping up to date with the latest and greatest releases of Style Prototypes is pretty easy.
+
+* For updating your Gulp tasks, which come from [`gulp-style-prototype`](https://github.com/north/gulp-style-prototype/), run `npm update gulp-style-prototype --save`.
+* For updating the in-browser framework, which comes from [`style-prototypes`](https://github.com/north/style-prototypes/), run `bower update style-prototypes --save-dev`.
+* For updating this generator, run `npm update -g generator-style-prototype`.
+
+The Gulp tasks and in-browser framework updates will take effect immediately. Yeoman generator updates will take effect on newly created style prototypes. Most truly new features will be added through subgenerators, so you should only need to run the relevant subgenerator to get any new features, or make simple changes to existing files. Alternatively, you can run `yo style-prototype --init` to re-run the generator in your current directory (make sure you're in the root of your current Style Prototype directory). You will go through the creation prompt again and any files that differ from what exists you will be prompted to deal with.
+
 ## Using Your Style Prototype
+
+### via Bower
 
 After your Style Prototype is built, you can access it from your projects via Bower. As long as you have access to the Git repo you your Style Prototype lives in (even if it's a private repo), Bower is able to [use it as a dependency](http://bower.io/#install-packages). Simply run the following from your project and you'll get your prototype as a Bower dependency:
 
@@ -112,6 +124,10 @@ $ bower install {{git@git-url}} --save
 ```
 
 From there, for Sass, point your import path to your Sass and your task runners to move your images/JavaScript/etc… around, and you're good to go.
+
+### via Archive
+
+Alternatively, if you are using `gulp-style-prototype` **v1.1.0** or greater, you can create a ZIP file of the relevant files that can be distributed. To do so, either pass ``--zip` into your `refresh`, `dist`, `export`, `deploy`, or base `gulp` command to build a Zip file, or add `zip: true` to `config/deploy.yml`. You can also run `gulp zip` to generate a one-off zip file.
 
 # License
 ©2013-2014 Sam Richard
