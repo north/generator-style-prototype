@@ -1,7 +1,7 @@
 #########################
 ## `gulp deploy`
 ##
-##   These options will be used with [Gulp Subtree](https://github.com/Snugug/gulp-subtree) to publish your Style Prototype to a remote branch.
+## These options will be used with [Gulp Subtree](https://github.com/Snugug/gulp-subtree) to publish your Style Prototype to a remote branch.
 #########################
 remote: 'origin'
 branch: 'gh-pages'
@@ -10,6 +10,15 @@ message: 'Style Prototype Deploy'
 #########################
 ## `gulp export`
 ##
-# The folder to export a compiled Style Prototype to (for deploying external to a Git Deploy)
+## The folder to export a compiled Style Prototype to (for deploying external to a Git Deploy).
 #########################
 export: 'export'
+
+#########################
+## `gulp {{task}} --zip`
+##
+## Whether or not to generate a zip file of your Style Prototype content when rebuilding your working server (`gulp`, `gulp refresh`) and when building and deploying your finished Style Prototype (`gulp dist`, `gulp export`, `gulp deploy`).
+##
+## Can also be overridden for any of the above tasks by passing the flag `--zip` to include a zip or `--no-zip` to not include one.
+#########################
+zip: false
