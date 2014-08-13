@@ -55,7 +55,7 @@ If you do not have the correct version of Ruby installed and you are on an Apple
 10. `gem install bundler`
 11. `bash` or `zsh` (if you are running `ZSH`)
 
-If you are on a Windows computer, it is highly recommended that you use [Console 2](http://sourceforge.net/projects/console/files/) with PowerShell (`Edit->Settings`, set shell to `C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe`). If you're on a Windows computer, the easiest way to get set up with Ruby is [Ruby Installer](http://rubyinstaller.org/), and it is likely you will need to install [Git](http://git-scm.com/downloads) as well. Ensure that you add Node, Ruby, and Git to your PATH during installation of each respectively.
+If you are on a Windows computer, it is highly recommended that you use [Console 2](http://sourceforge.net/projects/console/files/) with PowerShell (`Edit->Settings`, set shell to `C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe`). If you're on a Windows computer, the easiest way to get set up with Ruby is [Ruby Installer](http://rubyinstaller.org/), and it is likely you will need to install [Git](http://git-scm.com/downloads) as well. Ensure that you add Node, Ruby, and Git to your PATH during installation of each respectively. Windows users should also install Bundler after everything else is installed (`gem install bundler`).
 
 ## Creating a Style Prototype
 
