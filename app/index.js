@@ -4,8 +4,9 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var _s = require('underscore.string');
-var sh = require('execSync');
 var shared = require('../shared.js');
+var run = require('child_process').exec;
+
 
 var SPGenerator = yeoman.generators.Base.extend({
   init: function () {
@@ -21,7 +22,8 @@ var SPGenerator = yeoman.generators.Base.extend({
       // Install dependencies unless --skip-install is passed
       //////////////////////////////
       if (!this.options['skip-install']) {
-        sh.run('bundle install --path vendor');
+        run('bundle install --path vendor')
+              
         this.installDependencies({
           callback: function () {
             console.log('\u001b[2J\u001b[0;0H');
@@ -36,8 +38,7 @@ var SPGenerator = yeoman.generators.Base.extend({
       // If the --git flag is passed, initialize git and add for initial commit
       //////////////////////////////
       if (this.options['git']) {
-        sh.run('git init');
-        sh.run('git add . && git commit -m "Style Prototype Generation"');
+        run('git init && git add . && git commit -m "Style Prototype Generation"');
       }
     });
   },

@@ -33,7 +33,6 @@
   "dependencies": {
     "chalk": "^0.4.0",
     "dateformat": "^1.0.8-1.2.3",
-    "execSync": "~1.0.1-pre",
     "fs-extra": "^0.8.1",
     "gulp-util": "^2.2.20",
     "inquirer": "^0.4.1",
