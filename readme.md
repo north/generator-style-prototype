@@ -1,3 +1,5 @@
+# This project is currently unmaintained. If you are interested in taking it over, please open an issue to discuss
+
 ```
  ______     ______   __  __     __         ______
 /\  ___\   /\__  _\ /\ \_\ \   /\ \       /\  ___\
