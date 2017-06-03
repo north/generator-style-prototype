@@ -1,0 +1,95 @@
+<form class="base--FORM">
+  <fieldset>
+    <legend><h2>Your Experience with XYZ</h2></legend>
+
+    <fieldset>
+      <legend>You mainly use XYZ for:</legend>
+      <input id="core-radio-0" type="radio" value="Business" checked="checked">
+      <label for="core-radio-0">Business</label>
+
+      <input id="core-radio-1" type="radio" value="Personal use">
+      <label for="core-radio-1">Personal use</label>
+    </fieldset>
+
+    <label for="discover">How did you discover XYZ?</label>
+    <select name="discover">
+      <option value="Search Engine" selected="selected">Search Engine</option>
+      <option value="Referred by Existing Customer">Referred by Existing Customer</option>
+      <option value="Online Advertising">Online Advertising</option>
+      <option value="Offline Advertising">Offline Advertising</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <fieldset>
+      <legend>How often do you use XYZ?</legend>
+      <input id="core-radio-7" type="radio" value="Every Day" checked="checked">
+      <label for="core-radio-7">Every Day</label>
+
+      <input id="core-radio-2" type="radio" value="Once a Week">
+      <label for="core-radio-2">Once a Week</label>
+
+      <input id="core-radio-3" type="radio" value="Less Than Once a Week">
+      <label for="core-radio-3">Less Than Once a Week</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>How would you rate your experience with XYZ?</legend>
+
+      <input id="core-radio-4" type="radio" value="Good">
+      <label for="core-radio-4">Good</label>
+
+      <input id="core-radio-5" type="radio" value="Average">
+      <label for="core-radio-5">Average</label>
+
+      <input id="core-radio-6" type="radio" value="Bad">
+      <label for="core-radio-6">Bad</label>
+    </fieldset>
+
+    <label for="timeUsed">How long have you been using XYZ?</label>
+    <select name="timeUsed">
+      <option value="I'm only using XYZ for a few days" selected="selected">I'm only using XYZ for a few days</option>
+      <option value="I'm using XYZ for about a week">I'm using XYZ for about a week</option>
+      <option value="I'm using XYZ for a month or more">I'm using XYZ for a month or more</option>
+      <option value="I'm not using XYZ yet, but I will in the future">I'm not using XYZ yet, but I will in the future</option>
+      <option value="I'm not using XYZ and have no plans to use it">I'm not using XYZ and have no plans to use it</option>
+    </select>
+
+    <label for="favoriteFeature">What is your favorite feature?</label>
+    <textarea required name="favoriteFeature" cols="30" rows="10"></textarea>
+  </fieldset>
+
+  <fieldset>
+    <legend><h2>About Yourself</h2></legend>
+
+    <label for="firstName">First Name</label>
+    <input required type="text" name="firstName">
+    <label for="lastName">Last Name</label>
+    <input required type="text" name="lastName">
+    <label for="email">Email</label>
+    <input required type="email" name="email">
+    <label for="dob">Date of Birth</label>
+    <input type="date" name="dob">
+    <label for="website">Website</label>
+    <input type="url" name="website">
+
+  </fieldset>
+
+  <fieldset>
+    <legend><h3>Would You Like Us To Follow Up with You?</h3></legend>
+    <input id="core-checkbox-0" type="checkbox">
+    <label for="core-checkbox-0">Yes, please contact me to discuss my needs</label>
+
+    <input id="core-checkbox-1" type="checkbox">
+    <label for="core-checkbox-1">Subscribe to XYZ newsletter</label>
+
+    <label for="commments">Any additional comments?</label>
+    <textarea name="comments" cols="30" rows="10"></textarea>
+  </fieldset>
+
+  <fieldset>
+    <input id="core-checkbox-2" required type="checkbox">
+    <label for="core-checkbox-2">I agree to the <a href="#">terms and conditions</a></label>
+    <input type="submit">
+  </fieldset>
+
+</form>

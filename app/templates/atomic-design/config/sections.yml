@@ -1,7 +1,5 @@
 atoms:
   title: Atoms
-  plugins:
-    - bower_components/style-prototype/components/base
 molecules:
   title: Molecules
 organisms:
